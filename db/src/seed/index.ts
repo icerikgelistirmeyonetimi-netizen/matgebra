@@ -4,6 +4,8 @@ import * as s from '../schema/index.js'
 import { normalize, slugla } from '../metin.js'
 import { KONULAR, konuSlug } from './konular.js'
 import { ALANLAR, ARACLAR, MODULLER, STILLER } from './temel.js'
+import { GERCEK_HAYAT_ORNEKLERI, SAHNELER } from './sahneler.js'
+import { sahneYaz } from './sahneYaz.js'
 
 /**
  * Tohumlama.
@@ -148,6 +150,57 @@ function main(): void {
 
   const konuId = tohumla()
 
+  // --- sahneler (konular yazildiktan sonra: sahne konuya baglidir)
+  let sahneSayisi = 0
+  let nesneSayisi = 0
+  let adimSayisi = 0
+  const sahneHatalari: string[] = []
+
+  const sahneleriYaz = ham.transaction(() => {
+    for (const sahne of SAHNELER) {
+      try {
+        const sonuc = sahneYaz(db, sahne)
+        sahneSayisi++
+        nesneSayisi += sonuc.nesne
+        adimSayisi += sonuc.adim
+      } catch (e) {
+        sahneHatalari.push(`${sahne.slug}: ${e instanceof Error ? e.message : String(e)}`)
+      }
+    }
+
+    db.delete(s.gercekHayatOrnegi).run()
+    for (const ornek of GERCEK_HAYAT_ORNEKLERI) {
+      const konu = db
+        .select({ id: s.konu.id })
+        .from(s.konu)
+        .where(eq(s.konu.slug, ornek.konuSlug))
+        .get()
+      const sahne = db
+        .select({ id: s.sahne.id })
+        .from(s.sahne)
+        .where(eq(s.sahne.slug, ornek.sahneSlug))
+        .get()
+      if (!konu || !sahne) {
+        sahneHatalari.push(`ornek ${ornek.sahneSlug}: konu ya da sahne bulunamadi`)
+        continue
+      }
+      db.insert(s.gercekHayatOrnegi)
+        .values({
+          konuId: konu.id,
+          sahneId: sahne.id,
+          baslik: ornek.baslik,
+          hikaye: ornek.hikaye,
+          soru: ornek.soru,
+          olcekAciklama: ornek.olcekAciklama,
+          kaynak: ornek.kaynak,
+          yasAraligi: ornek.yasAraligi,
+          durum: 'yayin',
+        })
+        .run()
+    }
+  })
+  sahneleriYaz()
+
   // --- konu arama dizini
   ham.exec('DELETE FROM konu_fts')
   ham
@@ -184,6 +237,8 @@ function main(): void {
   console.log(`modul         : ${MODULLER.length}`)
   console.log(`konu          : ${konuId.size}`)
   console.log(`on kosul      : ${kenarlar.length}`)
+  console.log(`sahne         : ${sahneSayisi}  (${nesneSayisi} nesne, ${adimSayisi} adim)`)
+  console.log(`gercek hayat  : ${GERCEK_HAYAT_ORNEKLERI.length}`)
   console.log(`\nkazanim kapsamasi: ${kapsanan}/${toplamHedef}`)
 
   if (kapsanan < toplamHedef) {
@@ -202,7 +257,11 @@ function main(): void {
   if (eksikKazanim.length) console.log(`UYARI bulunamayan kazanim kodu:\n  ${eksikKazanim.join('\n  ')}`)
   if (eksikOnKosul.length) console.log(`UYARI bulunamayan on kosul:\n  ${eksikOnKosul.join('\n  ')}`)
   if (dongu) console.log(`UYARI on kosul grafiginde dongu: ${dongu.join(' -> ')}`)
-  if (!eksikSinif.size && !eksikKazanim.length && !eksikOnKosul.length && !dongu) {
+  if (sahneHatalari.length) {
+    console.log('UYARI sahne:')
+    for (const h of sahneHatalari) console.log('  ' + h)
+  }
+  if (!eksikSinif.size && !eksikKazanim.length && !eksikOnKosul.length && !dongu && !sahneHatalari.length) {
     console.log('\nTum baglar dogrulandi.')
   }
 

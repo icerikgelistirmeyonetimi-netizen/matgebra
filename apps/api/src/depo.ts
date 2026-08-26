@@ -342,3 +342,156 @@ export function kapsamaRaporu() {
 
   return { siniflar: satirlar, kazanim }
 }
+
+/**
+ * Tek sahnenin tam hali: ayar + nesneler + bagimlilik + parametre + adimlar.
+ *
+ * Bagimliliklar disariya nesne kimligiyle degil nesne adiyla verilir; arayuz
+ * ve MCP ayni insan okunur dili kullansin diye. Sahne verisi motor bagimsiz
+ * kalir: "C noktasi, merkezi O olan cemberin uzerinde".
+ */
+export function sahne(slug: string) {
+  const temel = db
+    .select({
+      id: s.sahne.id,
+      slug: s.sahne.slug,
+      baslik: s.sahne.baslik,
+      tur: s.sahne.tur,
+      ozet: s.sahne.ozet,
+      zorluk: s.sahne.zorluk,
+      durum: s.sahne.durum,
+      surum: s.sahne.surum,
+      konuSlug: s.konu.slug,
+      konuAd: s.konu.ad,
+      alan: s.alan.slug,
+      alanAd: s.alan.ad,
+      seviye: s.sinif.seviye,
+      sinifAd: s.sinif.ad,
+    })
+    .from(s.sahne)
+    .innerJoin(s.konu, eq(s.konu.id, s.sahne.konuId))
+    .innerJoin(s.alan, eq(s.alan.id, s.konu.alanId))
+    .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+    .where(eq(s.sahne.slug, slug))
+    .get()
+
+  if (!temel) return null
+
+  const ayarSatiri = db
+    .select()
+    .from(s.sahneAyar)
+    .where(eq(s.sahneAyar.sahneId, temel.id))
+    .get()
+
+  const nesneler = db
+    .select({
+      id: s.nesne.id,
+      ad: s.nesne.ad,
+      tip: s.nesne.tip,
+      etiket: s.nesne.etiket,
+      sira: s.nesne.sira,
+      katman: s.nesne.katman,
+      gorunur: s.nesne.gorunur,
+      kilitli: s.nesne.kilitli,
+      surukleme: s.nesne.surukleme,
+      stilRol: s.stil.rol,
+      stilKalinlik: s.stil.kalinlik,
+      stilOpaklik: s.stil.opaklik,
+      stilCizgiTipi: s.stil.cizgiTipi,
+      stilNoktaBoyutu: s.stil.noktaBoyutu,
+    })
+    .from(s.nesne)
+    .leftJoin(s.stil, eq(s.stil.id, s.nesne.stilId))
+    .where(eq(s.nesne.sahneId, temel.id))
+    .orderBy(asc(s.nesne.sira))
+    .all()
+
+  const idler = nesneler.map((n) => n.id)
+  const adIle = new Map(nesneler.map((n) => [n.id, n.ad]))
+
+  const parametreler = idler.length
+    ? db
+        .select()
+        .from(s.nesneParametre)
+        .where(inArray(s.nesneParametre.nesneId, idler))
+        .all()
+    : []
+
+  const bagimliliklar = idler.length
+    ? db
+        .select()
+        .from(s.nesneBagimlilik)
+        .where(inArray(s.nesneBagimlilik.nesneId, idler))
+        .orderBy(asc(s.nesneBagimlilik.sira))
+        .all()
+    : []
+
+  const adimlar = db
+    .select()
+    .from(s.adim)
+    .where(eq(s.adim.sahneId, temel.id))
+    .orderBy(asc(s.adim.sira))
+    .all()
+
+  const ornek = db
+    .select()
+    .from(s.gercekHayatOrnegi)
+    .where(eq(s.gercekHayatOrnegi.sahneId, temel.id))
+    .get()
+
+  return {
+    ...temel,
+    ayar: {
+      eksenModu: ayarSatiri?.eksenModu ?? 'tam',
+      sinir: [
+        ayarSatiri?.sinirX1 ?? -10,
+        ayarSatiri?.sinirY1 ?? 10,
+        ayarSatiri?.sinirX2 ?? 10,
+        ayarSatiri?.sinirY2 ?? -10,
+      ] as [number, number, number, number],
+      izgaraAdimi: ayarSatiri?.izgaraAdimi ?? 1,
+      birim: ayarSatiri?.birim ?? '',
+      yapisma: ayarSatiri?.yapisma ?? 'izgara',
+      oranKilidi: ayarSatiri?.oranKilidi ?? true,
+      olcek: ayarSatiri?.olcekJson ? (JSON.parse(ayarSatiri.olcekJson) as unknown) : null,
+    },
+    nesneler: nesneler.map((n) => ({
+      ad: n.ad,
+      tip: n.tip,
+      etiket: n.etiket,
+      sira: n.sira,
+      katman: n.katman,
+      gorunur: n.gorunur,
+      kilitli: n.kilitli,
+      surukleme: n.surukleme,
+      stil: {
+        rol: n.stilRol ?? 'notr',
+        kalinlik: n.stilKalinlik ?? 2,
+        opaklik: n.stilOpaklik ?? 1,
+        cizgiTipi: n.stilCizgiTipi ?? 'duz',
+        noktaBoyutu: n.stilNoktaBoyutu ?? 4,
+      },
+      parametreler: parametreler
+        .filter((p) => p.nesneId === n.id)
+        .map((p) => ({ anahtar: p.anahtar, deger: p.deger, tur: p.tur })),
+      bagimliliklar: bagimliliklar
+        .filter((b) => b.nesneId === n.id)
+        .map((b) => ({ kaynak: adIle.get(b.kaynakNesneId) ?? '', rol: b.rol, sira: b.sira })),
+    })),
+    adimlar: adimlar.map((a) => ({
+      sira: a.sira,
+      baslik: a.baslik,
+      anlatim: a.anlatim,
+      vurgu: JSON.parse(a.vurguJson) as string[],
+    })),
+    ornek: ornek
+      ? {
+          baslik: ornek.baslik,
+          hikaye: ornek.hikaye,
+          soru: ornek.soru,
+          olcekAciklama: ornek.olcekAciklama,
+          kaynak: ornek.kaynak,
+        }
+      : null,
+  }
+}

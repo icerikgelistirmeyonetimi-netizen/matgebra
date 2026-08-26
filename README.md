@@ -59,6 +59,12 @@ Yeni içerik eklemenin yolu tohumlama ya da (Faz 5'ten sonra) MCP araçlarıdır
 Türkçe noktalı/noktasız i çiftinde yanlış sonuç verir; her aranabilir metnin
 normalize edilmiş bir kopyası tutulur ve FTS5 dizini onu kullanır.
 
+**Sahne verisi motor bağımsızdır.** `nesne` + `nesne_bagimlilik` + `nesne_parametre`
+üçlüsü geometrinin dilinde konuşur: "B noktası, merkezi O olan ve A'dan geçen
+çemberin üzerinde, A'dan 60 derece ileride". Bunu JSXGraph çağrılarına çeviren tek
+yer `apps/web/src/moduller/sahne/sahneKurucu.ts`. Motor değişirse yalnızca o dosya
+ve `SahneTahtasi.vue` değişir; veritabanı olduğu gibi kalır.
+
 **Küçük sınıflarda koordinat düzlemi yoktur.** 1–3. sınıfta eksen ve sayı
 gösterilmez (`eksen_modu = 'yok'`), 3–5'te sayısız ızgara, 6'dan itibaren tam
 koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
@@ -69,10 +75,10 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | --- | --- | --- |
 | 01 | İskelet ve kabuk | tamam |
 | 02 | Veri katmanı ve MEB içe aktarımı | tamam |
-| 03 | Sahne motoru — okuma yönü | motor sarmalayıcı hazır, DB'den kurma bekliyor |
+| 03 | Sahne motoru — okuma yönü | tamam |
 | 04 | Çizim atölyesi | nokta ve doğru parçası çalışıyor, kalan araçlar bekliyor |
 | 05 | MCP içerik hattı | bekliyor |
-| 06 | Gerçek hayat modülü | bekliyor |
+| 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | bekliyor |
 | 08 | Öğrenme akışı | bekliyor |
 | 09 | İçerik üretimi | bekliyor |

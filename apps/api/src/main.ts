@@ -39,6 +39,12 @@ app.get<{ Params: { slug: string } }>('/konular/:slug', async (istek, yanit) => 
   return sonuc
 })
 
+app.get<{ Params: { slug: string } }>('/sahneler/:slug', async (istek, yanit) => {
+  const sonuc = depo.sahne(istek.params.slug)
+  if (!sonuc) return yanit.code(404).send({ hata: 'Sahne bulunamadı' })
+  return sonuc
+})
+
 app.get<{ Querystring: { sinif?: string } }>('/araclar', async (istek) => {
   const seviye = istek.query.sinif ? Number(istek.query.sinif) : undefined
   return depo.araclar(Number.isFinite(seviye) ? seviye : undefined)
