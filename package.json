@@ -18,10 +18,12 @@
     "db:aktar": "npm run aktar -w @matgebra/db",
     "db:tohum": "npm run tohum -w @matgebra/db",
     "db:kur": "npm run kur -w @matgebra/db",
+    "statik": "npm run statik -w @matgebra/api && cross-env VITE_STATIK=1 npm run build -w @matgebra/web",
     "tip": "tsc --build --pretty"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "cross-env": "^10.1.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },

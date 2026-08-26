@@ -27,6 +27,24 @@ npm run dev
 API `http://127.0.0.1:5174`, arayüz `http://localhost:5173` adresinde açılır.
 Tek tek çalıştırmak için `npm run api` ve `npm run web`.
 
+## Statik yayın
+
+```bash
+npm run statik
+```
+
+Veritabanından API yanıtlarını `apps/web/public/api/` altına JSON olarak döker,
+ardından arayüzü derler. Çıktı (`apps/web/dist`) sunucu istemez: GitHub Pages
+gibi statik barındırmada çalışır. Sorgular yeniden yazılmaz — statik üretici de
+aynı depo (repository) fonksiyonlarını çağırır, dolayısıyla iki kip birebir aynı
+veriyi verir. Arama sunucuda FTS5, statik kipte tarayıcıda aynı normalize
+kurallarıyla yürür.
+
+Statik kipte yönlendirme hash tabanlıdır (`#/konu/...`); GitHub Pages tek sayfa
+uygulaması için geri dönüş sunmadığından derin bağlantılar aksi hâlde 404 verir.
+
+`.github/workflows/static.yml` her `main` itmesinde bunu çalıştırıp yayınlar.
+
 ## Dosya yapısı
 
 | Yol | İçerik |

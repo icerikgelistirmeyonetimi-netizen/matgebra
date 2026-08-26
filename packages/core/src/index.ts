@@ -1,3 +1,4 @@
 export * from './sabitler.js'
 export * from './sahne-semasi.js'
 export * from './modul.js'
+export * from './metin.js'

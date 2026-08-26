@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/main.ts",
-    "start": "tsx src/main.ts"
+    "start": "tsx src/main.ts",
+    "statik": "tsx src/statik.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.1",

@@ -1,4 +1,9 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+  type RouteRecordRaw,
+} from 'vue-router'
 
 /**
  * Rotalar.
@@ -54,8 +59,18 @@ const rotalar: RouteRecordRaw[] = [
   },
 ]
 
+/**
+ * Statik yayinda hash gecmisi kullanilir: GitHub Pages tek sayfa uygulamasi
+ * icin geri donus (fallback) sunmadigindan /konu/abc gibi derin baglantilar
+ * 404 verir. Sunuculu kipte temiz adresler korunur.
+ */
+const gecmis =
+  import.meta.env.VITE_STATIK === '1'
+    ? createWebHashHistory(import.meta.env.BASE_URL)
+    : createWebHistory()
+
 export const yonlendirici = createRouter({
-  history: createWebHistory(),
+  history: gecmis,
   routes: rotalar,
   scrollBehavior: () => ({ top: 0 }),
 })

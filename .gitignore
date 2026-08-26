@@ -13,3 +13,7 @@ db/matgebra.db-wal
 # icerik.db ve unite/*.json ice aktarimda okunur; aciklama/*.json (9.606 dosya,
 # 31 MB) ayni kazanimlarin JSON kopyasidir ve hicbir yerde kullanilmaz.
 veri/aciklama/
+
+# Derleme ciktilari - CI her yayinda yeniden uretir.
+apps/web/public/api/
+apps/web/dist/

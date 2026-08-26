@@ -1,11 +1,20 @@
+import { normalize } from '@matgebra/core'
+
 /**
  * API istemcisi.
  *
  * Tek kural: veri daima buradan gelir. Hicbir bilesen icerik verisini
  * kendi icinde tasimaz.
+ *
+ * Iki calisma kipi var:
+ *  - gelistirme / sunuculu yayin: Fastify'a vekil uzerinden istek
+ *  - statik yayin (VITE_STATIK=1): derleme aninda veritabanindan uretilmis
+ *    JSON dosyalari. Ayni depo fonksiyonlari urettigi icin yanitlar birebir
+ *    aynidir; degisen yalnizca tasima.
  */
 
-const TEMEL = '/api'
+const STATIK = import.meta.env.VITE_STATIK === '1'
+const TEMEL = STATIK ? `${import.meta.env.BASE_URL}api` : '/api'
 
 async function getir<T>(yol: string): Promise<T> {
   const yanit = await fetch(`${TEMEL}${yol}`)
@@ -15,6 +24,10 @@ async function getir<T>(yol: string): Promise<T> {
   }
   return (await yanit.json()) as T
 }
+
+/** Statik kipte dosya adina, sunuculu kipte rotaya cevirir. */
+const yol = (statikYol: string, sunucuYol: string) =>
+  STATIK ? `/${statikYol}.json` : sunucuYol
 
 export interface SinifOzeti {
   id: number
@@ -170,14 +183,70 @@ export interface SahneVerisi {
 }
 
 export const api = {
-  agac: () => getir<KademeDugumu[]>('/mufredat/agac'),
-  alanlar: () => getir<Array<{ id: number; slug: string; ad: string; renkAnahtari: string }>>('/alanlar'),
+  agac: () => getir<KademeDugumu[]>(yol('mufredat/agac', '/mufredat/agac')),
+  alanlar: () =>
+    getir<Array<{ id: number; slug: string; ad: string; renkAnahtari: string }>>(
+      yol('alanlar', '/alanlar'),
+    ),
   konular: (seviye: number, alan?: string) =>
-    getir<KonuOzeti[]>(`/siniflar/${seviye}/konular${alan ? `?alan=${alan}` : ''}`),
-  konu: (slug: string) => getir<KonuAyrinti>(`/konular/${slug}`),
-  sahne: (slug: string) => getir<SahneVerisi>(`/sahneler/${slug}`),
-  araclar: (sinif?: number) => getir<Arac[]>(`/araclar${sinif ? `?sinif=${sinif}` : ''}`),
-  palet: () => getir<Array<{ ad: string; rol: string; kalinlik: number; opaklik: number }>>('/palet'),
-  ara: (q: string) => getir<AramaSonucu>(`/ara?q=${encodeURIComponent(q)}`),
-  kapsama: () => getir<{ siniflar: Array<{ seviye: number; alan: string; konu: number; sahne: number; ornek: number }> }>('/kapsama'),
+    getir<KonuOzeti[]>(
+      yol(
+        `siniflar/${seviye}/konular`,
+        `/siniflar/${seviye}/konular${alan ? `?alan=${alan}` : ''}`,
+      ),
+    ).then((liste) => (STATIK && alan ? liste.filter((k) => k.alan === alan) : liste)),
+  konu: (slug: string) => getir<KonuAyrinti>(yol(`konular/${slug}`, `/konular/${slug}`)),
+  sahne: (slug: string) => getir<SahneVerisi>(yol(`sahneler/${slug}`, `/sahneler/${slug}`)),
+  araclar: (sinif?: number) =>
+    getir<Arac[]>(yol(`araclar/${sinif ?? 12}`, `/araclar${sinif ? `?sinif=${sinif}` : ''}`)),
+  palet: () =>
+    getir<Array<{ ad: string; rol: string; kalinlik: number; opaklik: number }>>(
+      yol('palet', '/palet'),
+    ),
+  ara: (q: string) => (STATIK ? statikAra(q) : getir<AramaSonucu>(`/ara?q=${encodeURIComponent(q)}`)),
+  kapsama: () =>
+    getir<{
+      siniflar: Array<{ seviye: number; alan: string; konu: number; sahne: number; ornek: number }>
+    }>(yol('kapsama', '/kapsama')),
+}
+
+/* ---------------------------------------------------------------- arama --
+ * Sunuculu kipte arama SQLite FTS5 ile yapilir. Statik kipte ayni isi
+ * tarayici yapar: dizin bir kez indirilir, eslesme sunucudakiyle ayni
+ * normalize kurallariyla yurur ("acilar" -> "Açılar").
+ */
+
+interface AramaDizini {
+  konular: Array<{
+    ad: string
+    slug: string
+    ozet: string
+    alan: string
+    seviye: number
+    norm: string
+  }>
+  kazanimlar: Array<{
+    kod: string
+    metin: string
+    temaAd: string
+    alan: string | null
+    seviye: number
+    norm: string
+  }>
+}
+
+let dizin: Promise<AramaDizini> | null = null
+
+async function statikAra(sorgu: string): Promise<AramaSonucu> {
+  const q = normalize(sorgu).trim()
+  if (q.length < 2) return { konular: [], kazanimlar: [] }
+  dizin ??= getir<AramaDizini>(yol('ara-dizin', '/ara-dizin'))
+  const veri = await dizin
+  const kelimeler = q.split(/\s+/)
+  const uyar = (metin: string) => kelimeler.every((k) => metin.includes(k))
+
+  return {
+    konular: veri.konular.filter((k) => uyar(k.norm)).slice(0, 20),
+    kazanimlar: veri.kazanimlar.filter((k) => uyar(k.norm)).slice(0, 20),
+  }
 }
