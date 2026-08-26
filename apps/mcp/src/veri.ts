@@ -387,7 +387,13 @@ export function konuYaz(g: KonuYazmaGirdisi) {
   return { slug, id, eksikKazanim, eksikOnKosul }
 }
 
-/** Sahneye bagli gercek hayat anlatisi. */
+/**
+ * Sahneye bagli gercek hayat anlatisi.
+ *
+ * Tekrar calistirilabilir: ayni konu ve baslik ile cagrilirsa var olan kayit
+ * degistirilir. Icerik betikleri bir kez degil defalarca kosuluyor; onceki
+ * hali her cagrida yeni satir aciyordu ve ornekler cogaliyordu.
+ */
 export function gercekHayatYaz(g: {
   konuSlug: string
   sahneSlug?: string
@@ -404,6 +410,10 @@ export function gercekHayatYaz(g: {
     ? db.select({ id: s.sahne.id }).from(s.sahne).where(eq(s.sahne.slug, g.sahneSlug)).get()
     : undefined
   if (g.sahneSlug && !sahne) throw new Error(`Sahne bulunamadi: ${g.sahneSlug}`)
+
+  db.delete(s.gercekHayatOrnegi)
+    .where(and(eq(s.gercekHayatOrnegi.konuId, konu.id), eq(s.gercekHayatOrnegi.baslik, g.baslik)))
+    .run()
 
   const [satir] = db
     .insert(s.gercekHayatOrnegi)
@@ -423,7 +433,10 @@ export function gercekHayatYaz(g: {
   return { id: satir!.id }
 }
 
-/** Konuya ya da sahneye bagli soru. */
+/**
+ * Konuya ya da sahneye bagli soru.
+ * Ayni konu ve ayni govde ile cagrilirsa var olan soru degistirilir.
+ */
 export function soruYaz(g: {
   konuSlug: string
   sahneSlug?: string
@@ -441,6 +454,10 @@ export function soruYaz(g: {
   const sahne = g.sahneSlug
     ? db.select({ id: s.sahne.id }).from(s.sahne).where(eq(s.sahne.slug, g.sahneSlug)).get()
     : undefined
+
+  db.delete(s.soru)
+    .where(and(eq(s.soru.konuId, konu.id), eq(s.soru.govde, g.govde)))
+    .run()
 
   const [satir] = db
     .insert(s.soru)

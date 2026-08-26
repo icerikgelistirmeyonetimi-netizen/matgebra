@@ -114,6 +114,29 @@ npm run duman -w @matgebra/mcp   # protokol üzerinden duman testi
 npm run ornek -w @matgebra/mcp   # uçtan uca içerik üretimi örneği
 ```
 
+## İçerik üretimi nasıl yürüyor
+
+`apps/mcp/scripts/icerik-s5.mjs` bir sınıf diliminin nasıl doldurulduğunu
+gösteriyor: doğrula → sahne yaz → gerçek hayat anlatısı → sorular → kapsama
+raporu. Yazma araçları **tekrar çalıştırılabilir** — aynı slug ya da aynı soru
+gövdesiyle çağrılırsa var olan kayıt değişir, yenisi eklenmez.
+
+5. sınıf geometrisi bu yolla tamamlandı: 8 konunun 8'inin de sahnesi,
+gerçek hayat örneği ve soruları var.
+
+### Sahne yazarken bilinmesi gerekenler
+
+- **Açı yönü.** Motor açıyı saat yönünün *tersine* ölçer. Kollar ters sırada
+  verilirse iç açı yerine dönük açı okunur (39 yerine 321). Kural: ilk kol,
+  ikincisinden saat yönünde geride olmalı.
+- **Değişmezleri sahte kurmayın.** Bir sahne "ters açılar hep eşittir" diyorsa,
+  karşı ışınlar gerçekten türetilmiş olmalı. Sabit noktayla taklit edilirse
+  öğrenci sürüklediğinde sahne yalan söyler.
+- **Dikdörtgen** `nokta_bilesen` ile kurulur: tek sürüklenebilir köşe yeter,
+  diğer ikisi bileşen alarak türetilir.
+- **Eşit yarıçap** için çemberin yarıçapı iki nokta arası uzaklıkla verilebilir
+  (`uc1` + `uc2` rolleri) — pergel açıklığını başka merkeze taşımak gibi.
+
 ## Statik yayın
 
 ```bash
@@ -186,7 +209,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
-| 09 | İçerik üretimi | bekliyor |
+| 09 | İçerik üretimi | 5. sınıf geometri tamam (8/8 konu); 89 konu bekliyor |
 | 10 | Cila ve dışa aktarım | bekliyor |
 | 11 | Yönetim paneli | şema hazır |
 

@@ -50,7 +50,11 @@ export const nesneSemasi = z.object({
   /** Sahne icinde benzersiz. Ornek: "A", "d1", "cember_c". */
   ad: z.string().min(1).max(64),
   tip: z.enum(NESNE_TIPLERI),
-  etiket: z.string().max(120).optional(),
+  /**
+   * Gorunen etiket. null da kabul edilir: veritabani etiketsiz nesneyi
+   * null olarak saklar, gidis donuste bicim bozulmasin.
+   */
+  etiket: z.string().max(120).nullish(),
   sira: z.number().int().min(0).default(0),
   katman: z.number().int().min(0).max(20).default(0),
   gorunur: z.boolean().default(true),

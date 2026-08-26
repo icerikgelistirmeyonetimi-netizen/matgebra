@@ -165,14 +165,49 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'nokta_bilesen': {
+          // Apsisi bir kaynaktan, ordinati digerinden alir: (A.x, B.y).
+          // Dikdortgeni tek surukleneblir koseyle kurmayi saglar.
+          const apsis = bul(baglilar(n, 'apsis')[0] ?? '') as JXG.Point | undefined
+          const ordinat = bul(baglilar(n, 'ordinat')[0] ?? '') as JXG.Point | undefined
+          if (!apsis || !ordinat) break
+          const nokta = tahta.create('point', [() => apsis.X(), () => ordinat.Y()], {
+            name: n.etiket ?? n.ad,
+            withLabel: Boolean(n.etiket),
+            size: n.stil.noktaBoyutu,
+            fillColor: g.renk.dolgu,
+            strokeColor: g.renk.kenar,
+            strokeWidth: 2,
+            fixed: true,
+            visible: n.gorunur,
+            label: etiketAyari,
+            layer: 9,
+          })
+          el.set(n.ad, tekOge(nokta))
+          break
+        }
+
         case 'cember': {
           const merkez = bul(baglilar(n, 'merkez')[0] ?? '')
           if (!merkez) break
           const uzerinde = baglilar(n, 'uzerinde', 'yaricap_noktasi')[0]
           const ikinci = uzerinde ? bul(uzerinde) : undefined
+          // Yaricap uc noktalariyla verilmisse cember o uzunlugu alir:
+          // pergel acikligini bozmadan baska bir merkeze tasimak demek.
+          // JSXGraph cember ebeveyni olarak nokta cifti kabul etmiyor;
+          // uzunlugu hesaplayan bir islev veriyoruz. Boylece uc noktalar
+          // oynayinca yaricap da canli guncelleniyor.
+          const [ucA, ucB] = baglilar(n, 'uc1', 'uc2').map(bul) as [
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+          ]
+          const yaricapTanimi =
+            ucA && ucB
+              ? () => Math.hypot(ucB.X() - ucA.X(), ucB.Y() - ucA.Y())
+              : (ikinci ?? sayi(n, 'yaricap', 1))
           const cember = tahta.create(
             'circle',
-            [merkez as never, (ikinci ?? sayi(n, 'yaricap', 1)) as never],
+            [merkez as never, yaricapTanimi as never],
             {
               strokeColor: g.strokeColor,
               strokeWidth: g.strokeWidth,
@@ -263,6 +298,10 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
 
         case 'aci':
         case 'olcum_aci': {
+          // Aci saat yonunun TERSINE olculur: uc1'den merkez etrafinda
+          // donerek uc2'ye. Kollar ters sirada verilirse ic aci yerine
+          // donuk aci okunur (39 yerine 321 gibi). Sahne yazarken kural:
+          // ilk kol, ikincisinden saat yonunde geride olmali.
           const uc = baglilar(n, 'uc1', 'uc2').map(bul) as Array<JXG.Point | undefined>
           const merkez = bul(baglilar(n, 'merkez')[0] ?? '') as JXG.Point | undefined
           const [a, b] = uc
@@ -319,9 +358,14 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
             koseler.length ? koseler.slice(0, -1).reduce((t, v) => t + v.Y(), 0) / (koseler.length - 1) : 0
           const deger = () =>
             n.tip === 'olcum_alan' ? (kaynak.Area?.() ?? 0) : (kaynak.Perimeter?.() ?? 0)
+          // Etiket verilmediyse olcumun ne oldugu yazilir: iki sayi yan yana
+          // durunca hangisinin alan hangisinin cevre oldugu anlasilmiyordu.
+          const onEk = n.etiket ?? (n.tip === 'olcum_alan' ? 'alan' : 'çevre')
+          // Ikisi de agirlik merkezinde duruyordu; cevre biraz asagi alindi.
+          const kaydir = n.tip === 'olcum_cevre' ? -0.9 : 0
           const yazi = tahta.create(
             'text',
-            [merkezX, merkezY, () => `${n.etiket ? `${n.etiket} = ` : ''}${deger().toFixed(2)}`],
+            [merkezX, () => merkezY() + kaydir, () => `${onEk} = ${deger().toFixed(2)}`],
             {
               fontSize: 14,
               strokeColor: g.renk.kenar,

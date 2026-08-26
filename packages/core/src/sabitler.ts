@@ -38,6 +38,9 @@ export const NESNE_TIPLERI = [
   // temel
   'nokta',
   'nokta_uzerinde',
+  // Iki kaynaktan bilesen alir: (A.x, B.y). Dikdortgen ve eksene paralel
+  // yapilar bununla kurulur; tek surukleneblir kose yeter.
+  'nokta_bilesen',
   'orta_nokta',
   'kesisim',
   'dogru_parcasi',
@@ -97,6 +100,9 @@ export const BAGIMLILIK_ROLLERI = [
   'kesisen_a',
   'kesisen_b',
   'kose',
+  /** Bilesen noktasinda: apsis (x) bu kaynaktan, ordinat (y) digerinden. */
+  'apsis',
+  'ordinat',
 ] as const
 export type BagimlilikRolu = (typeof BAGIMLILIK_ROLLERI)[number]
 

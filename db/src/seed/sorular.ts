@@ -176,7 +176,7 @@ export const SORULAR: SoruTohumu[] = [
     tip: 'sayisal',
     govde: 'Bir zar atıldığında 7 gelme olasılığı kaçtır?',
     secenekler: [],
-    cevap: { tip: 'sayisal', deger: 0, tolerans: 0 },
+    cevap: { tip: 'sayisal', deger: 0, tolerans: 0, birim: '' },
     ipucu: 'Zarın yüzlerinde 7 var mı?',
     cozum:
       'Zarın yüzlerinde 7 bulunmadığı için bu olay imkânsızdır ve olasılığı 0’dır. İmkânsız olayların olasılığı her zaman 0’dır.',
@@ -201,7 +201,7 @@ export const SORULAR: SoruTohumu[] = [
     govde:
       'Bir olayın olasılığı 0,35 ise tümleyeninin olasılığı kaçtır?',
     secenekler: [],
-    cevap: { tip: 'sayisal', deger: 0.65, tolerans: 0.001 },
+    cevap: { tip: 'sayisal', deger: 0.65, tolerans: 0.001, birim: '' },
     ipucu: 'Bir olay ile tümleyeni birlikte bütün sonuçları kapsar.',
     cozum: 'Bir olay ile tümleyeninin olasılıkları toplamı 1’dir: 1 − 0,35 = 0,65.',
     zorluk: 2,
@@ -213,7 +213,7 @@ export const SORULAR: SoruTohumu[] = [
     govde:
       'İki zar atıldığında toplamın 7 gelmesi kaç farklı şekilde olur? (Sonuç uzayı 36 elemanlıdır.)',
     secenekler: [],
-    cevap: { tip: 'sayisal', deger: 6, tolerans: 0 },
+    cevap: { tip: 'sayisal', deger: 6, tolerans: 0, birim: '' },
     ipucu: 'Laboratuvardaki 6×6 ızgarasında yeşil hücreleri sayın.',
     cozum:
       '1+6, 2+5, 3+4, 4+3, 5+2, 6+1 olmak üzere 6 şekilde. Olasılık 6/36 = 1/6 ≈ 0,167 çıkar.',
