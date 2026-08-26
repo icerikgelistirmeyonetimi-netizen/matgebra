@@ -44,7 +44,7 @@ const gruplar = computed(() => {
   <div class="flex w-[72px] shrink-0 flex-col gap-1.5 overflow-y-auto border-r border-kenar bg-yuzey py-2.5">
     <template v-for="[grup, liste] in gruplar" :key="grup">
       <p
-        class="px-1 pt-2 pb-1 text-center text-nano tracking-[0.05em] text-murekkep-3 font-semibold uppercase"
+        class="shrink-0 px-1 pt-2 pb-1 text-center text-nano tracking-[0.05em] text-murekkep-3 font-semibold uppercase"
       >
         {{ GRUP_ADI[grup] ?? grup }}
       </p>
@@ -55,7 +55,7 @@ const gruplar = computed(() => {
         :title="`${arac.etiket}${arac.kisayol ? ` (${arac.kisayol})` : ''}${hazir.has(arac.anahtar) ? '' : ' — Faz 4'}`"
         :aria-label="arac.etiket"
         :disabled="!hazir.has(arac.anahtar)"
-        class="mx-auto flex h-12 w-12 items-center justify-center rounded-kutu transition focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+        class="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-kutu transition focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
         :class="
           etkin === arac.anahtar
             ? 'bg-marka text-white shadow-panel'
