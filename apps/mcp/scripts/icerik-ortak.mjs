@@ -467,6 +467,30 @@ export const duzgunKoseler = (onEk, merkez, ilkKose, n, sira, o = {}) => {
   return { adlar, nesneler }
 }
 
+/** Tahtaya sabit konumda yazi. Kucuk siniflarda sekilleri adlandirmak icin. */
+export const metin = (ad, x, y, yazi, sira, o = {}) => ({
+  ...temel(ad, 'metin', sira, { rol: o.rol ?? 'notr', etiket: yazi, katman: 4 }),
+  parametreler: [
+    { anahtar: 'x', deger: x, tur: 'sayi' },
+    { anahtar: 'y', deger: y, tur: 'sayi' },
+  ],
+})
+
+/** Bir dogruya gore ayna goruntusu. Kaynak nokta ya da cokgen olabilir. */
+export const yansima = (ad, kaynak, eksen, sira, o = {}) => ({
+  ...temel(ad, 'yansima', sira, {
+    rol: o.rol ?? 'gul',
+    etiket: o.etiket ?? null,
+    katman: 1,
+    gorunur: o.gorunur ?? true,
+  }),
+  stil: { rol: o.rol ?? 'gul', opaklik: o.opaklik ?? 0.45, kalinlik: o.kalinlik ?? 2 },
+  bagimliliklar: [
+    { kaynak, rol: 'kaynak', sira: 0 },
+    { kaynak: eksen, rol: 'eksen', sira: 1 },
+  ],
+})
+
 export const adim = (sira, baslik, anlatim, vurgu = []) => ({
   sira,
   baslik,
