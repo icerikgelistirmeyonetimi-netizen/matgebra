@@ -1,0 +1,111 @@
+@import 'tailwindcss';
+
+/*
+  Projedeki TEK CSS dosyasi.
+
+  Burada yalnizca tasarim tokenlari tanimlanir; hicbir bilesen kurali,
+  hicbir sinif tanimi yazilmaz. Gorunum tamamen Tailwind utility siniflariyla
+  kurulur. Sahne motoru (JSXGraph) SVG'yi kendi urettigi icin Tailwind ile
+  bicimlendirilemez; o da renkleri buradaki degiskenlerden `palet.ts`
+  uzerinden okur. Boylece renk icin tek kaynak korunur.
+
+  Pastel kurali: dolgu pastel, kenar ve yazi koyu kardes ton.
+  Pastel tonlar dolgu olarak guzel ama cizgi/yazi olarak okunmaz.
+*/
+
+@theme {
+  /* --- yuzeyler --------------------------------------------------------- */
+  --color-zemin: #f6f7fc;
+  --color-yuzey: #ffffff;
+  --color-yuzey-2: #f0f2fa;
+  --color-yuzey-3: #e6eaf5;
+  --color-kenar: #e1e6f2;
+  --color-kenar-koyu: #ccd4e6;
+
+  /* --- murekkep --------------------------------------------------------- */
+  --color-murekkep: #1e2333;
+  --color-murekkep-2: #565f78;
+  --color-murekkep-3: #8b94ab;
+
+  /* --- marka ------------------------------------------------------------ */
+  --color-marka: #6c5cc4;
+  --color-marka-koyu: #52459c;
+  --color-marka-soft: #eae6fa;
+
+  /* --- pastel palet: dolgu tonlari -------------------------------------- */
+  --color-nane: #cfebdf;
+  --color-lavanta: #ded7f2;
+  --color-seftali: #fbdcc4;
+  --color-gok: #cce3f5;
+  --color-gul: #f7d3d6;
+  --color-tereyagi: #fbefc4;
+  --color-notr: #e4e8f2;
+
+  /* --- pastel palet: koyu kardesler (kenar, etiket, yazi) --------------- */
+  --color-nane-koyu: #2e7d62;
+  --color-lavanta-koyu: #5b4b9e;
+  --color-seftali-koyu: #a2591d;
+  --color-gok-koyu: #1f6193;
+  --color-gul-koyu: #a34551;
+  --color-tereyagi-koyu: #856713;
+  --color-notr-koyu: #5a637a;
+
+  /* --- durum ------------------------------------------------------------ */
+  --color-basari: #2e7d62;
+  --color-uyari: #a2591d;
+  --color-hata: #a34551;
+
+  /* --- tipografi --------------------------------------------------------
+     Uc yuz, uc gorev:
+       baslik : Fraunces - degisken serif. Sicak ve ders kitabi karakteri
+                verir; yalnizca 17px ve ustunde kullanilir cunku Turkce
+                aksanlar (g breve, s cedilla) kucuk puntoda kalabaliklasir.
+       govde  : Plus Jakarta Sans - humanist geometrik. Kucuk puntoda
+                Figtree'den daha acik, Turkce genisligi rahat.
+       mono   : yalnizca kazanim kodu, koordinat ve klavye tusu.
+     Ust yaziya cevirme (uppercase) icin html lang="tr" sart: tarayici
+     ancak o zaman i harfini I yerine noktali I yapar.
+  ------------------------------------------------------------------------ */
+  --font-baslik: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-govde: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* --- olcek ------------------------------------------------------------
+     Sekiz basamak, arasi yok. Keyfi px degeri yazilmaz.
+     Satir yuksekligi Turkce icin biraz genis tutuldu: g, y, s, c inen
+     kuyruklari ile G, I, O cikan isaretleri ayni satirda bulusabiliyor.
+  ------------------------------------------------------------------------ */
+  --text-nano: 0.625rem;      /* 10  - arac rayi grup etiketi */
+  --text-nano--line-height: 1.3;
+  --text-nano--letter-spacing: 0.06em;
+
+  --text-mikro: 0.71875rem;   /* 11.5 - rozet, kod, ust etiket */
+  --text-mikro--line-height: 1.45;
+
+  --text-kucuk: 0.8125rem;    /* 13  - ikincil metin, liste */
+  --text-kucuk--line-height: 1.55;
+
+  --text-govde: 0.9375rem;    /* 15  - ana metin, kart basligi */
+  --text-govde--line-height: 1.65;
+
+  --text-orta: 1.0625rem;     /* 17  - kart ust basligi */
+  --text-orta--line-height: 1.45;
+  --text-orta--letter-spacing: -0.01em;
+
+  --text-h3: 1.25rem;         /* 20  - bolum basligi */
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-h2: 1.6875rem;       /* 27  - sayfa basligi */
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h1: 2.375rem;        /* 38  - giris basligi */
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.028em;
+
+  /* --- olculer ---------------------------------------------------------- */
+  --radius-kutu: 0.625rem;
+  --shadow-panel: 0 1px 2px rgb(30 35 51 / 0.04), 0 8px 24px -18px rgb(30 35 51 / 0.35);
+  --shadow-yuzen: 0 8px 40px -12px rgb(30 35 51 / 0.28);
+}

@@ -1,0 +1,425 @@
+{
+ "kademeler": [
+  {
+   "ad": "İlkokul",
+   "siniflar": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "dersler": [
+    {
+     "no": 1,
+     "ders": "Arapça"
+    },
+    {
+     "no": 2,
+     "ders": "Beden Eğitimi ve Oyun Dersi"
+    },
+    {
+     "no": 5,
+     "ders": "Bilim ve Sanat Merkezleri"
+    },
+    {
+     "no": 9,
+     "ders": "Din Kültürü ve Ahlak Bilgisi 4 ve 5-8"
+    },
+    {
+     "no": 12,
+     "ders": "Fen Bilimleri Dersi 3-4"
+    },
+    {
+     "no": 16,
+     "ders": "Görsel Sanatlar Dersi 1-4"
+    },
+    {
+     "no": 19,
+     "ders": "Hayat Bilgisi Dersi"
+    },
+    {
+     "no": 25,
+     "ders": "Müzik Dersi 1-4"
+    },
+    {
+     "no": 28,
+     "ders": "Müzik Okulları - Beden Eğitimi, Oyun ve Müzik Dersi"
+    },
+    {
+     "no": 29,
+     "ders": "Müzik Okulları - Bireysel Ses Eğitimi Dersi"
+    },
+    {
+     "no": 30,
+     "ders": "Müzik Okulları - Çalgı Toplulukları Dersi"
+    },
+    {
+     "no": 31,
+     "ders": "Müzik Okulları - Koro ve Repertuvar Dersi"
+    },
+    {
+     "no": 33,
+     "ders": "Müzik Okulları - Müzik Kültürü Dersi"
+    },
+    {
+     "no": 34,
+     "ders": "Müzik Okulları - Müziksel İşitme, Okuma ve Yazma Dersi"
+    },
+    {
+     "no": 35,
+     "ders": "Müzik Okulları - Türk Müziği Teori ve Uygulaması Dersi"
+    },
+    {
+     "no": 36,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Bağlama Modülü"
+    },
+    {
+     "no": 37,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Flüt Modülü"
+    },
+    {
+     "no": 38,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Gitar Modülü"
+    },
+    {
+     "no": 39,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kanun Modülü"
+    },
+    {
+     "no": 40,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kaval Modülü"
+    },
+    {
+     "no": 41,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Keman Modülü"
+    },
+    {
+     "no": 42,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ney Modülü"
+    },
+    {
+     "no": 43,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Piyano Modülü"
+    },
+    {
+     "no": 44,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ud Modülü"
+    },
+    {
+     "no": 45,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyola Modülü"
+    },
+    {
+     "no": 46,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyolonsel Modülü"
+    },
+    {
+     "no": 47,
+     "ders": "Okul Öncesi Özel Eğitim Öğretim Programları"
+    },
+    {
+     "no": 52,
+     "ders": "Sosyal Bilgiler Dersi"
+    },
+    {
+     "no": 63,
+     "ders": "Toplumsal Uyum Becerileri Dersi Öğretim Programı"
+    },
+    {
+     "no": 64,
+     "ders": "Trafik Güvenliği Dersi"
+    },
+    {
+     "no": 66,
+     "ders": "Türk İşaret Dili Dersi Öğretim Programı"
+    },
+    {
+     "no": 67,
+     "ders": "Türk İşaret Dili Dersi Öğretim Programıac"
+    },
+    {
+     "no": 70,
+     "ders": "Özel Eğitim Uygulama Okulu Öğretim Programları"
+    },
+    {
+     "no": 71,
+     "ders": "İHL MESLEK DERSLERİ"
+    },
+    {
+     "no": 72,
+     "ders": "İlkokul Matematik Dersi"
+    },
+    {
+     "no": 73,
+     "ders": "İlkokul Türkçe Dersi"
+    },
+    {
+     "no": 76,
+     "ders": "İngilizce Dersi 2-4"
+    },
+    {
+     "no": 78,
+     "ders": "İnsan Hakları,Vatandaşlık Ve Demokrasi Dersi"
+    }
+   ]
+  },
+  {
+   "ad": "Ortaokul",
+   "siniflar": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "dersler": [
+    {
+     "no": 1,
+     "ders": "Arapça"
+    },
+    {
+     "no": 3,
+     "ders": "Beden Eğitimi ve Spor Dersi"
+    },
+    {
+     "no": 6,
+     "ders": "Bilişim Teknolojileri ve Yazılım Dersi"
+    },
+    {
+     "no": 9,
+     "ders": "Din Kültürü ve Ahlak Bilgisi 4 ve 5-8"
+    },
+    {
+     "no": 13,
+     "ders": "Fen Bilimleri Dersi 5-8"
+    },
+    {
+     "no": 17,
+     "ders": "Görsel Sanatlar Dersi 5-8"
+    },
+    {
+     "no": 21,
+     "ders": "Kur'an-ı Kerim 5-6-7-8"
+    },
+    {
+     "no": 26,
+     "ders": "Müzik Dersi 5-8"
+    },
+    {
+     "no": 28,
+     "ders": "Müzik Okulları - Beden Eğitimi, Oyun ve Müzik Dersi"
+    },
+    {
+     "no": 29,
+     "ders": "Müzik Okulları - Bireysel Ses Eğitimi Dersi"
+    },
+    {
+     "no": 30,
+     "ders": "Müzik Okulları - Çalgı Toplulukları Dersi"
+    },
+    {
+     "no": 31,
+     "ders": "Müzik Okulları - Koro ve Repertuvar Dersi"
+    },
+    {
+     "no": 32,
+     "ders": "Müzik Okulları - Müzik Tarihi Dersi"
+    },
+    {
+     "no": 34,
+     "ders": "Müzik Okulları - Müziksel İşitme, Okuma ve Yazma Dersi"
+    },
+    {
+     "no": 35,
+     "ders": "Müzik Okulları - Türk Müziği Teori ve Uygulaması Dersi"
+    },
+    {
+     "no": 36,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Bağlama Modülü"
+    },
+    {
+     "no": 37,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Flüt Modülü"
+    },
+    {
+     "no": 38,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Gitar Modülü"
+    },
+    {
+     "no": 39,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kanun Modülü"
+    },
+    {
+     "no": 40,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kaval Modülü"
+    },
+    {
+     "no": 41,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Keman Modülü"
+    },
+    {
+     "no": 42,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ney Modülü"
+    },
+    {
+     "no": 43,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Piyano Modülü"
+    },
+    {
+     "no": 44,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ud Modülü"
+    },
+    {
+     "no": 45,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyola Modülü"
+    },
+    {
+     "no": 46,
+     "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyolonsel Modülü"
+    },
+    {
+     "no": 48,
+     "ders": "Ortaokul Matematik Dersi"
+    },
+    {
+     "no": 49,
+     "ders": "Ortaokul Türkçe Dersi"
+    },
+    {
+     "no": 50,
+     "ders": "Peygamberimizin Hayatı 5-8"
+    },
+    {
+     "no": 52,
+     "ders": "Sosyal Bilgiler Dersi"
+    },
+    {
+     "no": 53,
+     "ders": "Spor Okulları - Beden Eğitimi ve Sporun Temelleri Dersi"
+    },
+    {
+     "no": 54,
+     "ders": "Spor Okulları - Kapsamlı Spor Eğitimi Dersi"
+    },
+    {
+     "no": 55,
+     "ders": "Spor Okulları - Oyun ve Taktiksel Farkındalık Dersi"
+    },
+    {
+     "no": 56,
+     "ders": "Spor Okulları - Ritim Eğitimi ve Halk Oyunları Dersi"
+    },
+    {
+     "no": 57,
+     "ders": "Spor Okulları - Çocuklarda Atletik Performans Uygulamaları Dersi"
+    },
+    {
+     "no": 59,
+     "ders": "T.C. İnkılap Tarihi ve Atatürkçülük Dersi 8"
+    },
+    {
+     "no": 61,
+     "ders": "Teknoloji ve Tasarım Dersi"
+    },
+    {
+     "no": 68,
+     "ders": "Çoklu Yabancı Dil Eğitim Modeli Almanca"
+    },
+    {
+     "no": 69,
+     "ders": "Çoklu Yabancı Dil Eğitim Modeli İngilizce"
+    },
+    {
+     "no": 77,
+     "ders": "İngilizce Dersi 5-8"
+    }
+   ]
+  },
+  {
+   "ad": "Lise",
+   "siniflar": [
+    "9",
+    "10",
+    "11",
+    "12"
+   ],
+   "dersler": [
+    {
+     "no": 1,
+     "ders": "Arapça"
+    },
+    {
+     "no": 4,
+     "ders": "Beden Eğitimi ve Spor Dersi 9-12"
+    },
+    {
+     "no": 7,
+     "ders": "Biyoloji Dersi"
+    },
+    {
+     "no": 8,
+     "ders": "Coğrafya Dersi"
+    },
+    {
+     "no": 10,
+     "ders": "Din Kültürü ve Ahlak Bilgisi 9-10-11-12"
+    },
+    {
+     "no": 11,
+     "ders": "Felsefe Dersi"
+    },
+    {
+     "no": 14,
+     "ders": "Fizik Dersi"
+    },
+    {
+     "no": 18,
+     "ders": "Görsel Sanatlar Dersi 9-12"
+    },
+    {
+     "no": 20,
+     "ders": "Kimya Dersi"
+    },
+    {
+     "no": 22,
+     "ders": "Kur'an-ı Kerim 9-10-11-12"
+    },
+    {
+     "no": 23,
+     "ders": "Matematik Dersi"
+    },
+    {
+     "no": 27,
+     "ders": "Müzik Dersi 9-12"
+    },
+    {
+     "no": 51,
+     "ders": "Peygamberimizin Hayatı 9-12"
+    },
+    {
+     "no": 58,
+     "ders": "T.C. İnkılap Tarihi ve Atatürkçülük Dersi 12"
+    },
+    {
+     "no": 60,
+     "ders": "Tarih Dersi"
+    },
+    {
+     "no": 62,
+     "ders": "Temel Dinî Bilgiler"
+    },
+    {
+     "no": 65,
+     "ders": "Türk Dili Ve Edebiyatı Dersi"
+    },
+    {
+     "no": 74,
+     "ders": "İngilizce Dersi (9-12)"
+    },
+    {
+     "no": 75,
+     "ders": "İngilizce Dersi (Hazırlık-12)"
+    }
+   ]
+  }
+ ]
+}

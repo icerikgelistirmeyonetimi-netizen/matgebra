@@ -1,0 +1,29 @@
+{
+  "name": "@matgebra/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "sema": "drizzle-kit generate",
+    "goc": "tsx src/goc.ts",
+    "aktar": "tsx src/import/index.ts",
+    "tohum": "tsx src/seed/index.ts",
+    "kur": "npm run sema && npm run goc && npm run aktar && npm run tohum",
+    "studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@matgebra/core": "*",
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "drizzle-kit": "^0.31.5"
+  }
+}

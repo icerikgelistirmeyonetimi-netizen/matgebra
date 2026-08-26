@@ -1,0 +1,3370 @@
+[
+ {
+  "ad": "MAT.11.3.1-a.html",
+  "yol": "/oyun/MAT.11.3.1-a.html",
+  "zaman": "2026-07-06 11:02",
+  "session_id": "350de947-8236-40d6-897c-40dc74c4441e",
+  "kod": "MAT.11.3.1., MAT.11.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.11.3.1. İki nicel değişkenli veri ile çalışabilme ve iki nicel değişken arasındaki ilişkililiğe dayalı karar verebilme",
+  "kullanim": {
+   "baglam": 7991534,
+   "cikti": 125287,
+   "maliyet": 9.1206
+  }
+ },
+ {
+  "ad": "KIM.9.1.3-a.html",
+  "yol": "/oyun/KIM.9.1.3-a.html",
+  "zaman": "2026-07-07 00:13",
+  "session_id": "49fc40be-628d-4509-ab6d-9519edb2133b",
+  "kod": "KİM.9.1.3.",
+  "tur": "Simülasyon (2B)",
+  "kazanim": "KİM.9.1.3. Atom teorilerindeki varsayımları kullanarak bilimsel bilginin değişebilirliliğine ilişkin çıkarım yapabilme",
+  "model": "opus",
+  "effort": "xhigh",
+  "sure": 1212,
+  "kullanim": {
+   "baglam": 311987,
+   "cikti": 64314,
+   "maliyet": 3.4871
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-a.html",
+  "yol": "/oyun/FB.5.1.1.1-a.html",
+  "zaman": "2026-07-23 18:06",
+  "session_id": "60ebe9ce-43f7-4e47-ad87-8dd5f15e1414",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 117,
+  "kullanim": {
+   "baglam": 5655250,
+   "cikti": 43176,
+   "maliyet": 3.907152
+  }
+ },
+ {
+  "ad": "SB.5.1.1-a.html",
+  "yol": "/oyun/SB.5.1.1-a.html",
+  "zaman": "2026-07-10 23:30",
+  "session_id": "bf976706-1db2-4df3-a96f-98dda0d6d0ce",
+  "kod": "SB.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "SB.5.1.1. Dâhil olduğu gruplar ve bu gruplardaki rolleri arasındaki ilişkileri çözümleyebilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 431,
+  "kullanim": {
+   "baglam": 1076360,
+   "cikti": 13973,
+   "maliyet": 1.239217
+  }
+ },
+ {
+  "ad": "FB.5.3.2.1-a.html",
+  "yol": "/oyun/FB.5.3.2.1-a.html",
+  "zaman": "2026-07-08 11:13",
+  "session_id": "7aa6279c-21a3-4605-b208-a1637b33ea9d",
+  "kod": "FB.5.3.2.1., FB.5.3.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.3.2.1. Destek ve hareket sistemine ait yapıları sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 333,
+  "kullanim": {
+   "baglam": 871209,
+   "cikti": 6000,
+   "maliyet": 0.9127
+  }
+ },
+ {
+  "ad": "FB.5.4.1.1-a.html",
+  "yol": "/oyun/FB.5.4.1.1-a.html",
+  "zaman": "2026-07-08 11:49",
+  "session_id": "05c2079d-2e98-4b84-96b8-cb6795f65c4c",
+  "kod": "FB.5.4.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.4.1.1. Bir kaynaktan çıkan ışığın her yönde doğrusal bir yol izlediğini gözlem yoluyla açıklayabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 352,
+  "kullanim": {
+   "baglam": 3806274,
+   "cikti": 25997,
+   "maliyet": 2.1701
+  }
+ },
+ {
+  "ad": "FB.5.4.2.1-a.html",
+  "yol": "/oyun/FB.5.4.2.1-a.html",
+  "zaman": "2026-07-08 22:51",
+  "session_id": "a9213ade-f214-42e8-9557-2affce9b7920",
+  "kod": "FB.5.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 180,
+  "kullanim": {
+   "baglam": 1447919,
+   "cikti": 15069,
+   "maliyet": 1.0325
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-a.html",
+  "yol": "/oyun/FB.5.5.1.1-a.html",
+  "zaman": "2026-07-08 22:53",
+  "session_id": "a9213ade-f214-42e8-9557-2affce9b7920",
+  "kod": "FB.5.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 180,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "FB.5.5-a.html",
+  "yol": "/oyun/FB.5.5-a.html",
+  "zaman": "2026-07-09 00:10",
+  "session_id": "66020a72-5943-4c5f-8f62-06bb120bf033",
+  "kod": "FB.5.5.4.1., FB.5.5.4.2., FB.5.5.3.1., FB.5.5.2.2., FB.5.5.2.1., FB.5.5.1.1.",
+  "tur": "Bilgi yarışması",
+  "kazanim": "FB.5.5.4.1. Maddeleri ısı iletimi bakımından sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 102,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "FB.5.5-b.html",
+  "yol": "/oyun/FB.5.5-b.html",
+  "zaman": "2026-07-09 00:36",
+  "session_id": "eab43941-754d-4ca7-9357-d916007113a6",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Çengel bulmaca",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 219,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-a.html",
+  "yol": "/oyun/MAT.5.1.1-a.html",
+  "zaman": "2026-07-09 00:54",
+  "session_id": "b5f89245-ba0b-4133-80b6-5f65ca9915d6",
+  "kod": "MAT.5.1.1., MAT.5.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "effort": "medium",
+  "sure": 110,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-b.html",
+  "yol": "/oyun/MAT.5.1.1-b.html",
+  "zaman": "2026-07-09 01:03",
+  "session_id": "6a41252a-0854-48e2-bd8c-9456c6412d51",
+  "kod": "MAT.5.1.1., MAT.5.1.2.",
+  "tur": "Bilgi yarışması",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 129,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "TG.4.1.3-b.html",
+  "yol": "/oyun/TG.4.1.3-b.html",
+  "zaman": "2026-07-09 11:37",
+  "session_id": "751528ac-e888-4e26-a888-2a179cc692d2",
+  "kod": "FB.3.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.3.3.2. Fosil oluşumu ile ilgili sentez yapabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 396,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "MAT.1.3.1-a.html",
+  "yol": "/oyun/MAT.1.3.1-a.html",
+  "zaman": "2026-07-09 15:33",
+  "session_id": "66ef3f27-9b21-431f-9176-c3ed59ea95bf",
+  "kod": "MAT.1.3.1., MAT.1.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.1.3.1. Hedefe ulaşmak için mesafeleri ve yönleri içeren yönergeleri çözümleyebilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 88,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "FIZ.12.3.5-a.html",
+  "yol": "/oyun/FIZ.12.3.5-a.html",
+  "zaman": "2026-07-09 21:45",
+  "session_id": "8a0ad436-d120-4722-8d35-5d93575336bb",
+  "kod": "FİZ.12.3.5.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.12.3.5. Elektromanyetik dalgaları sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 120,
+  "kullanim": {
+   "baglam": 0,
+   "cikti": 0,
+   "maliyet": 0
+  }
+ },
+ {
+  "ad": "FB.8.2.1.1-a.html",
+  "yol": "/oyun/FB.8.2.1.1-a.html",
+  "zaman": "2026-07-10 22:34",
+  "session_id": "c260795b-7abe-46b6-9f42-3b541e18f5dc",
+  "kod": "FB.8.2.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.8.2.1.1. Basit makineleri sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 399,
+  "kullanim": {
+   "baglam": 7804,
+   "cikti": 2400,
+   "maliyet": 0.001306
+  }
+ },
+ {
+  "ad": "FB5111-a.html",
+  "yol": "/oyun/FB5111-a.html",
+  "zaman": "2026-07-11 22:39",
+  "session_id": "240f8963-c03e-4b77-b86b-82b991f891a0",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 322,
+  "kullanim": {
+   "baglam": 10116,
+   "cikti": 1940,
+   "maliyet": 0.001341
+  }
+ },
+ {
+  "ad": "FB.5.2.1.2-a.html",
+  "yol": "/oyun/FB.5.2.1.2-a.html",
+  "zaman": "2026-07-12 18:49",
+  "session_id": "5fdc872e-8762-4658-a1a7-1d407fcf0393",
+  "kod": "FB.5.2.1.1., FB.5.2.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.2.1.1. Kuvveti büyüklüğü ile tanımlayabilme",
+  "effort": "medium",
+  "sure": 356,
+  "kullanim": {
+   "baglam": 9718,
+   "cikti": 3064,
+   "maliyet": 0.001844
+  }
+ },
+ {
+  "ad": "FB.5.1.2.2-a.html",
+  "yol": "/oyun/FB.5.1.2.2-a.html",
+  "zaman": "2026-07-13 13:30",
+  "session_id": "1a0538b9-eda5-4030-937d-39fb87f6348d",
+  "kod": "FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.2. Ay’ın evrelerini temsil eden bilimsel model oluşturabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 275,
+  "kullanim": {
+   "baglam": 11252,
+   "cikti": 2083,
+   "maliyet": 0.001551
+  }
+ },
+ {
+  "ad": "FB.7.3.2.1-a.html",
+  "yol": "/oyun/FB.7.3.2.1-a.html",
+  "zaman": "2026-07-13 15:14",
+  "session_id": "c47584c9-52d8-45a7-83a2-152db05720dc",
+  "kod": "FB.7.3.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.7.3.2.1. Dolaşım sistemini oluşturan yapı ve organların görevlerini model üzerinde gözlemleyebilme",
+  "effort": "medium",
+  "sure": 474,
+  "kullanim": {
+   "baglam": 11759,
+   "cikti": 2174,
+   "maliyet": 0.001726
+  }
+ },
+ {
+  "ad": "FİZ.9.2.1-a.html",
+  "yol": "/oyun/FİZ.9.2.1-a.html",
+  "zaman": "2026-07-13 17:03",
+  "session_id": "ab33a3aa-8677-4bb0-97f5-dc9504d0a983",
+  "kod": "FİZ.9.2.1., FİZ.9.2.2., FİZ.9.2.3., FİZ.9.2.4.",
+  "tur": "Bilgi yarışması",
+  "kazanim": "FİZ.9.2.1. SI birim sisteminde birimleri verilen temel ve türetilmiş nicelikleri sınıflandırabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 329,
+  "kullanim": {
+   "baglam": 15765,
+   "cikti": 2324,
+   "maliyet": 0.002084
+  }
+ },
+ {
+  "ad": "FB.8.4.1.1-b.html",
+  "yol": "/oyun/FB.8.4.1.1-b.html",
+  "zaman": "2026-07-13 21:49",
+  "session_id": "c4390a14-dd0e-437c-8f4c-723d25010cae",
+  "kod": "FB.8.4.1.1., FB.8.4.1.2., FB.8.4.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "FB.8.4.1.1. Sesin oluşumuna yönelik bilimsel çıkarım yapabilme",
+  "effort": "medium",
+  "sure": 445,
+  "kullanim": {
+   "baglam": 12613,
+   "cikti": 2195,
+   "maliyet": 0.001766
+  }
+ },
+ {
+  "ad": "FB.5.2.2.1-c.html",
+  "yol": "/oyun/FB.5.2.2.1-c.html",
+  "zaman": "2026-07-13 22:28",
+  "session_id": "ebccb81b-0243-4b53-9cbd-8ec9aabead74",
+  "kod": "FB.5.2.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.2.2.1. Kütleye etki eden yer çekimi kuvvetini ağırlık olarak tanımlayabilme",
+  "effort": "medium",
+  "sure": 376,
+  "kullanim": {
+   "baglam": 10419,
+   "cikti": 822,
+   "maliyet": 0.001525
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-c.html",
+  "yol": "/oyun/FB.5.5.1.1-c.html",
+  "zaman": "2026-07-28 22:05",
+  "session_id": "73d3125f-567a-45e6-8414-97bd13ce6c40",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 254,
+  "kullanim": {
+   "baglam": 28063,
+   "cikti": 7725,
+   "maliyet": 0.004898
+  }
+ },
+ {
+  "ad": "FB.7.5.1.1-b.html",
+  "yol": "/oyun/FB.7.5.1.1-b.html",
+  "zaman": "2026-07-17 14:53",
+  "session_id": "51c4dbd0-bb49-46fb-a2a5-ea0ffdb00e51",
+  "kod": "FB.7.5.1.1., FB.7.5.1.2., FB.7.5.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "FB.7.5.1.1. Atomun yapısını ve yapısındaki temel parçacıkları çözümleyebilme",
+  "effort": "medium",
+  "sure": 473,
+  "kullanim": {
+   "baglam": 4121753,
+   "cikti": 89160,
+   "maliyet": 6.180794
+  }
+ },
+ {
+  "ad": "FB.3.5.1-c.html",
+  "yol": "/oyun/FB.3.5.1-c.html",
+  "zaman": "2026-07-14 10:16",
+  "session_id": "f8a580db-4ca8-41ca-bb92-24ea9faebf7c",
+  "kod": "FB.3.5.1., FB.3.5.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.3.5.1. Varlıkların hareket durumlarını gözleme dayalı tahmin edebilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 519,
+  "kullanim": {
+   "baglam": 10832,
+   "cikti": 1878,
+   "maliyet": 0.001783
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-g.html",
+  "yol": "/oyun/FB.5.1.1.1-g.html",
+  "zaman": "2026-07-14 23:03",
+  "kod": "FB.5.1.1.1",
+  "kullanim": {
+   "baglam": 5433614,
+   "cikti": 91939,
+   "maliyet": 7.516378
+  }
+ },
+ {
+  "ad": "BTY.5.3.1-b.html",
+  "yol": "/oyun/BTY.5.3.1-b.html",
+  "zaman": "2026-07-29 11:23",
+  "session_id": "d440d96f-5f8b-4372-9680-5594fe17eea2",
+  "kod": "BTY.5.3.1., BTY.5.3.2., BTY.5.3.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.3.1. Bilgisayar ağları ve bileşenlerini sorgulayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 166,
+  "kullanim": {
+   "baglam": 25331,
+   "cikti": 3333,
+   "maliyet": 0.003233
+  }
+ },
+ {
+  "ad": "FB.5.4.3.1-b.html",
+  "yol": "/oyun/FB.5.4.3.1-b.html",
+  "zaman": "2026-07-16 20:47",
+  "session_id": "e047a9bf-f9a6-4707-b754-73e216d99566",
+  "kod": "FB.5.4.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.4.3.1. Tam gölgeye yönelik bilimsel gözlem yapabilme",
+  "effort": "medium",
+  "sure": 491,
+  "kullanim": {
+   "baglam": 13554,
+   "cikti": 1875,
+   "maliyet": 0.001793
+  }
+ },
+ {
+  "ad": "FİZ.11.4.5-a.html",
+  "yol": "/oyun/FİZ.11.4.5-a.html",
+  "zaman": "2026-07-16 23:33",
+  "session_id": "564fbb21-9c30-4a75-a3d7-6afc92a2e63a",
+  "kod": "FİZ.11.4.5., FİZ.11.4.6.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.11.4.5. Işığın saydam ortamlardaki davranışını kullanarak deney yapabilme",
+  "effort": "medium",
+  "sure": 452,
+  "kullanim": {
+   "baglam": 12737,
+   "cikti": 1478,
+   "maliyet": 0.001457
+  }
+ },
+ {
+  "ad": "FİZ.10.1.5-a.html",
+  "yol": "/oyun/FİZ.10.1.5-a.html",
+  "zaman": "2026-07-17 10:02",
+  "session_id": "3a42aaf8-aa11-4190-a082-84dd971685b1",
+  "kod": "FİZ.10.1.5., FİZ.10.1.4.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.10.1.5. Serbest düşme hareketi ile ilgili kanıt kullanabilme",
+  "effort": "medium",
+  "sure": 590,
+  "kullanim": {
+   "baglam": 11447,
+   "cikti": 2101,
+   "maliyet": 0.001763
+  }
+ },
+ {
+  "ad": "FİZ.10.4.6-b.html",
+  "yol": "/oyun/FİZ.10.4.6-b.html",
+  "zaman": "2026-07-17 11:59",
+  "session_id": "0f79bf30-b597-4351-a50a-a11fdef080b6",
+  "kod": "FİZ.10.4.6., FİZ.10.4.7.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.10.4.6. Rezonans ve depreme ilişkin kavramlar üzerinden depremi sorgulayabilme",
+  "effort": "medium",
+  "sure": 649,
+  "kullanim": {
+   "baglam": 669118,
+   "cikti": 6822,
+   "maliyet": 1.068475
+  }
+ },
+ {
+  "ad": "MAT.10.1.2-a.html",
+  "yol": "/oyun/MAT.10.1.2-a.html",
+  "zaman": "2026-07-17 14:55",
+  "session_id": "4e5bd10e-cbbf-408f-a5d6-aea531ec6f72",
+  "kod": "MAT.10.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.10.1.2. Birden çok doğal sayının ortak bölenleriyle bunların en büyüğü ve ortak katlarıyla bunların en küçüğü arasındaki ilişkilere dair muhakeme yapabilme",
+  "model": "opus-4-8",
+  "effort": "medium",
+  "sure": 513,
+  "kullanim": {
+   "baglam": 12072,
+   "cikti": 1547,
+   "maliyet": 0.00154
+  }
+ },
+ {
+  "ad": "MAT.10.1.3-a.html",
+  "yol": "/oyun/MAT.10.1.3-a.html",
+  "zaman": "2026-07-17 15:03",
+  "session_id": "2c4b627f-d871-4c9f-8d8f-995615f31e6a",
+  "kod": "MAT.10.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.10.1.3. Bir doğal sayının belirli doğal sayılara bölümünden kalanlarına dair muhakeme yapabilme",
+  "model": "opus-4-8",
+  "effort": "medium",
+  "sure": 517,
+  "kullanim": {
+   "baglam": 13807,
+   "cikti": 1771,
+   "maliyet": 0.001792
+  }
+ },
+ {
+  "ad": "MAT.10.1.2-b.html",
+  "yol": "/oyun/MAT.10.1.2-b.html",
+  "zaman": "2026-07-18 01:41",
+  "session_id": "2fa26e1c-fc59-4a4a-ac15-1aa9693498d6",
+  "kod": "MAT.10.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.10.1.2. Birden çok doğal sayının ortak bölenleriyle bunların en büyüğü ve ortak katlarıyla bunların en küçüğü arasındaki ilişkilere dair muhakeme yapabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 510,
+  "kullanim": {
+   "baglam": 13080,
+   "cikti": 1883,
+   "maliyet": 0.001748
+  }
+ },
+ {
+  "ad": "MAT.11.3.1-b.html",
+  "yol": "/oyun/MAT.11.3.1-b.html",
+  "zaman": "2026-07-17 17:09",
+  "session_id": "94cfc57f-1bd9-4395-bf73-5d2da87c4809",
+  "kod": "MAT.11.3.1., MAT.11.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.11.3.1. İki nicel değişkenli veri ile çalışabilme ve iki nicel değişken arasındaki ilişkililiğe dayalı karar verebilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 718,
+  "kullanim": {
+   "baglam": 7243,
+   "cikti": 1892,
+   "maliyet": 0.001319
+  }
+ },
+ {
+  "ad": "FB.8.1.1.1-b.html",
+  "yol": "/oyun/FB.8.1.1.1-b.html",
+  "zaman": "2026-07-18 14:28",
+  "session_id": "940d9d2d-ee55-4d65-9d7b-04855093534e",
+  "kod": "FB.8.1.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.8.1.1.1. Dünya’nın Güneş etrafındaki hareketi ve eksen eğikliğinin sonuçları ile ilgili bilimsel çıkarım yapabilme",
+  "model": "Gemini 3.5 Flash (Medium)",
+  "effort": "medium",
+  "sure": 394,
+  "kullanim": {
+   "baglam": 8879,
+   "cikti": 3200,
+   "maliyet": 0.001878
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-t.html",
+  "yol": "/oyun/FB.5.1.2.1-t.html",
+  "zaman": "2026-07-19 10:42",
+  "session_id": "c1baa196-e547-4fef-91da-df30bef8f6d1",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "effort": "medium",
+  "sure": 656,
+  "kullanim": {
+   "baglam": 14571,
+   "cikti": 3120,
+   "maliyet": 0.002351
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-v.html",
+  "yol": "/oyun/FB.5.1.2.1-v.html",
+  "zaman": "2026-07-19 11:00",
+  "session_id": "09280973-d370-4d66-a63e-7f6fea5aa378",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "effort": "medium",
+  "sure": 694,
+  "kullanim": {
+   "baglam": 15431,
+   "cikti": 2175,
+   "maliyet": 0.002056
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-w.html",
+  "yol": "/oyun/FB.5.1.2.1-w.html",
+  "zaman": "2026-07-19 11:18",
+  "session_id": "74454351-17af-4ae0-a82b-8681066da385",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "Gemini 3.5 Flash (High)",
+  "effort": "medium",
+  "sure": 779,
+  "kullanim": {
+   "baglam": 20324,
+   "cikti": 3712,
+   "maliyet": 0.002945
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-x.html",
+  "yol": "/oyun/FB.5.1.2.1-x.html",
+  "zaman": "2026-07-19 11:25",
+  "session_id": "d45ce748-a7c7-4ee1-acab-9f51aa29f6ed",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "Gemini 3.5 Flash (High)",
+  "effort": "medium",
+  "sure": 396,
+  "kullanim": {
+   "baglam": 33136,
+   "cikti": 6112,
+   "maliyet": 0.004696
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-z.html",
+  "yol": "/oyun/FB.5.1.2.1-z.html",
+  "zaman": "2026-07-19 13:06",
+  "session_id": "e4a4b5c8-3892-4790-9f88-b4cf312ce116",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "effort": "medium",
+  "sure": 594,
+  "kullanim": {
+   "baglam": 12583,
+   "cikti": 2153,
+   "maliyet": 0.001648
+  }
+ },
+ {
+  "ad": "MAT.10.3.1-a.html",
+  "yol": "/oyun/MAT.10.3.1-a.html",
+  "zaman": "2026-07-19 13:32",
+  "session_id": "ab6e8047-55bf-478a-ac0f-ab3dc7615d7d",
+  "kod": "MAT.10.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.10.3.1. Sayma stratejileri kullanarak problem çözebilme",
+  "effort": "medium",
+  "sure": 301,
+  "kullanim": {
+   "baglam": 13081,
+   "cikti": 2226,
+   "maliyet": 0.001804
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-8dd0.html",
+  "yol": "/oyun/FB.5.1.2.1-8dd0.html",
+  "zaman": "2026-07-19 14:28",
+  "session_id": "618448bf-160c-45d7-8e90-944383ab1181",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gpt-oss:120b",
+  "effort": "medium",
+  "sure": 429,
+  "kullanim": {
+   "baglam": 15609,
+   "cikti": 1541,
+   "maliyet": 0.001889
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-a.html",
+  "yol": "/oyun/MAT.9.2.1-a.html",
+  "zaman": "2026-07-20 12:42",
+  "session_id": "f553ee55-5833-420d-ac74-3aa74aef3cd9",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "model": "Gemini 3.5 Flash (High)",
+  "effort": "medium",
+  "sure": 820,
+  "kullanim": {
+   "baglam": 16743,
+   "cikti": 7112,
+   "maliyet": 0.003842
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-d.html",
+  "yol": "/oyun/MAT.9.2.1-d.html",
+  "zaman": "2026-07-20 15:02",
+  "session_id": "3d00b2dc-b56d-420e-8aec-19c04bacb093",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "model": "Gemini 3.5 Flash (High)",
+  "effort": "medium",
+  "sure": 378,
+  "kullanim": {
+   "baglam": 13955,
+   "cikti": 1088,
+   "maliyet": 0.001465
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-g.html",
+  "yol": "/oyun/MAT.9.2.1-g.html",
+  "zaman": "2026-07-20 17:09",
+  "session_id": "67fedf5d-1e1e-42de-a9dc-dac66091ec72",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "effort": "medium",
+  "sure": 388,
+  "kullanim": {
+   "baglam": 14620,
+   "cikti": 1786,
+   "maliyet": 0.001819
+  }
+ },
+ {
+  "ad": "MAT.10.4.1-a.html",
+  "yol": "/oyun/MAT.10.4.1-a.html",
+  "zaman": "2026-07-21 10:59",
+  "session_id": "6b82e6de-299b-4d1b-b75b-aaea608b7867",
+  "kod": "MAT.10.4.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.10.4.1. Dik üçgende trigonometrik oranlara (sinüs, kosinüs, tanjant, kotanjant) ve trigonometrik özdeşliklere ilişkin çıkarım yapabilme",
+  "model": "opus",
+  "effort": "medium",
+  "sure": 2076,
+  "kullanim": {
+   "baglam": 2921115,
+   "cikti": 104641,
+   "maliyet": 7.578944
+  }
+ },
+ {
+  "ad": "FİZ.12.1.4-a.html",
+  "yol": "/oyun/FİZ.12.1.4-a.html",
+  "zaman": "2026-07-21 11:10",
+  "session_id": "a4b19154-07d8-4148-99f8-de5c1556d0dc",
+  "kod": "FİZ.12.1.4., FİZ.12.1.5., FİZ.12.1.6.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.12.1.4. Momentumun korunumunu veriye dayalı tahmin edebilme",
+  "model": "opus",
+  "effort": "medium",
+  "sure": 2144,
+  "kullanim": {
+   "baglam": 4497611,
+   "cikti": 120461,
+   "maliyet": 9.623072
+  }
+ },
+ {
+  "ad": "FİZ.10.3.3-a.html",
+  "yol": "/oyun/FİZ.10.3.3-a.html",
+  "zaman": "2026-07-21 11:10",
+  "kullanim": {
+   "baglam": 3943467,
+   "cikti": 122255,
+   "maliyet": 9.18431
+  },
+  "session_id": "c55f9f45-5ce2-4ec7-a92d-9e422d033510",
+  "kod": "FİZ.10.3.3., FİZ.10.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.10.3.3. Ohm Yasası ile ilgili tümevarımsal akıl yürütebilme",
+  "model": "opus",
+  "effort": "medium",
+  "sure": 3006
+ },
+ {
+  "ad": "FİZ.9.3.2-a.html",
+  "yol": "/oyun/FİZ.9.3.2-a.html",
+  "zaman": "2026-07-21 12:29",
+  "session_id": "41f795a9-7b5b-4b3e-baa8-b87010943bc5",
+  "kod": "FİZ.9.3.2., FİZ.9.3.1., FİZ.9.3.3., FİZ.9.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.9.3.2. Durgun sıvılarda basınca yönelik çıkarımlarda bulunabilme",
+  "model": "opus",
+  "effort": "high",
+  "sure": 1770,
+  "kullanim": {
+   "baglam": 7029648,
+   "cikti": 115024,
+   "maliyet": 9.673942
+  }
+ },
+ {
+  "ad": "FİZ.11.1.6-a.html",
+  "yol": "/oyun/FİZ.11.1.6-a.html",
+  "zaman": "2026-07-21 20:29",
+  "session_id": "a21d4816-8269-4718-b812-90558237214e",
+  "kod": "FİZ.11.1.6., FİZ.11.1.7.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.11.1.6. Çembersel hareket yapan cisimlerin yörüngeleri ve hız vektörleri hakkında analojik akıl yürütebilme",
+  "model": "Gemini 3.5 Flash (High)",
+  "effort": "medium",
+  "sure": 323,
+  "kullanim": {
+   "baglam": 16284,
+   "cikti": 2624,
+   "maliyet": 0.002108
+  }
+ },
+ {
+  "ad": "FİZ.9.2.6-a.html",
+  "yol": "/oyun/FİZ.9.2.6-a.html",
+  "zaman": "2026-07-21 23:23",
+  "session_id": "17f0253e-91db-4393-bec1-7cd962fc4294",
+  "kod": "FİZ.9.2.6., FİZ.9.2.7.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.9.2.6. Hareketin temel kavramlarının tanımlarına yönelik tümevarımsal akıl yürütebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 242,
+  "kullanim": {
+   "baglam": 15310,
+   "cikti": 1196,
+   "maliyet": 0.001649
+  }
+ },
+ {
+  "ad": "BİY.9.2.4-a.html",
+  "yol": "/oyun/BİY.9.2.4-a.html",
+  "zaman": "2026-07-22 09:54",
+  "session_id": "f6ce8de4-e8a4-424a-96d3-cfd21a09f976",
+  "kod": "BİY.9.2.4.",
+  "tur": "Otomatik",
+  "kazanim": "BİY.9.2.4. pH ve sıcaklığın enzim aktivitesini etkilediğini gösteren deney yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 117,
+  "kullanim": {
+   "baglam": 11935,
+   "cikti": 1568,
+   "maliyet": 0.001523
+  }
+ },
+ {
+  "ad": "COĞ.9.3.2-b.html",
+  "yol": "/oyun/COĞ.9.3.2-b.html",
+  "zaman": "2026-07-22 14:16",
+  "session_id": "58861d88-f713-4bf5-88ec-72fe94446967",
+  "kod": "COĞ.9.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "COĞ.9.3.2. İklim sisteminin bileşen ve değişkenlerini çözümleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 221,
+  "kullanim": {
+   "baglam": 15516,
+   "cikti": 1396,
+   "maliyet": 0.00178
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-a.html",
+  "yol": "/oyun/FB.5.1.2.1-a.html",
+  "zaman": "2026-07-23 13:51",
+  "session_id": "c82004c5-9408-4406-9beb-2261b7586735",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 197,
+  "kullanim": {
+   "baglam": 18925,
+   "cikti": 1099,
+   "maliyet": 0.00188
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-c.html",
+  "yol": "/oyun/FB.5.1.2.1-c.html",
+  "zaman": "2026-07-23 14:02",
+  "session_id": "a49411bc-a325-4aca-bdd5-878cfc0d76d1",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "effort": "medium",
+  "sure": 224,
+  "kullanim": {
+   "baglam": 17160,
+   "cikti": 1071,
+   "maliyet": 0.001727
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-h.html",
+  "yol": "/oyun/FB.5.1.2.1-h.html",
+  "zaman": "2026-07-30 20:16",
+  "session_id": "841f7cc1-e205-4d6f-abd9-3f9c73437175",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 733,
+  "kullanim": {
+   "baglam": 33224,
+   "cikti": 2880,
+   "maliyet": 0.003666
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-i.html",
+  "yol": "/oyun/FB.5.1.2.1-i.html",
+  "zaman": "2026-08-02 00:09",
+  "session_id": "d6709972-e511-40e8-8ed1-6f77d45bcfdc",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 326,
+  "kullanim": {
+   "baglam": 31740,
+   "cikti": 2513,
+   "maliyet": 0.003601
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-j.html",
+  "yol": "/oyun/FB.5.1.2.1-j.html",
+  "zaman": "2026-08-02 23:08",
+  "session_id": "566e7c89-6fba-4380-9ccf-e41d49cd7c82",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 328,
+  "kullanim": {
+   "baglam": 28892,
+   "cikti": 2250,
+   "maliyet": 0.0032
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-k.html",
+  "yol": "/oyun/FB.5.1.2.1-k.html",
+  "zaman": "2026-07-23 18:03",
+  "session_id": "682eef1e-4b86-4feb-8969-6c91bb6e295f",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 135,
+  "kullanim": {
+   "baglam": 16252,
+   "cikti": 1666,
+   "maliyet": 0.001719
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-g.html",
+  "yol": "/oyun/FB.5.5.1.1-g.html",
+  "zaman": "2026-07-23 22:36",
+  "session_id": "58001dee-4969-403f-9a46-5ac317209bb8",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1., FB.5.5.4.2., FB.5.5.4.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 206,
+  "kullanim": {
+   "baglam": 16925,
+   "cikti": 1392,
+   "maliyet": 0.001687
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-h.html",
+  "yol": "/oyun/FB.5.5.1.1-h.html",
+  "zaman": "2026-07-30 20:37",
+  "session_id": "f141dd6e-f44f-4685-990a-d07f8240dc4e",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.3.1., FB.5.5.2.2., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 419,
+  "kullanim": {
+   "baglam": 49855,
+   "cikti": 32235,
+   "maliyet": 0.013764
+  }
+ },
+ {
+  "ad": "FİZ.10.3.1-a.html",
+  "yol": "/oyun/FİZ.10.3.1-a.html",
+  "zaman": "2026-07-23 23:49",
+  "session_id": "cb807ad7-7c6a-43c7-a6fa-a78e33c7e767",
+  "kod": "FİZ.10.3.1., FİZ.10.3.2., FİZ.10.3.3., FİZ.10.3.4., FİZ.10.3.5., FİZ.10.3.6., FİZ.10.3.7.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.10.3.1. Basit elektrik devresinde potansiyel fark, elektrik akımı ve direnç kavramlarının tanımına ilişkin analojik akıl yürütebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 163,
+  "kullanim": {
+   "baglam": 18955,
+   "cikti": 1998,
+   "maliyet": 0.002021
+  }
+ },
+ {
+  "ad": "FİZ.9.4.1-a.html",
+  "yol": "/oyun/FİZ.9.4.1-a.html",
+  "zaman": "2026-07-24 00:07",
+  "session_id": "b9757d6d-bde7-478f-addd-47c06fde5382",
+  "kod": "FİZ.9.4.1., FİZ.9.4.2., FİZ.9.4.3., FİZ.9.4.5., FİZ.9.4.4., FİZ.9.4.6.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.9.4.1. İç enerjinin ısı ve sıcaklık ile arasındaki ilişki hakkında tümevarımsal akıl yürütebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 212,
+  "kullanim": {
+   "baglam": 15787,
+   "cikti": 1903,
+   "maliyet": 0.001755
+  }
+ },
+ {
+  "ad": "COĞ.10.2.1-d.html",
+  "yol": "/oyun/COĞ.10.2.1-d.html",
+  "zaman": "2026-07-24 17:41",
+  "session_id": "71a8cc03-5e85-412d-8ecd-d6e581a018af",
+  "kod": "COĞ.10.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "COĞ.10.2.1. Örnek uygulamalar üzerinden CBS ve uzaktan algılamanın kullanım alanlarını özetleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 204,
+  "kullanim": {
+   "baglam": 17378,
+   "cikti": 4490,
+   "maliyet": 0.002791
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-l.html",
+  "yol": "/oyun/FB.5.1.2.1-l.html",
+  "zaman": "2026-07-25 20:55",
+  "session_id": "458b4a50-de16-43ce-8011-fc6ba38c0063",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 207,
+  "kullanim": {
+   "baglam": 17298,
+   "cikti": 951,
+   "maliyet": 0.001583
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-n.html",
+  "yol": "/oyun/FB.5.1.2.1-n.html",
+  "zaman": "2026-07-25 21:20",
+  "session_id": "9f1e86a9-d706-46b9-9af7-2a7643a56945",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 209,
+  "kullanim": {
+   "baglam": 11484,
+   "cikti": 955,
+   "maliyet": 0.001267
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-l.html",
+  "yol": "/oyun/FB.5.1.1.1-l.html",
+  "zaman": "2026-07-25 21:43",
+  "session_id": "68b3cdf6-cfcb-4121-ad7c-397daa3aed1d",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 167,
+  "kullanim": {
+   "baglam": 16535,
+   "cikti": 1066,
+   "maliyet": 0.001727
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-o.html",
+  "yol": "/oyun/FB.5.1.1.1-o.html",
+  "zaman": "2026-07-25 23:28",
+  "session_id": "dc011a86-4a84-4278-8908-b9e75b5d209d",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 249,
+  "kullanim": {
+   "baglam": 18333,
+   "cikti": 1292,
+   "maliyet": 0.001921
+  }
+ },
+ {
+  "ad": "FİZ.9.3.4-a.html",
+  "yol": "/oyun/FİZ.9.3.4-a.html",
+  "zaman": "2026-07-26 12:23",
+  "session_id": "dcac7375-4c33-4aea-8ba2-b8e5d6f86e7e",
+  "kod": "FİZ.9.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.9.3.4. Açık hava basıncına ilişkin çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 135,
+  "kullanim": {
+   "baglam": 16524,
+   "cikti": 1469,
+   "maliyet": 0.001819
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-c.html",
+  "yol": "/oyun/FB.6.1.1.1-c.html",
+  "zaman": "2026-08-01 20:48",
+  "session_id": "d1af7d85-3a31-4562-898d-45f9c4e27cbb",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 331,
+  "kullanim": {
+   "baglam": 42439,
+   "cikti": 2210,
+   "maliyet": 0.00409
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-e.html",
+  "yol": "/oyun/FB.6.1.1.1-e.html",
+  "zaman": "2026-07-26 19:38",
+  "session_id": "5e73254d-1b6c-4c56-b648-b262ddde0ed8",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 223,
+  "kullanim": {
+   "baglam": 18070,
+   "cikti": 878,
+   "maliyet": 0.001747
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-i.html",
+  "yol": "/oyun/FB.5.5.1.1-i.html",
+  "zaman": "2026-07-26 19:46",
+  "session_id": "2c5f868c-7c66-43cd-8197-97aaa6bbefa9",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 264,
+  "kullanim": {
+   "baglam": 22255,
+   "cikti": 898,
+   "maliyet": 0.002088
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-b.html",
+  "yol": "/oyun/MAT.9.2.1-b.html",
+  "zaman": "2026-07-26 22:24",
+  "session_id": "6d8187fe-9c48-4111-8d0f-ddb72ba68109",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 454,
+  "kullanim": {
+   "baglam": 32794,
+   "cikti": 599,
+   "maliyet": 0.002639
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-c.html",
+  "yol": "/oyun/MAT.9.2.1-c.html",
+  "zaman": "2026-07-26 22:42",
+  "session_id": "d4101c11-604c-4eed-98c8-557829514103",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 186,
+  "kullanim": {
+   "baglam": 15852,
+   "cikti": 1129,
+   "maliyet": 0.001677
+  }
+ },
+ {
+  "ad": "MAT.9.2.1-e.html",
+  "yol": "/oyun/MAT.9.2.1-e.html",
+  "zaman": "2026-07-27 00:05",
+  "session_id": "32fb569b-7e8d-4623-9b39-63dd293e82ff",
+  "kod": "MAT.9.2.1., MAT.9.2.2., MAT.9.2.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.2.1. Gerçek sayılarda f(x) = x şeklinde tanımlı doğrusal referans fonksiyonun nitel özellikleri ile bu fonksiyondan türetilen g(x) = a ∙ f(x ± r) ± k, (a, r, k ∈ ℝ, a≠0) doğrusal fonksiyonların nitel özelliklerine ilişkin matematiksel muhakeme yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 203,
+  "kullanim": {
+   "baglam": 13177,
+   "cikti": 967,
+   "maliyet": 0.001431
+  }
+ },
+ {
+  "ad": "11-TG.4.1.3-b.html",
+  "yol": "/oyun/11-TG.4.1.3-b.html",
+  "zaman": "2026-07-27 22:11",
+  "kullanim": {
+   "baglam": 554,
+   "cikti": 800,
+   "maliyet": 0.000282
+  }
+ },
+ {
+  "ad": "2-dna-replikasyon-tamamla.html",
+  "yol": "/oyun/2-dna-replikasyon-tamamla.html",
+  "zaman": "2026-07-27 22:11",
+  "kullanim": {
+   "baglam": 554,
+   "cikti": 800,
+   "maliyet": 0.000282
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-k.html",
+  "yol": "/oyun/FB.5.1.1.1-k.html",
+  "zaman": "2026-07-29 14:14",
+  "session_id": "f1372ed5-b4e6-4533-8f82-43c526495d1a",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 356,
+  "kullanim": {
+   "baglam": 28581,
+   "cikti": 2956,
+   "maliyet": 0.003312
+  }
+ },
+ {
+  "ad": "MAT.5.1.3-a.html",
+  "yol": "/oyun/MAT.5.1.3-a.html",
+  "zaman": "2026-07-27 23:25",
+  "session_id": "3355b47e-1124-47d3-a708-7be6c97181bf",
+  "kod": "MAT.5.1.3., MAT.5.1.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil ede\u0002bilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 187,
+  "kullanim": {
+   "baglam": 13290,
+   "cikti": 768,
+   "maliyet": 0.00135
+  }
+ },
+ {
+  "ad": "FB.5.4.1.1-b.html",
+  "yol": "/oyun/FB.5.4.1.1-b.html",
+  "zaman": "2026-07-28 07:54",
+  "session_id": "bbd21805-b429-4b37-a6e0-150dd1ef8002",
+  "kod": "FB.5.4.1.1., FB.5.4.3.1., FB.5.4.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.4.1.1. Bir kaynaktan çıkan ışığın her yönde doğrusal bir yol izlediğini gözlem yoluyla açıklayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 208,
+  "kullanim": {
+   "baglam": 12300,
+   "cikti": 1048,
+   "maliyet": 0.001359
+  }
+ },
+ {
+  "ad": "FB.7.2.1.1-a.html",
+  "yol": "/oyun/FB.7.2.1.1-a.html",
+  "zaman": "2026-07-28 08:43",
+  "session_id": "3312e74d-d317-4060-97a9-d8053bef8765",
+  "kod": "FB.7.2.1.1., FB.7.2.1.2., FB.7.2.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.7.2.1.1. Fiziksel anlamda yapılan işin bağlı olduğu faktörlere ilişkin bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 295,
+  "kullanim": {
+   "baglam": 12863,
+   "cikti": 766,
+   "maliyet": 0.001351
+  }
+ },
+ {
+  "ad": "FB.6.5.1.1-a.html",
+  "yol": "/oyun/FB.6.5.1.1-a.html",
+  "zaman": "2026-07-28 11:24",
+  "session_id": "960062ee-f496-431b-8df3-7f2e6bf00305",
+  "kod": "FB.6.5.1.1., FB.6.5.2.1., FB.6.5.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.5.1.1. Isı etkisiyle maddelerin genleşip büzüleceğine yönelik bilimsel gözleme dayalı tahmin edebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 251,
+  "kullanim": {
+   "baglam": 3212127,
+   "cikti": 94263,
+   "maliyet": 7.014041
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-b.html",
+  "yol": "/oyun/FB.5.5.1.1-b.html",
+  "zaman": "2026-07-28 10:07",
+  "session_id": "763196c9-16fd-462f-86fa-4647f271644c",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 226,
+  "kullanim": {
+   "baglam": 12865,
+   "cikti": 539,
+   "maliyet": 0.001324
+  }
+ },
+ {
+  "ad": "MAT.5.5.1-a.html",
+  "yol": "/oyun/MAT.5.5.1-a.html",
+  "zaman": "2026-07-28 10:37",
+  "session_id": "4d60ce93-cb85-4e1b-9530-36a181b6baa9",
+  "kod": "MAT.5.5.1., MAT.5.5.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 280,
+  "kullanim": {
+   "baglam": 15934,
+   "cikti": 1608,
+   "maliyet": 0.001882
+  }
+ },
+ {
+  "ad": "MAT.9.5.2-b.html",
+  "yol": "/oyun/MAT.9.5.2-b.html",
+  "zaman": "2026-07-28 11:07",
+  "session_id": "bf133e2a-01cb-4d1a-bffd-fa67f10f696c",
+  "kod": "MAT.9.5.2., MAT.9.5.3., MAT.9.5.4., MAT.9.5.5.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.9.5.2. İki üçgenin eş veya benzer olması için gerekli olan asgari koşullarla ilgili çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 240,
+  "kullanim": {
+   "baglam": 19627,
+   "cikti": 1065,
+   "maliyet": 0.001792
+  }
+ },
+ {
+  "ad": "FİZ.11.1.1-a.html",
+  "yol": "/oyun/FİZ.11.1.1-a.html",
+  "zaman": "2026-07-28 12:03",
+  "session_id": "b432f213-ee07-4d2b-8fc8-9c19a64d1823",
+  "kod": "FİZ.11.1.1., FİZ.11.1.2., FİZ.11.1.3., FİZ.11.1.4.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.11.1.1. Newton Hareket Yasaları ile ilgili tümevarımsal akıl yürütebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 294,
+  "kullanim": {
+   "baglam": 18778,
+   "cikti": 1022,
+   "maliyet": 0.001855
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-b.html",
+  "yol": "/oyun/FB.5.1.1.1-b.html",
+  "zaman": "2026-07-28 16:42",
+  "session_id": "72fee718-1b68-4f97-98e8-27df5949faac",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 260,
+  "kullanim": {
+   "baglam": 20273,
+   "cikti": 1796,
+   "maliyet": 0.002252
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-c.html",
+  "yol": "/oyun/FB.5.1.1.1-c.html",
+  "zaman": "2026-07-28 17:25",
+  "session_id": "3cf8d0b4-02df-496a-b7a1-1eb491bc39ae",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 376,
+  "kullanim": {
+   "baglam": 17973,
+   "cikti": 1646,
+   "maliyet": 0.002033
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-d.html",
+  "yol": "/oyun/FB.5.1.1.1-d.html",
+  "zaman": "2026-07-28 18:15",
+  "session_id": "97450596-f1f7-42fb-8a63-d83909dd1cea",
+  "kod": "FB.5.1.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 217,
+  "kullanim": {
+   "baglam": 15830,
+   "cikti": 2893,
+   "maliyet": 0.002137
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-b.html",
+  "yol": "/oyun/FB.5.1.2.1-b.html",
+  "zaman": "2026-07-28 18:27",
+  "session_id": "5acd370a-9dba-41c9-8110-cc81ea85128b",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 237,
+  "kullanim": {
+   "baglam": 17496,
+   "cikti": 1425,
+   "maliyet": 0.001875
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-f.html",
+  "yol": "/oyun/FB.5.1.1.1-f.html",
+  "zaman": "2026-07-28 19:51",
+  "session_id": "38b79bc9-a5a9-43eb-8a32-3bc6e61e614b",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 257,
+  "kullanim": {
+   "baglam": 16133,
+   "cikti": 1639,
+   "maliyet": 0.001792
+  }
+ },
+ {
+  "ad": "MAT.5.3.4-a.html",
+  "yol": "/oyun/MAT.5.3.4-a.html",
+  "zaman": "2026-07-28 20:06",
+  "session_id": "908515fd-280d-4d0a-8c86-ae87cc592754",
+  "kod": "MAT.5.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.3.4. Düzlemde iki veya üç doğrunun birbirine göre durumuna bağlı olarak oluşabilecek açılara dair çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 251,
+  "kullanim": {
+   "baglam": 16171,
+   "cikti": 1326,
+   "maliyet": 0.001697
+  }
+ },
+ {
+  "ad": "MAT.5.3.4-b.html",
+  "yol": "/oyun/MAT.5.3.4-b.html",
+  "zaman": "2026-07-28 20:12",
+  "session_id": "21b27b1c-24d8-40a6-887e-d49322670e11",
+  "kod": "MAT.5.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.3.4. Düzlemde iki veya üç doğrunun birbirine göre durumuna bağlı olarak oluşabilecek açılara dair çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 235,
+  "kullanim": {
+   "baglam": 14479,
+   "cikti": 721,
+   "maliyet": 0.001499
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-i.html",
+  "yol": "/oyun/FB.5.1.1.1-i.html",
+  "zaman": "2026-07-28 21:54",
+  "session_id": "8e05e7b3-7370-4958-bb28-1faf2d3fade1",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 252,
+  "kullanim": {
+   "baglam": 16267,
+   "cikti": 1548,
+   "maliyet": 0.001857
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-e.html",
+  "yol": "/oyun/FB.5.1.2.1-e.html",
+  "zaman": "2026-07-29 00:18",
+  "session_id": "a93a97e9-59e3-4cce-90ee-3474291835b7",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 315,
+  "kullanim": {
+   "baglam": 21013,
+   "cikti": 1582,
+   "maliyet": 0.002228
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-j.html",
+  "yol": "/oyun/FB.5.1.1.1-j.html",
+  "zaman": "2026-07-29 11:01",
+  "session_id": "04641098-0bc8-4533-b62e-34a0e25c99b6",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 1076,
+  "kullanim": {
+   "baglam": 23324,
+   "cikti": 2935,
+   "maliyet": 0.00277
+  }
+ },
+ {
+  "ad": "BTY.5.6.4-a.html",
+  "yol": "/oyun/BTY.5.6.4-a.html",
+  "zaman": "2026-07-30 15:57",
+  "session_id": "1fc565de-5c23-40a8-b7d1-4c4808e9107d",
+  "kod": "BTY.5.6.4.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.6.4. Blok tabanlı ortamda yazılım geliştirme sürecini yönetebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 261,
+  "kullanim": {
+   "baglam": 27267,
+   "cikti": 3583,
+   "maliyet": 0.003331
+  }
+ },
+ {
+  "ad": "BTY.5.5.1-a.html",
+  "yol": "/oyun/BTY.5.5.1-a.html",
+  "zaman": "2026-07-29 11:59",
+  "session_id": "20a5afb1-ac69-4bad-83ab-d18d713090a5",
+  "kod": "BTY.5.5.1.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.5.1. Yapay zekâ uygulamalarını sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 244,
+  "kullanim": {
+   "baglam": 15146,
+   "cikti": 1503,
+   "maliyet": 0.001727
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-h.html",
+  "yol": "/oyun/FB.5.1.1.1-h.html",
+  "zaman": "2026-07-29 14:04",
+  "session_id": "dc8dc54d-394b-4ad1-ad7f-ef0eae48b5d4",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 241,
+  "kullanim": {
+   "baglam": 15457,
+   "cikti": 1106,
+   "maliyet": 0.001654
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-e.html",
+  "yol": "/oyun/FB.5.5.1.1-e.html",
+  "zaman": "2026-07-29 14:50",
+  "session_id": "aeb4657d-8d51-464e-996f-1be94e1f9df9",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.3.1., FB.5.5.2.2., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "effort": "medium",
+  "sure": 481,
+  "kullanim": {
+   "baglam": 18378,
+   "cikti": 1724,
+   "maliyet": 0.002088
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-d.html",
+  "yol": "/oyun/FB.5.1.2.1-d.html",
+  "zaman": "2026-07-29 15:53",
+  "session_id": "89e3a1cf-4353-4e53-8c66-32cfaa771808",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 293,
+  "kullanim": {
+   "baglam": 15456,
+   "cikti": 1507,
+   "maliyet": 0.001772
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-f.html",
+  "yol": "/oyun/FB.5.1.2.1-f.html",
+  "zaman": "2026-07-29 16:07",
+  "session_id": "cbce60d4-2c6b-4232-b5f3-7eebd58eab3c",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 201,
+  "kullanim": {
+   "baglam": 15970,
+   "cikti": 1662,
+   "maliyet": 0.001858
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-g.html",
+  "yol": "/oyun/FB.5.1.2.1-g.html",
+  "zaman": "2026-07-29 17:08",
+  "session_id": "835b1538-38ec-427d-814f-b629386d9327",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 227,
+  "kullanim": {
+   "baglam": 16383,
+   "cikti": 1645,
+   "maliyet": 0.001875
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-m.html",
+  "yol": "/oyun/FB.5.1.1.1-m.html",
+  "zaman": "2026-07-29 19:56",
+  "session_id": "dd2a1b9f-11d6-472c-b56f-f384b1e824dd",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 279,
+  "kullanim": {
+   "baglam": 16435,
+   "cikti": 1587,
+   "maliyet": 0.001876
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-n.html",
+  "yol": "/oyun/FB.5.1.1.1-n.html",
+  "zaman": "2026-07-29 21:24",
+  "session_id": "8ca56885-8c2e-4400-9add-e159bfd42f28",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "kimi-k3:cloud",
+  "effort": "medium",
+  "sure": 1954,
+  "kullanim": {
+   "baglam": 7198763,
+   "cikti": 142842,
+   "maliyet": 11.58428
+  }
+ },
+ {
+  "ad": "MAT.5.4.3-a.html",
+  "yol": "/oyun/MAT.5.4.3-a.html",
+  "zaman": "2026-07-29 22:09",
+  "session_id": "25ff4be4-3ef6-4954-a0f0-7457b1d7adf7",
+  "kod": "MAT.5.4.3., MAT.5.4.4., MAT.5.4.2., MAT.5.4.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanının ölçüsü verildiğinde çevre uzunluğunu, çevre uzunluğu verildiğinde alanını yorumlayabilme",
+  "model": "kimi-k3:cloud",
+  "effort": "medium",
+  "sure": 1593,
+  "kullanim": {
+   "baglam": 4017691,
+   "cikti": 121849,
+   "maliyet": 8.589113
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-c.html",
+  "yol": "/oyun/MAT.5.1.1-c.html",
+  "zaman": "2026-07-30 01:25",
+  "session_id": "191fb1db-7d52-4477-b08f-0677d0ee63f9",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "kimi-k3:cloud",
+  "effort": "medium",
+  "sure": 3623,
+  "kullanim": {
+   "baglam": 4784415,
+   "cikti": 143780,
+   "maliyet": 29.025545
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-e.html",
+  "yol": "/oyun/MAT.5.1.1-e.html",
+  "zaman": "2026-07-30 11:54",
+  "session_id": "ffb20380-2311-4ccd-a33a-c1aecffa8bda",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "kimi-k3:cloud",
+  "effort": "medium",
+  "sure": 2483,
+  "kullanim": {
+   "baglam": 9150784,
+   "cikti": 154285,
+   "maliyet": 40.534293
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-f.html",
+  "yol": "/oyun/MAT.5.1.1-f.html",
+  "zaman": "2026-07-30 12:01",
+  "session_id": "3db869c8-06e0-4eae-89e0-76ff192e25ae",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 270,
+  "kullanim": {
+   "baglam": 15887,
+   "cikti": 1256,
+   "maliyet": 0.001727
+  }
+ },
+ {
+  "ad": "MAT.6.1.1-a.html",
+  "yol": "/oyun/MAT.6.1.1-a.html",
+  "zaman": "2026-07-30 12:17",
+  "kullanim": {
+   "baglam": 2860,
+   "cikti": 982,
+   "maliyet": 0.000509
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-g.html",
+  "yol": "/oyun/MAT.5.1.1-g.html",
+  "zaman": "2026-07-30 12:50",
+  "session_id": "27aae030-90fd-4ab8-b5ad-2e2b2a95a344",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 218,
+  "kullanim": {
+   "baglam": 14890,
+   "cikti": 975,
+   "maliyet": 0.001589
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-h.html",
+  "yol": "/oyun/MAT.5.1.1-h.html",
+  "zaman": "2026-07-30 13:00",
+  "session_id": "4abfd108-b90b-46fa-9de7-6c14675d277f",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 234,
+  "kullanim": {
+   "baglam": 15622,
+   "cikti": 1380,
+   "maliyet": 0.001746
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-i.html",
+  "yol": "/oyun/MAT.5.1.1-i.html",
+  "zaman": "2026-07-30 13:13",
+  "session_id": "3de550d0-86c0-4566-bd21-6d651195ce09",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 271,
+  "kullanim": {
+   "baglam": 15500,
+   "cikti": 1169,
+   "maliyet": 0.001605
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-j.html",
+  "yol": "/oyun/MAT.5.1.1-j.html",
+  "zaman": "2026-07-30 15:00",
+  "session_id": "aa00b79d-6449-4857-bd3c-bf79521172fc",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 169,
+  "kullanim": {
+   "baglam": 13815,
+   "cikti": 687,
+   "maliyet": 0.001425
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-p.html",
+  "yol": "/oyun/FB.5.1.1.1-p.html",
+  "zaman": "2026-07-30 16:49",
+  "session_id": "1a04bfb2-ec15-4350-92e2-5643bf764aaa",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 276,
+  "kullanim": {
+   "baglam": 18330,
+   "cikti": 1835,
+   "maliyet": 0.00202
+  }
+ },
+ {
+  "ad": "FB.5.2.1.1-a.html",
+  "yol": "/oyun/FB.5.2.1.1-a.html",
+  "zaman": "2026-07-30 17:07",
+  "session_id": "0a8d419a-a7a1-4e3d-93ef-b4e9a295823a",
+  "kod": "FB.5.2.1.1., FB.5.2.1.2., FB.5.2.2.1., FB.5.2.3.1., FB.5.2.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.2.1.1. Kuvveti büyüklüğü ile tanımlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 202,
+  "kullanim": {
+   "baglam": 18313,
+   "cikti": 2978,
+   "maliyet": 0.002438
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-f.html",
+  "yol": "/oyun/FB.5.5.1.1-f.html",
+  "zaman": "2026-07-30 17:24",
+  "session_id": "ff1c6922-2818-4b07-bf8d-5551c2b7a96e",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "effort": "medium",
+  "sure": 544,
+  "kullanim": {
+   "baglam": 17486,
+   "cikti": 1621,
+   "maliyet": 0.001972
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-q.html",
+  "yol": "/oyun/FB.5.1.1.1-q.html",
+  "zaman": "2026-07-30 20:09",
+  "session_id": "b833a74e-e689-428a-b9b5-69b0a0ad6fe1",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 351,
+  "kullanim": {
+   "baglam": 15409,
+   "cikti": 1238,
+   "maliyet": 0.001672
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-k.html",
+  "yol": "/oyun/MAT.5.1.1-k.html",
+  "zaman": "2026-07-30 20:48",
+  "session_id": "fc6129a9-8936-493c-8d71-145ca8a9f7e0",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 234,
+  "kullanim": {
+   "baglam": 15719,
+   "cikti": 1345,
+   "maliyet": 0.00176
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-a.html",
+  "yol": "/oyun/FB.6.1.1.1-a.html",
+  "zaman": "2026-07-30 20:59",
+  "session_id": "48bb47c1-f41f-4002-95cb-1bdb1125fd16",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 333,
+  "kullanim": {
+   "baglam": 16490,
+   "cikti": 1424,
+   "maliyet": 0.001763
+  }
+ },
+ {
+  "ad": "FB.6.4.1.1-a.html",
+  "yol": "/oyun/FB.6.4.1.1-a.html",
+  "zaman": "2026-07-30 21:21",
+  "session_id": "d57c8825-9dfa-482c-9941-1187c61a22c7",
+  "kod": "FB.6.4.1.1., FB.6.4.1.2., FB.6.4.2.1., FB.6.4.3.1., FB.6.4.3.2., FB.6.4.3.3., FB.6.4.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.4.1.1. Işığın farklı yüzeylerdeki yansıma olaylarına ilişkin bilimsel çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 438,
+  "kullanim": {
+   "baglam": 19188,
+   "cikti": 883,
+   "maliyet": 0.001934
+  }
+ },
+ {
+  "ad": "T.D.5.1-a.html",
+  "yol": "/oyun/T.D.5.1-a.html",
+  "zaman": "2026-07-30 21:35",
+  "session_id": "91f44f69-9715-4268-9fff-d6a71e6d0a2d",
+  "kod": "T.D.5.1., T.D.5.17., T.D.5.16., T.D.5.18., T.D.5.2., T.D.5.7., T.D.5.25.",
+  "tur": "Otomatik",
+  "kazanim": "T.D.5.1. Dinlemede/izlemede materyal seçimini yönetebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 315,
+  "kullanim": {
+   "baglam": 14735,
+   "cikti": 819,
+   "maliyet": 0.0015
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-r.html",
+  "yol": "/oyun/FB.5.1.1.1-r.html",
+  "zaman": "2026-07-30 23:08",
+  "session_id": "897844a1-c0e9-4512-b642-d4688aa2d9d5",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 242,
+  "kullanim": {
+   "baglam": 17534,
+   "cikti": 1717,
+   "maliyet": 0.002026
+  }
+ },
+ {
+  "ad": "GS.5.1.1-a.html",
+  "yol": "/oyun/GS.5.1.1-a.html",
+  "zaman": "2026-07-30 23:37",
+  "session_id": "97a3dd16-8e56-4ddc-999d-38f5ba6154db",
+  "kod": "GS.5.1.1., FB.5.6.1.1., FB.5.6.2.1., FB.5.6.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "GS.5.1.1. Edebî metinlerden ve yazı düzeninden faydalanarak çevre duyarlılığını yansıtan resimleme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 267,
+  "kullanim": {
+   "baglam": 17275,
+   "cikti": 978,
+   "maliyet": 0.001775
+  }
+ },
+ {
+  "ad": "T.O.5.21-a.html",
+  "yol": "/oyun/T.O.5.21-a.html",
+  "zaman": "2026-07-31 09:25",
+  "session_id": "3e024787-0916-4a0b-a636-fd8a6c86b761",
+  "kod": "T.O.5.21., T.O.5.5.",
+  "tur": "Otomatik",
+  "kazanim": "T.O.5.21. Metinden hareketle söz varlığını geliştirmeye yönelik çözümleme yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 288,
+  "kullanim": {
+   "baglam": 15633,
+   "cikti": 1463,
+   "maliyet": 0.001768
+  }
+ },
+ {
+  "ad": "T.O.6.8-b.html",
+  "yol": "/oyun/T.O.6.8-b.html",
+  "zaman": "2026-07-31 12:04",
+  "session_id": "cffc2dc2-a5ac-4eef-b71c-2ffa75abac87",
+  "kod": "T.O.6.8., T.O.6.9.",
+  "tur": "Otomatik",
+  "kazanim": "T.O.6.8. Metnin derin anlamını belirlemeye yönelik basit çıkarımlar yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 343,
+  "kullanim": {
+   "baglam": 18839,
+   "cikti": 1158,
+   "maliyet": 0.001955
+  }
+ },
+ {
+  "ad": "T.O.6.26-a.html",
+  "yol": "/oyun/T.O.6.26-a.html",
+  "zaman": "2026-07-31 14:14",
+  "session_id": "e822351c-275c-49ee-a716-b32a10c58739",
+  "kod": "T.O.6.26.",
+  "tur": "Otomatik",
+  "kazanim": "T.O.6.26. Metindeki probleme çözüm üretebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 355,
+  "kullanim": {
+   "baglam": 19978,
+   "cikti": 3013,
+   "maliyet": 0.002556
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-b.html",
+  "yol": "/oyun/BTY.6.5.3-b.html",
+  "zaman": "2026-07-31 16:17",
+  "session_id": "782d7f1b-b7f4-40aa-9e78-3408dc6a847d",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 300,
+  "kullanim": {
+   "baglam": 16937,
+   "cikti": 1565,
+   "maliyet": 0.001844
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-c.html",
+  "yol": "/oyun/BTY.6.5.3-c.html",
+  "zaman": "2026-07-31 16:27",
+  "session_id": "585dd37f-9f3c-4fe1-ba1e-6eb105a94c16",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 234,
+  "kullanim": {
+   "baglam": 17394,
+   "cikti": 1512,
+   "maliyet": 0.001942
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-d.html",
+  "yol": "/oyun/BTY.6.5.3-d.html",
+  "zaman": "2026-07-31 17:32",
+  "session_id": "f085d75c-27ae-4b6c-8815-769354963111",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 225,
+  "kullanim": {
+   "baglam": 26692,
+   "cikti": 14692,
+   "maliyet": 0.00657
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-a.html",
+  "yol": "/oyun/BTY.6.5.3-a.html",
+  "zaman": "2026-07-31 17:24",
+  "kullanim": {
+   "baglam": 670,
+   "cikti": 2215,
+   "maliyet": 0.000715
+  }
+ },
+ {
+  "ad": "MAT.5.1.3-b.html",
+  "yol": "/oyun/MAT.5.1.3-b.html",
+  "zaman": "2026-07-31 17:49",
+  "session_id": "6923f213-239e-48cd-81c0-31459dc20ff7",
+  "kod": "MAT.5.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil ede\u0002bilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 307,
+  "kullanim": {
+   "baglam": 18215,
+   "cikti": 1620,
+   "maliyet": 0.002023
+  }
+ },
+ {
+  "ad": "MAT.5.5.1-b.html",
+  "yol": "/oyun/MAT.5.5.1-b.html",
+  "zaman": "2026-07-31 19:16",
+  "session_id": "3c084baa-0d3d-4070-a2fe-d02e5940b685",
+  "kod": "MAT.5.5.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 198,
+  "kullanim": {
+   "baglam": 16056,
+   "cikti": 1456,
+   "maliyet": 0.001806
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-s.html",
+  "yol": "/oyun/FB.5.1.1.1-s.html",
+  "zaman": "2026-07-31 21:48",
+  "session_id": "ecdff1b4-29a2-44ea-b6d8-5082826b6e05",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 356,
+  "kullanim": {
+   "baglam": 17085,
+   "cikti": 1451,
+   "maliyet": 0.001878
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-t.html",
+  "yol": "/oyun/FB.5.1.1.1-t.html",
+  "zaman": "2026-07-31 22:25",
+  "session_id": "7ab9bb29-4341-4b1f-ac0c-2fe7377219f4",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 577,
+  "kullanim": {
+   "baglam": 19316,
+   "cikti": 1592,
+   "maliyet": 0.002118
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-u.html",
+  "yol": "/oyun/FB.5.1.1.1-u.html",
+  "zaman": "2026-07-31 22:37",
+  "session_id": "f32178da-7ee2-4d81-b1ae-4603345d2ed3",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 466,
+  "kullanim": {
+   "baglam": 16126,
+   "cikti": 1380,
+   "maliyet": 0.001811
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-v.html",
+  "yol": "/oyun/FB.5.1.1.1-v.html",
+  "zaman": "2026-07-31 22:48",
+  "session_id": "b276df27-6c14-4292-988e-837ab2a616d2",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 405,
+  "kullanim": {
+   "baglam": 16569,
+   "cikti": 1276,
+   "maliyet": 0.0018
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-x.html",
+  "yol": "/oyun/FB.5.1.1.1-x.html",
+  "zaman": "2026-08-01 15:48",
+  "session_id": "1eda413d-357b-4045-99d3-1031a39a1baa",
+  "kod": "FB.5.1.1.1., FB.5.1.2.2., FB.5.1.2.1., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 339,
+  "kullanim": {
+   "baglam": 19378,
+   "cikti": 1561,
+   "maliyet": 0.00201
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-z.html",
+  "yol": "/oyun/FB.5.1.1.1-z.html",
+  "zaman": "2026-08-01 16:22",
+  "session_id": "a3decbc8-dd89-4784-97f8-f9c9ae0bb6ba",
+  "kod": "FB.5.1.1.1., FB.5.1.2.2., FB.5.1.2.1., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 644,
+  "kullanim": {
+   "baglam": 18356,
+   "cikti": 1379,
+   "maliyet": 0.00196
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-9d77.html",
+  "yol": "/oyun/FB.5.1.1.1-9d77.html",
+  "zaman": "2026-08-01 16:51",
+  "session_id": "4ae30b9e-7bfa-4194-b5ef-c157e9e7d46a",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 377,
+  "kullanim": {
+   "baglam": 17224,
+   "cikti": 1668,
+   "maliyet": 0.002008
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-ee14.html",
+  "yol": "/oyun/FB.5.1.1.1-ee14.html",
+  "zaman": "2026-08-01 17:00",
+  "session_id": "746a3484-b7eb-41ac-b9f1-53989b5156e0",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 289,
+  "kullanim": {
+   "baglam": 16618,
+   "cikti": 1222,
+   "maliyet": 0.001785
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-92bf.html",
+  "yol": "/oyun/FB.5.1.1.1-92bf.html",
+  "zaman": "2026-08-01 17:31",
+  "session_id": "a4665e82-8313-491c-8f67-a46f9112fcd1",
+  "kod": "FB.5.1.1.1., FB.5.1.2.2., FB.5.1.2.1., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 414,
+  "kullanim": {
+   "baglam": 18037,
+   "cikti": 1439,
+   "maliyet": 0.001997
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-48d5.html",
+  "yol": "/oyun/FB.5.1.1.1-48d5.html",
+  "zaman": "2026-08-01 18:09",
+  "session_id": "d968bc71-6b13-4560-b5e5-da90347d9da2",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 342,
+  "kullanim": {
+   "baglam": 17473,
+   "cikti": 1508,
+   "maliyet": 0.001932
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-98e8.html",
+  "yol": "/oyun/FB.5.1.1.1-98e8.html",
+  "zaman": "2026-08-01 18:16",
+  "session_id": "d418e7e4-22c0-4355-bff7-5623f70a9862",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.3.1., FB.5.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 253,
+  "kullanim": {
+   "baglam": 16603,
+   "cikti": 1555,
+   "maliyet": 0.001903
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-e.html",
+  "yol": "/oyun/BTY.6.5.3-e.html",
+  "zaman": "2026-08-01 18:29",
+  "session_id": "432a18ca-3ae2-41b0-979d-e47845e4ca53",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 241,
+  "kullanim": {
+   "baglam": 15782,
+   "cikti": 1351,
+   "maliyet": 0.00176
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-f.html",
+  "yol": "/oyun/BTY.6.5.3-f.html",
+  "zaman": "2026-08-01 18:40",
+  "session_id": "64cb518b-3c9d-477c-8296-ae86e3edd335",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 211,
+  "kullanim": {
+   "baglam": 16551,
+   "cikti": 1466,
+   "maliyet": 0.00188
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-g.html",
+  "yol": "/oyun/BTY.6.5.3-g.html",
+  "zaman": "2026-08-01 18:57",
+  "session_id": "da566c1d-4bcc-41d2-ae81-cc1e5ea0477f",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 218,
+  "kullanim": {
+   "baglam": 17508,
+   "cikti": 1667,
+   "maliyet": 0.002027
+  }
+ },
+ {
+  "ad": "BTY.6.5.3-h.html",
+  "yol": "/oyun/BTY.6.5.3-h.html",
+  "zaman": "2026-08-01 19:08",
+  "session_id": "76adde1b-a96f-4878-930a-32a8d5a1545a",
+  "kod": "BTY.6.5.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.5.3. Yapay zekâ araç ve teknolojileri ile model geliştirebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 271,
+  "kullanim": {
+   "baglam": 17714,
+   "cikti": 1707,
+   "maliyet": 0.00206
+  }
+ },
+ {
+  "ad": "MAT.5.2.1-a.html",
+  "yol": "/oyun/MAT.5.2.1-a.html",
+  "zaman": "2026-08-02 00:32",
+  "session_id": "df9dca27-0d19-4b3f-ae97-e4b04e9d0b75",
+  "kod": "MAT.5.2.1., MAT.5.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 247,
+  "kullanim": {
+   "baglam": 16219,
+   "cikti": 1384,
+   "maliyet": 0.001848
+  }
+ },
+ {
+  "ad": "MAT.5.4.1-a.html",
+  "yol": "/oyun/MAT.5.4.1-a.html",
+  "zaman": "2026-08-02 16:29",
+  "session_id": "e70af9ad-e718-4a30-addc-0ebeadd756e1",
+  "kod": "MAT.5.4.1., MAT.5.4.2., MAT.5.4.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 283,
+  "kullanim": {
+   "baglam": 17105,
+   "cikti": 1582,
+   "maliyet": 0.002024
+  }
+ },
+ {
+  "ad": "MAT.5.4.1-b.html",
+  "yol": "/oyun/MAT.5.4.1-b.html",
+  "zaman": "2026-08-02 16:41",
+  "session_id": "a11ce3be-3fc3-4d20-afd9-949c692c477e",
+  "kod": "MAT.5.4.1., MAT.5.4.2., MAT.5.4.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 257,
+  "kullanim": {
+   "baglam": 16509,
+   "cikti": 1615,
+   "maliyet": 0.001949
+  }
+ },
+ {
+  "ad": "MAT.5.4.1-c.html",
+  "yol": "/oyun/MAT.5.4.1-c.html",
+  "zaman": "2026-08-02 21:30",
+  "session_id": "0e54f69d-7402-4f2b-aff5-59cf13d0b793",
+  "kod": "MAT.5.4.1., MAT.5.4.2., MAT.5.4.3., MAT.5.4.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 234,
+  "kullanim": {
+   "baglam": 17249,
+   "cikti": 1393,
+   "maliyet": 0.00194
+  }
+ },
+ {
+  "ad": "MAT.5.2.1-b.html",
+  "yol": "/oyun/MAT.5.2.1-b.html",
+  "zaman": "2026-08-02 21:49",
+  "session_id": "561a3a8e-c370-4d07-8326-3d35076ab6df",
+  "kod": "MAT.5.2.1., MAT.5.2.2., MAT.5.2.3., MAT.5.2.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 293,
+  "kullanim": {
+   "baglam": 16668,
+   "cikti": 910,
+   "maliyet": 0.001745
+  }
+ },
+ {
+  "ad": "MAT.5.3.1-a.html",
+  "yol": "/oyun/MAT.5.3.1-a.html",
+  "zaman": "2026-08-02 22:14",
+  "session_id": "9c26b90e-f8ad-492f-bbb5-eae9add94da5",
+  "kod": "MAT.5.3.1., MAT.5.3.2., MAT.5.3.3., MAT.5.3.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.3.1. Temel geometrik çizimler için matematiksel araç ve teknolojiden yararlanabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 618,
+  "kullanim": {
+   "baglam": 16565,
+   "cikti": 1495,
+   "maliyet": 0.001932
+  }
+ },
+ {
+  "ad": "MAT.5.1.3-c.html",
+  "yol": "/oyun/MAT.5.1.3-c.html",
+  "zaman": "2026-08-02 22:29",
+  "session_id": "4dd6933e-397d-4a61-bba8-594db2d15bbc",
+  "kod": "MAT.5.1.3., MAT.5.1.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil ede\u0002bilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 385,
+  "kullanim": {
+   "baglam": 16145,
+   "cikti": 1306,
+   "maliyet": 0.001827
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-4f3a.html",
+  "yol": "/oyun/FB.5.1.1.1-4f3a.html",
+  "zaman": "2026-08-02 22:58",
+  "session_id": "e430da65-f826-4a60-8d63-36bab2a4be80",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 549,
+  "kullanim": {
+   "baglam": 16831,
+   "cikti": 1781,
+   "maliyet": 0.002019
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-m.html",
+  "yol": "/oyun/FB.5.1.2.1-m.html",
+  "zaman": "2026-08-03 00:08",
+  "session_id": "524638f4-cc4d-4f9e-8458-133cc73d4149",
+  "kod": "FB.5.1.2.1., FB.5.1.2.2., FB.5.1.1.1., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 343,
+  "kullanim": {
+   "baglam": 15648,
+   "cikti": 1640,
+   "maliyet": 0.001902
+  }
+ },
+ {
+  "ad": "MAT.5.5.1-c.html",
+  "yol": "/oyun/MAT.5.5.1-c.html",
+  "zaman": "2026-08-03 13:46",
+  "session_id": "1fb859d7-8c73-42a6-9330-81da55cc661c",
+  "kod": "MAT.5.5.1., MAT.5.5.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 276,
+  "kullanim": {
+   "baglam": 17071,
+   "cikti": 1577,
+   "maliyet": 0.001962
+  }
+ },
+ {
+  "ad": "MAT.5.6.1-a.html",
+  "yol": "/oyun/MAT.5.6.1-a.html",
+  "zaman": "2026-08-03 14:19",
+  "session_id": "7bcac9e1-7da6-4ff2-b102-ed3f15a8573a",
+  "kod": "MAT.5.6.1., MAT.5.6.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında (0 ve 1 dâhil) olduğunu (olasılık spektrumu) yorumlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 280,
+  "kullanim": {
+   "baglam": 15439,
+   "cikti": 1370,
+   "maliyet": 0.001776
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-d9fb.html",
+  "yol": "/oyun/FB.5.1.1.1-d9fb.html",
+  "zaman": "2026-08-03 15:45",
+  "session_id": "c5f8d3e2-9f1e-4bf6-951c-821c7767968e",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 275,
+  "kullanim": {
+   "baglam": 14679,
+   "cikti": 808,
+   "maliyet": 0.001558
+  }
+ },
+ {
+  "ad": "MAT.5.2.1-c.html",
+  "yol": "/oyun/MAT.5.2.1-c.html",
+  "zaman": "2026-08-03 16:05",
+  "session_id": "418dd14e-8558-4c01-be92-6cac9d17c49a",
+  "kod": "MAT.5.2.1., MAT.5.2.2., MAT.5.2.3., MAT.5.2.4.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 228,
+  "kullanim": {
+   "baglam": 13200,
+   "cikti": 840,
+   "maliyet": 0.001448
+  }
+ },
+ {
+  "ad": "FB.5.2.1.1-b.html",
+  "yol": "/oyun/FB.5.2.1.1-b.html",
+  "zaman": "2026-08-03 20:15",
+  "session_id": "08774158-cf90-4e2d-a650-deba47ddb463",
+  "kod": "FB.5.2.1.1., FB.5.2.1.2., FB.5.2.2.1., FB.5.2.3.1., FB.5.2.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.2.1.1. Kuvveti büyüklüğü ile tanımlayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 276,
+  "kullanim": {
+   "baglam": 16616,
+   "cikti": 1193,
+   "maliyet": 0.001798
+  }
+ },
+ {
+  "ad": "FB.5.3.1.1-a.html",
+  "yol": "/oyun/FB.5.3.1.1-a.html",
+  "zaman": "2026-08-03 20:41",
+  "session_id": "06026272-f57f-4e29-9c93-3a180ca959c3",
+  "kod": "FB.5.3.1.1., FB.5.3.1.2., FB.5.3.2.1., FB.5.3.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.3.1.1. Bitki ve hayvan hücrelerini temel kısımları ve özellikleri açısından karşılaştırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 334,
+  "kullanim": {
+   "baglam": 16019,
+   "cikti": 840,
+   "maliyet": 0.0017
+  }
+ },
+ {
+  "ad": "FİZ.9.3.1-a.html",
+  "yol": "/oyun/FİZ.9.3.1-a.html",
+  "zaman": "2026-08-03 21:24",
+  "session_id": "1260a968-f610-4fe9-ab06-bf95aa294437",
+  "kod": "FİZ.9.3.1., FİZ.9.3.2., FİZ.9.3.3., FİZ.9.3.4., FİZ.9.3.5., FİZ.9.3.6., FİZ.9.3.7.",
+  "tur": "Otomatik",
+  "kazanim": "FİZ.9.3.1. Basınca yönelik çıkarımlarda bulunabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 341,
+  "kullanim": {
+   "baglam": 19776,
+   "cikti": 788,
+   "maliyet": 0.001983
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-073b.html",
+  "yol": "/oyun/FB.5.1.1.1-073b.html",
+  "zaman": "2026-08-05 18:09",
+  "session_id": "2eed4a4e-02b3-4c36-96d9-803998464048",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 470,
+  "kullanim": {
+   "baglam": 25570,
+   "cikti": 1907,
+   "maliyet": 0.002724
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-0002.html",
+  "yol": "/oyun/FB.5.1.1.1-0002.html",
+  "zaman": "2026-08-03 23:16",
+  "session_id": "052cb144-e555-467d-aa6c-d95b6cda2547",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 447,
+  "kullanim": {
+   "baglam": 28615,
+   "cikti": 3233,
+   "maliyet": 0.003345
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-d.html",
+  "yol": "/oyun/FB.6.1.1.1-d.html",
+  "zaman": "2026-08-03 23:49",
+  "session_id": "eb942a09-0635-4f26-b697-732c586d5ae4",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 517,
+  "kullanim": {
+   "baglam": 26574,
+   "cikti": 3215,
+   "maliyet": 0.003192
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-f.html",
+  "yol": "/oyun/FB.6.1.1.1-f.html",
+  "zaman": "2026-08-04 00:11",
+  "session_id": "f84710a4-7c55-49ad-993a-2bc897ddccfa",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 578,
+  "kullanim": {
+   "baglam": 26968,
+   "cikti": 3932,
+   "maliyet": 0.003397
+  }
+ },
+ {
+  "ad": "T.Y.6.21-c.html",
+  "yol": "/oyun/T.Y.6.21-c.html",
+  "zaman": "2026-08-04 15:01",
+  "kullanim": {
+   "baglam": 1702,
+   "cikti": 566,
+   "maliyet": 0.000297
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-b8ec.html",
+  "yol": "/oyun/FB.5.1.1.1-b8ec.html",
+  "zaman": "2026-08-04 21:07",
+  "session_id": "dd0add1b-b039-4b51-bffa-7d8a2414507a",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 468,
+  "kullanim": {
+   "baglam": 77702,
+   "cikti": 701,
+   "maliyet": 0.006291
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-h.html",
+  "yol": "/oyun/FB.6.1.1.1-h.html",
+  "zaman": "2026-08-05 16:08",
+  "session_id": "513fe2d7-65b9-4ac8-8608-640db9a7c90a",
+  "kod": "FB.6.1.1.1., FB.6.1.1.2., FB.6.1.2.2., FB.6.1.2.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 295,
+  "kullanim": {
+   "baglam": 60570,
+   "cikti": 2989,
+   "maliyet": 0.005645
+  }
+ },
+ {
+  "ad": "MAT.6.3.2-a.html",
+  "yol": "/oyun/MAT.6.3.2-a.html",
+  "zaman": "2026-08-04 23:38",
+  "session_id": "55b421ed-73f9-4ade-9f04-71af8debeed8",
+  "kod": "MAT.6.3.2.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.6.3.2. Matematiksel araç ve teknolojiden yararlanarak iki paralel doğrunun iki ke\u0002senle oluşturduğu şekillerin özelliklerine dair çıkarım yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 214,
+  "kullanim": {
+   "baglam": 52455,
+   "cikti": 1559,
+   "maliyet": 0.004619
+  }
+ },
+ {
+  "ad": "MAT.5.1.1-l.html",
+  "yol": "/oyun/MAT.5.1.1-l.html",
+  "zaman": "2026-08-05 00:15",
+  "session_id": "76ccb4d4-682c-44cb-9749-3c9be4522460",
+  "kod": "MAT.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 319,
+  "kullanim": {
+   "baglam": 76556,
+   "cikti": 1757,
+   "maliyet": 0.006504
+  }
+ },
+ {
+  "ad": "KİM.11.2.1-b.html",
+  "yol": "/oyun/KİM.11.2.1-b.html",
+  "zaman": "2026-08-05 10:04",
+  "session_id": "ef5e1de2-ec3a-4df3-a0f1-2c55b45f7625",
+  "kod": "KİM.11.2.1., KİM.11.2.10., KİM.11.2.11.",
+  "tur": "Otomatik",
+  "kazanim": "KİM.11.2.1. Tepkimelerin tersinir olabileceğine ilişkin gözlem yapabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 345,
+  "kullanim": {
+   "baglam": 58435,
+   "cikti": 1618,
+   "maliyet": 0.005161
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-w.html",
+  "yol": "/oyun/FB.5.1.1.1-w.html",
+  "zaman": "2026-08-05 12:04",
+  "session_id": "d02686c9-dd23-4c55-9f9f-de1c7bb514d3",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 621,
+  "kullanim": {
+   "baglam": 52543,
+   "cikti": 1613,
+   "maliyet": 0.004425
+  }
+ },
+ {
+  "ad": "MAT.5.1.3-d.html",
+  "yol": "/oyun/MAT.5.1.3-d.html",
+  "zaman": "2026-08-06 21:56",
+  "session_id": "3791ede1-fec3-4cfc-bc5e-5204db1efd4b",
+  "kod": "MAT.5.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil ede\u0002bilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 382,
+  "kullanim": {
+   "baglam": 61305,
+   "cikti": 2868,
+   "maliyet": 0.005644
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-y.html",
+  "yol": "/oyun/FB.5.1.1.1-y.html",
+  "zaman": "2026-08-09 18:06",
+  "session_id": "a82c0418-c097-4e5b-81aa-5733dc13867b",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 363,
+  "kullanim": {
+   "baglam": 116443,
+   "cikti": 7436,
+   "maliyet": 0.011537
+  }
+ },
+ {
+  "ad": "FB.5.3.1.1-b.html",
+  "yol": "/oyun/FB.5.3.1.1-b.html",
+  "zaman": "2026-08-06 23:08",
+  "session_id": "ba398b63-74b1-4fa8-a8c3-9f4e098a7897",
+  "kod": "FB.5.3.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.3.1.1. Bitki ve hayvan hücrelerini temel kısımları ve özellikleri açısından karşılaştırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 320,
+  "kullanim": {
+   "baglam": 61212,
+   "cikti": 3389,
+   "maliyet": 0.005904
+  }
+ },
+ {
+  "ad": "BTY.5.1.5-a.html",
+  "yol": "/oyun/BTY.5.1.5-a.html",
+  "zaman": "2026-08-09 23:25",
+  "session_id": "c90ebf71-414a-47f8-959f-f5276104e8f8",
+  "kod": "BTY.5.1.5.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.1.5. Bilgisayar sistemlerini çözümleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 406,
+  "kullanim": {
+   "baglam": 75127,
+   "cikti": 6666,
+   "maliyet": 0.00791
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-d63c.html",
+  "yol": "/oyun/FB.5.1.1.1-d63c.html",
+  "zaman": "2026-08-07 15:04",
+  "session_id": "bcd37c44-6a4c-4b5a-9592-ff1bd98e1f4b",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 381,
+  "kullanim": {
+   "baglam": 52822,
+   "cikti": 1470,
+   "maliyet": 0.004689
+  }
+ },
+ {
+  "ad": "BTY.5.1.2-a.html",
+  "yol": "/oyun/BTY.5.1.2-a.html",
+  "zaman": "2026-08-08 16:23",
+  "session_id": "d7b7749c-6c78-40ac-b26d-33c37f68ee0c",
+  "kod": "BTY.5.1.2.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.1.2. Bilişim teknolojilerinin birey ve toplum üzerindeki etkilerini özetleyebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 420,
+  "kullanim": {
+   "baglam": 79297,
+   "cikti": 9523,
+   "maliyet": 0.03516
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-j.html",
+  "yol": "/oyun/FB.5.5.1.1-j.html",
+  "zaman": "2026-08-07 18:53",
+  "session_id": "749f6cb1-c695-4894-9a81-d314ff9bb49e",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 308,
+  "kullanim": {
+   "baglam": 63371,
+   "cikti": 878,
+   "maliyet": 0.005254
+  }
+ },
+ {
+  "ad": "FB.3.5.1-a.html",
+  "yol": "/oyun/FB.3.5.1-a.html",
+  "zaman": "2026-08-08 11:07",
+  "session_id": "e80640d7-c97a-4865-b4cc-1e00a8905a55",
+  "kod": "FB.3.5.1., FB.3.5.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.3.5.1. Varlıkların hareket durumlarını gözleme dayalı tahmin edebilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 426,
+  "kullanim": {
+   "baglam": 51799,
+   "cikti": 1288,
+   "maliyet": 0.009845
+  }
+ },
+ {
+  "ad": "BTY.5.1.3-a.html",
+  "yol": "/oyun/BTY.5.1.3-a.html",
+  "zaman": "2026-08-08 16:41",
+  "session_id": "b24309a1-cf12-44e0-a977-44f214221e99",
+  "kod": "BTY.5.1.3.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.1.3. Dijital vatandaşlık uygulamalarını sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 329,
+  "kullanim": {
+   "baglam": 59014,
+   "cikti": 3515,
+   "maliyet": 0.030413
+  }
+ },
+ {
+  "ad": "BTY.5.1.1-a.html",
+  "yol": "/oyun/BTY.5.1.1-a.html",
+  "zaman": "2026-08-09 20:33",
+  "session_id": "49eeb2f2-bd08-4264-a5dc-6a4711e81b8c",
+  "kod": "BTY.5.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.5.1.1. Günlük yaşamda kullanılan bilişim teknolojilerini sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 356,
+  "kullanim": {
+   "baglam": 74216,
+   "cikti": 6631,
+   "maliyet": 0.042819
+  }
+ },
+ {
+  "ad": "BTY.6.1.1-a.html",
+  "yol": "/oyun/BTY.6.1.1-a.html",
+  "zaman": "2026-08-10 00:13",
+  "session_id": "0c625612-406d-4d70-9c5d-591d3f6fbfa7",
+  "kod": "BTY.6.1.1.",
+  "tur": "Otomatik",
+  "kazanim": "BTY.6.1.1. Yenilikçi bilişim teknolojilerini sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 700,
+  "kullanim": {
+   "baglam": 85019,
+   "cikti": 7239,
+   "maliyet": 0.037644
+  }
+ },
+ {
+  "ad": "FB.6.1.1.2-a.html",
+  "yol": "/oyun/FB.6.1.1.2-a.html",
+  "zaman": "2026-08-08 17:12",
+  "session_id": "ddda6791-206a-486a-b6cf-539de757a111",
+  "kod": "FB.6.1.1.2., FB.6.1.1.1., FB.6.1.2.1., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.2. Güneş sistemi ile ilgili bilimsel model oluşturabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 435,
+  "kullanim": {
+   "baglam": 64363,
+   "cikti": 1515,
+   "maliyet": 0.010734
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-490c.html",
+  "yol": "/oyun/FB.5.1.1.1-490c.html",
+  "zaman": "2026-08-08 18:07",
+  "session_id": "0c9dbd43-0471-4bea-9f07-2db85716b298",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 738,
+  "kullanim": {
+   "baglam": 53274,
+   "cikti": 1335,
+   "maliyet": 0.009096
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-5a03.html",
+  "yol": "/oyun/FB.5.1.1.1-5a03.html",
+  "zaman": "2026-08-08 18:48",
+  "session_id": "2c737c0a-6fe8-4b11-8c3a-2776428771ec",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 543,
+  "kullanim": {
+   "baglam": 50842,
+   "cikti": 1364,
+   "maliyet": 0.009222
+  }
+ },
+ {
+  "ad": "FB.5.5.1.1-k.html",
+  "yol": "/oyun/FB.5.5.1.1-k.html",
+  "zaman": "2026-08-08 20:07",
+  "session_id": "5e523972-e9a3-4a56-ba14-c1aa29deb5c6",
+  "kod": "FB.5.5.1.1., FB.5.5.2.1., FB.5.5.2.2., FB.5.5.3.1., FB.5.5.4.1., FB.5.5.4.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.1.1. Maddeleri tanecikli, boşluklu ve hareketli yapısına göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 260,
+  "kullanim": {
+   "baglam": 63010,
+   "cikti": 1388,
+   "maliyet": 0.010971
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-fa22.html",
+  "yol": "/oyun/FB.5.1.1.1-fa22.html",
+  "zaman": "2026-08-08 22:47",
+  "session_id": "0e2784dc-124a-4310-9f04-1d8904063882",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 404,
+  "kullanim": {
+   "baglam": 73609,
+   "cikti": 1501,
+   "maliyet": 0.011214
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-be28.html",
+  "yol": "/oyun/FB.5.1.1.1-be28.html",
+  "zaman": "2026-08-09 00:19",
+  "session_id": "bd508135-30e3-4ef4-a417-ad0386fe1f1f",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "effort": "medium",
+  "sure": 457,
+  "kullanim": {
+   "baglam": 56712,
+   "cikti": 3253,
+   "maliyet": 0.00547
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-b6b3.html",
+  "yol": "/oyun/FB.5.1.1.1-b6b3.html",
+  "zaman": "2026-08-09 14:36",
+  "session_id": "cda32089-17fb-4c51-942d-939904d58b7e",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 555,
+  "kullanim": {
+   "baglam": 53384,
+   "cikti": 11491,
+   "maliyet": 0.007709
+  }
+ },
+ {
+  "ad": "BTY.5.1.4-m.html",
+  "yol": "/oyun/BTY.5.1.4-m.html",
+  "zaman": "2026-08-09 14:38",
+  "kullanim": {
+   "baglam": 3395,
+   "cikti": 963,
+   "maliyet": 0.000544
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-edbe.html",
+  "yol": "/oyun/FB.5.1.1.1-edbe.html",
+  "zaman": "2026-08-09 18:28",
+  "session_id": "0e17c31c-a7ea-4c51-9501-5ec619e5402c",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 509,
+  "kullanim": {
+   "baglam": 56058,
+   "cikti": 3356,
+   "maliyet": 0.005451
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-ffcf.html",
+  "yol": "/oyun/FB.5.1.1.1-ffcf.html",
+  "zaman": "2026-08-09 20:33",
+  "session_id": "2a28e518-a364-4c6c-a2fa-efba9377f2ba",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 465,
+  "kullanim": {
+   "baglam": 58034,
+   "cikti": 1883,
+   "maliyet": 0.005171
+  }
+ },
+ {
+  "ad": "FB.5.1.1.1-971b.html",
+  "yol": "/oyun/FB.5.1.1.1-971b.html",
+  "zaman": "2026-08-09 22:28",
+  "session_id": "d3d1df06-aa63-47a0-ba32-fb0c74d62b5e",
+  "kod": "FB.5.1.1.1., FB.5.1.2.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.1.1. Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 473,
+  "kullanim": {
+   "baglam": 77644,
+   "cikti": 3970,
+   "maliyet": 0.007307
+  }
+ },
+ {
+  "ad": "FB.5.5.2.1-a.html",
+  "yol": "/oyun/FB.5.5.2.1-a.html",
+  "zaman": "2026-08-09 22:39",
+  "session_id": "6861f89d-2495-45da-9581-90d6b73ee47d",
+  "kod": "FB.5.5.2.1., FB.5.5.1.1., FB.5.5.2.2., FB.5.5.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.5.2.1. Isı ve sıcaklık kavramlarını karşılaştırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 307,
+  "kullanim": {
+   "baglam": 65817,
+   "cikti": 3008,
+   "maliyet": 0.006125
+  }
+ },
+ {
+  "ad": "FB.5.1.2.1-o.html",
+  "yol": "/oyun/FB.5.1.2.1-o.html",
+  "zaman": "2026-08-09 23:04",
+  "session_id": "a32e0273-7d45-43b8-8215-632ac5e4de8e",
+  "kod": "FB.5.1.2.1., FB.5.1.1.1., FB.5.1.2.2., FB.5.1.3.1.",
+  "tur": "Otomatik",
+  "kazanim": "FB.5.1.2.1. Ay’ın özellikleri, dönme ve dolanma hareketleri ile ilgili bilimsel çıkarım",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 316,
+  "kullanim": {
+   "baglam": 63039,
+   "cikti": 3582,
+   "maliyet": 0.006069
+  }
+ },
+ {
+  "ad": "BTY.5.1.4-d.html",
+  "yol": "/oyun/BTY.5.1.4-d.html",
+  "zaman": "2026-08-09 23:03",
+  "kullanim": {
+   "baglam": 650,
+   "cikti": 178,
+   "maliyet": 0.000102
+  }
+ },
+ {
+  "ad": "FB.6.1.1.1-b.html",
+  "yol": "/oyun/FB.6.1.1.1-b.html",
+  "zaman": "2026-08-10 00:11",
+  "session_id": "c0fc953a-a45c-494c-8e8f-4c0faebcc332",
+  "kod": "FB.6.1.1.1., FB.6.1.2.1., FB.6.1.1.2., FB.6.1.2.2.",
+  "tur": "Otomatik",
+  "kazanim": "FB.6.1.1.1. Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme",
+  "model": "gemini-3.6-flash-high",
+  "effort": "medium",
+  "sure": 461,
+  "kullanim": {
+   "baglam": 57432,
+   "cikti": 2266,
+   "maliyet": 0.005193
+  }
+ }
+]

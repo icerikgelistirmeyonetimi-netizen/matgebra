@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+*.log
+db/matgebra.db
+db/matgebra.db-shm
+db/matgebra.db-wal
+.env
+.DS_Store
+*.tsbuildinfo
+
+# MEB kaynak verisinin kullanilmayan bolumu.
+# icerik.db ve unite/*.json ice aktarimda okunur; aciklama/*.json (9.606 dosya,
+# 31 MB) ayni kazanimlarin JSON kopyasidir ve hicbir yerde kullanilmaz.
+veri/aciklama/

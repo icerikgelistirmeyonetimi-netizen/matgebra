@@ -1,0 +1,392 @@
+[
+ {
+  "no": 1,
+  "ders": "Arapça",
+  "dosya": "dersler/1.json"
+ },
+ {
+  "no": 2,
+  "ders": "Beden Eğitimi ve Oyun Dersi",
+  "dosya": "dersler/2.json"
+ },
+ {
+  "no": 3,
+  "ders": "Beden Eğitimi ve Spor Dersi",
+  "dosya": "dersler/3.json"
+ },
+ {
+  "no": 4,
+  "ders": "Beden Eğitimi ve Spor Dersi 9-12",
+  "dosya": "dersler/4.json"
+ },
+ {
+  "no": 5,
+  "ders": "Bilim ve Sanat Merkezleri",
+  "dosya": "dersler/5.json"
+ },
+ {
+  "no": 6,
+  "ders": "Bilişim Teknolojileri ve Yazılım Dersi",
+  "dosya": "dersler/6.json"
+ },
+ {
+  "no": 7,
+  "ders": "Biyoloji Dersi",
+  "dosya": "dersler/7.json"
+ },
+ {
+  "no": 8,
+  "ders": "Coğrafya Dersi",
+  "dosya": "dersler/8.json"
+ },
+ {
+  "no": 9,
+  "ders": "Din Kültürü ve Ahlak Bilgisi 4 ve 5-8",
+  "dosya": "dersler/9.json"
+ },
+ {
+  "no": 10,
+  "ders": "Din Kültürü ve Ahlak Bilgisi 9-10-11-12",
+  "dosya": "dersler/10.json"
+ },
+ {
+  "no": 11,
+  "ders": "Felsefe Dersi",
+  "dosya": "dersler/11.json"
+ },
+ {
+  "no": 12,
+  "ders": "Fen Bilimleri Dersi 3-4",
+  "dosya": "dersler/12.json"
+ },
+ {
+  "no": 13,
+  "ders": "Fen Bilimleri Dersi 5-8",
+  "dosya": "dersler/13.json"
+ },
+ {
+  "no": 14,
+  "ders": "Fizik Dersi",
+  "dosya": "dersler/14.json"
+ },
+ {
+  "no": 15,
+  "ders": "Görsel Sanatlar Dersi",
+  "dosya": "dersler/15.json"
+ },
+ {
+  "no": 16,
+  "ders": "Görsel Sanatlar Dersi 1-4",
+  "dosya": "dersler/16.json"
+ },
+ {
+  "no": 17,
+  "ders": "Görsel Sanatlar Dersi 5-8",
+  "dosya": "dersler/17.json"
+ },
+ {
+  "no": 18,
+  "ders": "Görsel Sanatlar Dersi 9-12",
+  "dosya": "dersler/18.json"
+ },
+ {
+  "no": 19,
+  "ders": "Hayat Bilgisi Dersi",
+  "dosya": "dersler/19.json"
+ },
+ {
+  "no": 20,
+  "ders": "Kimya Dersi",
+  "dosya": "dersler/20.json"
+ },
+ {
+  "no": 21,
+  "ders": "Kur'an-ı Kerim 5-6-7-8",
+  "dosya": "dersler/21.json"
+ },
+ {
+  "no": 22,
+  "ders": "Kur'an-ı Kerim 9-10-11-12",
+  "dosya": "dersler/22.json"
+ },
+ {
+  "no": 23,
+  "ders": "Matematik Dersi",
+  "dosya": "dersler/23.json"
+ },
+ {
+  "no": 24,
+  "ders": "Müzik Dersi",
+  "dosya": "dersler/24.json"
+ },
+ {
+  "no": 25,
+  "ders": "Müzik Dersi 1-4",
+  "dosya": "dersler/25.json"
+ },
+ {
+  "no": 26,
+  "ders": "Müzik Dersi 5-8",
+  "dosya": "dersler/26.json"
+ },
+ {
+  "no": 27,
+  "ders": "Müzik Dersi 9-12",
+  "dosya": "dersler/27.json"
+ },
+ {
+  "no": 28,
+  "ders": "Müzik Okulları - Beden Eğitimi, Oyun ve Müzik Dersi",
+  "dosya": "dersler/28.json"
+ },
+ {
+  "no": 29,
+  "ders": "Müzik Okulları - Bireysel Ses Eğitimi Dersi",
+  "dosya": "dersler/29.json"
+ },
+ {
+  "no": 30,
+  "ders": "Müzik Okulları - Çalgı Toplulukları Dersi",
+  "dosya": "dersler/30.json"
+ },
+ {
+  "no": 31,
+  "ders": "Müzik Okulları - Koro ve Repertuvar Dersi",
+  "dosya": "dersler/31.json"
+ },
+ {
+  "no": 32,
+  "ders": "Müzik Okulları - Müzik Tarihi Dersi",
+  "dosya": "dersler/32.json"
+ },
+ {
+  "no": 33,
+  "ders": "Müzik Okulları - Müzik Kültürü Dersi",
+  "dosya": "dersler/33.json"
+ },
+ {
+  "no": 34,
+  "ders": "Müzik Okulları - Müziksel İşitme, Okuma ve Yazma Dersi",
+  "dosya": "dersler/34.json"
+ },
+ {
+  "no": 35,
+  "ders": "Müzik Okulları - Türk Müziği Teori ve Uygulaması Dersi",
+  "dosya": "dersler/35.json"
+ },
+ {
+  "no": 36,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Bağlama Modülü",
+  "dosya": "dersler/36.json"
+ },
+ {
+  "no": 37,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Flüt Modülü",
+  "dosya": "dersler/37.json"
+ },
+ {
+  "no": 38,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Gitar Modülü",
+  "dosya": "dersler/38.json"
+ },
+ {
+  "no": 39,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kanun Modülü",
+  "dosya": "dersler/39.json"
+ },
+ {
+  "no": 40,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Kaval Modülü",
+  "dosya": "dersler/40.json"
+ },
+ {
+  "no": 41,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Keman Modülü",
+  "dosya": "dersler/41.json"
+ },
+ {
+  "no": 42,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ney Modülü",
+  "dosya": "dersler/42.json"
+ },
+ {
+  "no": 43,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Piyano Modülü",
+  "dosya": "dersler/43.json"
+ },
+ {
+  "no": 44,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Ud Modülü",
+  "dosya": "dersler/44.json"
+ },
+ {
+  "no": 45,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyola Modülü",
+  "dosya": "dersler/45.json"
+ },
+ {
+  "no": 46,
+  "ders": "Müzik Okulları-Bireysel Çalgı Eğitimi Dersi-Viyolonsel Modülü",
+  "dosya": "dersler/46.json"
+ },
+ {
+  "no": 47,
+  "ders": "Okul Öncesi Özel Eğitim Öğretim Programları",
+  "dosya": "dersler/47.json"
+ },
+ {
+  "no": 48,
+  "ders": "Ortaokul Matematik Dersi",
+  "dosya": "dersler/48.json"
+ },
+ {
+  "no": 49,
+  "ders": "Ortaokul Türkçe Dersi",
+  "dosya": "dersler/49.json"
+ },
+ {
+  "no": 50,
+  "ders": "Peygamberimizin Hayatı 5-8",
+  "dosya": "dersler/50.json"
+ },
+ {
+  "no": 51,
+  "ders": "Peygamberimizin Hayatı 9-12",
+  "dosya": "dersler/51.json"
+ },
+ {
+  "no": 52,
+  "ders": "Sosyal Bilgiler Dersi",
+  "dosya": "dersler/52.json"
+ },
+ {
+  "no": 53,
+  "ders": "Spor Okulları - Beden Eğitimi ve Sporun Temelleri Dersi",
+  "dosya": "dersler/53.json"
+ },
+ {
+  "no": 54,
+  "ders": "Spor Okulları - Kapsamlı Spor Eğitimi Dersi",
+  "dosya": "dersler/54.json"
+ },
+ {
+  "no": 55,
+  "ders": "Spor Okulları - Oyun ve Taktiksel Farkındalık Dersi",
+  "dosya": "dersler/55.json"
+ },
+ {
+  "no": 56,
+  "ders": "Spor Okulları - Ritim Eğitimi ve Halk Oyunları Dersi",
+  "dosya": "dersler/56.json"
+ },
+ {
+  "no": 57,
+  "ders": "Spor Okulları - Çocuklarda Atletik Performans Uygulamaları Dersi",
+  "dosya": "dersler/57.json"
+ },
+ {
+  "no": 58,
+  "ders": "T.C. İnkılap Tarihi ve Atatürkçülük Dersi 12",
+  "dosya": "dersler/58.json"
+ },
+ {
+  "no": 59,
+  "ders": "T.C. İnkılap Tarihi ve Atatürkçülük Dersi 8",
+  "dosya": "dersler/59.json"
+ },
+ {
+  "no": 60,
+  "ders": "Tarih Dersi",
+  "dosya": "dersler/60.json"
+ },
+ {
+  "no": 61,
+  "ders": "Teknoloji ve Tasarım Dersi",
+  "dosya": "dersler/61.json"
+ },
+ {
+  "no": 62,
+  "ders": "Temel Dinî Bilgiler",
+  "dosya": "dersler/62.json"
+ },
+ {
+  "no": 63,
+  "ders": "Toplumsal Uyum Becerileri Dersi Öğretim Programı",
+  "dosya": "dersler/63.json"
+ },
+ {
+  "no": 64,
+  "ders": "Trafik Güvenliği Dersi",
+  "dosya": "dersler/64.json"
+ },
+ {
+  "no": 65,
+  "ders": "Türk Dili Ve Edebiyatı Dersi",
+  "dosya": "dersler/65.json"
+ },
+ {
+  "no": 66,
+  "ders": "Türk İşaret Dili Dersi Öğretim Programı",
+  "dosya": "dersler/66.json"
+ },
+ {
+  "no": 67,
+  "ders": "Türk İşaret Dili Dersi Öğretim Programıac",
+  "dosya": "dersler/67.json"
+ },
+ {
+  "no": 68,
+  "ders": "Çoklu Yabancı Dil Eğitim Modeli Almanca",
+  "dosya": "dersler/68.json"
+ },
+ {
+  "no": 69,
+  "ders": "Çoklu Yabancı Dil Eğitim Modeli İngilizce",
+  "dosya": "dersler/69.json"
+ },
+ {
+  "no": 70,
+  "ders": "Özel Eğitim Uygulama Okulu Öğretim Programları",
+  "dosya": "dersler/70.json"
+ },
+ {
+  "no": 71,
+  "ders": "İHL MESLEK DERSLERİ",
+  "dosya": "dersler/71.json"
+ },
+ {
+  "no": 72,
+  "ders": "İlkokul Matematik Dersi",
+  "dosya": "dersler/72.json"
+ },
+ {
+  "no": 73,
+  "ders": "İlkokul Türkçe Dersi",
+  "dosya": "dersler/73.json"
+ },
+ {
+  "no": 74,
+  "ders": "İngilizce Dersi (9-12)",
+  "dosya": "dersler/74.json"
+ },
+ {
+  "no": 75,
+  "ders": "İngilizce Dersi (Hazırlık-12)",
+  "dosya": "dersler/75.json"
+ },
+ {
+  "no": 76,
+  "ders": "İngilizce Dersi 2-4",
+  "dosya": "dersler/76.json"
+ },
+ {
+  "no": 77,
+  "ders": "İngilizce Dersi 5-8",
+  "dosya": "dersler/77.json"
+ },
+ {
+  "no": 78,
+  "ders": "İnsan Hakları,Vatandaşlık Ve Demokrasi Dersi",
+  "dosya": "dersler/78.json"
+ }
+]
