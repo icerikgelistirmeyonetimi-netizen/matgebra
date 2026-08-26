@@ -56,9 +56,26 @@ export const nokta = (ad, x, y, sira, o = {}) => ({
   ],
 })
 
-/** (apsisKaynak.x, ordinatKaynak.y) — dikdortgen koseleri. */
+/**
+ * (apsisKaynak.x, ordinatKaynak.y) — dikdortgen koseleri.
+ *
+ * o.apsisEksen / o.ordinatEksen ile kaynaktan hangi eksenin okunacagi
+ * secilir; o.dx / o.dy sabit kaydirma ekler. Bir olcuyu bir yerde yatay,
+ * baska yerde dikey kullanmak gerektiginde takas boyle yapilir.
+ */
 export const bilesen = (ad, apsis, ordinat, sira, o = {}) => ({
-  ...temel(ad, 'nokta_bilesen', sira, { rol: o.rol ?? 'lavanta', etiket: o.etiket ?? ad, katman: 2 }),
+  ...temel(ad, 'nokta_bilesen', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  parametreler: [
+    ...(o.apsisEksen ? [{ anahtar: 'apsis_eksen', deger: o.apsisEksen, tur: 'metin' }] : []),
+    ...(o.ordinatEksen ? [{ anahtar: 'ordinat_eksen', deger: o.ordinatEksen, tur: 'metin' }] : []),
+    ...(o.dx ? [{ anahtar: 'dx', deger: o.dx, tur: 'sayi' }] : []),
+    ...(o.dy ? [{ anahtar: 'dy', deger: o.dy, tur: 'sayi' }] : []),
+  ],
   bagimliliklar: [
     { kaynak: apsis, rol: 'apsis', sira: 0 },
     { kaynak: ordinat, rol: 'ordinat', sira: 1 },

@@ -168,10 +168,24 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
         case 'nokta_bilesen': {
           // Apsisi bir kaynaktan, ordinati digerinden alir: (A.x, B.y).
           // Dikdortgeni tek surukleneblir koseyle kurmayi saglar.
+          //
+          // Kaynaktan hangi eksenin okunacagi secilebilir (apsis_eksen /
+          // ordinat_eksen) ve sabit bir kaydirma eklenebilir (dx / dy).
+          // Bir olcuyu bir yerde yatay, baska yerde dikey kullanmak
+          // gerektiginde bu takas sart oluyor - ornegin ayni prizmanin
+          // onden ve ustten gorunumlerinde "boy" olcusu.
           const apsis = bul(baglilar(n, 'apsis')[0] ?? '') as JXG.Point | undefined
           const ordinat = bul(baglilar(n, 'ordinat')[0] ?? '') as JXG.Point | undefined
           if (!apsis || !ordinat) break
-          const nokta = tahta.create('point', [() => apsis.X(), () => ordinat.Y()], {
+          const apsisEksen = n.parametreler.find((p) => p.anahtar === 'apsis_eksen')?.deger
+          const ordinatEksen = n.parametreler.find((p) => p.anahtar === 'ordinat_eksen')?.deger
+          const dx = sayi(n, 'dx', 0)
+          const dy = sayi(n, 'dy', 0)
+          const oku = (p: JXG.Point, eksen: unknown) => (eksen === 'y' ? p.Y() : p.X())
+          const nokta = tahta.create('point', [
+            () => oku(apsis, apsisEksen ?? 'x') + dx,
+            () => oku(ordinat, ordinatEksen ?? 'y') + dy,
+          ], {
             name: n.etiket ?? n.ad,
             withLabel: Boolean(n.etiket),
             size: n.stil.noktaBoyutu,
@@ -482,6 +496,32 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
                 fixed: true,
                 highlight: false,
                 layer: 4,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'yansima': {
+          // Bir nesnenin bir dogruya gore ayna goruntusu. Kaynak nokta ya
+          // da cokgen olabilir; eksen rolu ayna dogrusunu tasir.
+          const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '')
+          const eksen = bul(baglilar(n, 'eksen')[0] ?? '')
+          if (!kaynak || !eksen) break
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('reflection', [kaynak as never, eksen as never], {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: g.strokeWidth,
+                fillOpacity: g.fillOpacity,
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 3,
               }),
             ),
           )
