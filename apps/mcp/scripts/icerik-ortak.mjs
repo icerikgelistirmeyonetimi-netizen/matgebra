@@ -47,7 +47,12 @@ const temel = (ad, tip, sira, { rol = 'gok', etiket = null, katman = 1, gorunur 
 
 /** Serbest ya da sabit nokta. */
 export const nokta = (ad, x, y, sira, o = {}) => ({
-  ...temel(ad, 'nokta', sira, { rol: o.rol ?? 'lavanta', etiket: o.etiket ?? ad, katman: 2 }),
+  ...temel(ad, 'nokta', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
   kilitli: (o.surukleme ?? 'serbest') === 'yok',
   surukleme: o.surukleme ?? 'serbest',
   parametreler: [
@@ -84,7 +89,12 @@ export const bilesen = (ad, apsis, ordinat, sira, o = {}) => ({
 
 /** Kaynagi (dx, dy) kadar tasir — paralelkenarin dorduncu kosesi. */
 export const oteleme = (ad, kaynak, dx, dy, sira, o = {}) => ({
-  ...temel(ad, 'nokta_oteleme', sira, { rol: o.rol ?? 'lavanta', etiket: o.etiket ?? ad, katman: 2 }),
+  ...temel(ad, 'nokta_oteleme', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
   parametreler: [
     { anahtar: 'dx', deger: dx, tur: 'sayi' },
     { anahtar: 'dy', deger: dy, tur: 'sayi' },
@@ -107,6 +117,28 @@ export const karsi = (ad, merkez, kaynak, sira, o = {}) => ({
   ],
 })
 
+/**
+ * Bir egri (dogru, cember, cokgen kenari) uzerinde kayan nokta.
+ * Baslangic yeri (x, y) ile verilir; motor en yakin noktaya oturtur.
+ * Merdiven ayagi, golge ucu gibi "kaymasi gereken ama cikmamasi gereken"
+ * noktalar bununla kurulur.
+ */
+export const surgu = (ad, tasiyici, x, y, sira, o = {}) => ({
+  ...temel(ad, 'nokta_uzerinde', sira, {
+    rol: o.rol ?? 'seftali',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  kilitli: false,
+  surukleme: 'serbest',
+  parametreler: [
+    { anahtar: 'x', deger: x, tur: 'sayi' },
+    { anahtar: 'y', deger: y, tur: 'sayi' },
+  ],
+  bagimliliklar: [{ kaynak: tasiyici, rol: 'uzerinde', sira: 0 }],
+})
+
 /** Cember uzerinde, yaricap noktasindan aci kadar ileride. */
 export const cemberUstu = (ad, merkez, yaricapNoktasi, aciOfset, sira, o = {}) => ({
   ...temel(ad, 'nokta_uzerinde', sira, {
@@ -123,7 +155,11 @@ export const cemberUstu = (ad, merkez, yaricapNoktasi, aciOfset, sira, o = {}) =
 })
 
 export const cizgi = (ad, tip, a, b, sira, o = {}) => ({
-  ...temel(ad, tip, sira, { rol: o.rol ?? 'gok', etiket: o.etiket ?? null }),
+  ...temel(ad, tip, sira, {
+    rol: o.rol ?? 'gok',
+    etiket: o.etiket ?? null,
+    gorunur: o.gorunur ?? true,
+  }),
   stil: { rol: o.rol ?? 'gok', kalinlik: o.kalinlik ?? 2, cizgiTipi: o.cizgiTipi ?? 'duz' },
   bagimliliklar: [
     { kaynak: a, rol: 'uc1', sira: 0 },

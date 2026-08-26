@@ -130,6 +130,33 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
         }
 
         case 'nokta_uzerinde': {
+          // Iki farkli kullanim var:
+          //   1) 'uzerinde' rolu bir egri gosteriyorsa nokta o egri uzerinde
+          //      kayan bir surgudur (glider) - merdiven ayagi gibi.
+          //   2) 'merkez' + 'yaricap_noktasi' verilmisse cember uzerinde
+          //      aci_ofset kadar ileride turetilmis noktadir.
+          const tasiyici = bul(baglilar(n, 'uzerinde')[0] ?? '')
+          if (tasiyici) {
+            const surgu = tahta.create(
+              'glider',
+              [sayi(n, 'x'), sayi(n, 'y'), tasiyici as never],
+              {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: 2,
+                fixed: n.surukleme === 'yok',
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 9,
+              },
+            )
+            el.set(n.ad, tekOge(surgu))
+            break
+          }
+
           // Merkez ve yaricap noktasindan turetilir: aci_ofset kadar ileride.
           const merkez = bul(baglilar(n, 'merkez')[0] ?? '') as JXG.Point | undefined
           const yaricap = bul(baglilar(n, 'yaricap_noktasi', 'kaynak')[0] ?? '') as
