@@ -2,6 +2,7 @@
 import { RouterLink, useRoute } from 'vue-router'
 import Ikon from '../ortak/bilesenler/Ikon.vue'
 import { kabukDeposu } from './kabukDeposu'
+import { api } from '../ortak/api'
 
 /**
  * Ikon rayi.
@@ -67,6 +68,26 @@ function etkinMi(ad: string): boolean {
 
     <div class="flex-1" />
 
+    <!--
+      Yonetim ust duzey giris DEGIL: ray bes girisle sinirli, altincisi
+      "kaybolmama" kuralini bozardi. Arama ve panel gibi bir arac olarak
+      altta duruyor ve yalnizca sunuculu kipte gorunuyor - statik yayinda
+      yazma zaten kapali.
+    -->
+    <RouterLink
+      v-if="api.kaydedebilir"
+      :to="{ name: 'yonetim' }"
+      title="Yönetim"
+      aria-label="Yönetim paneli"
+      class="flex h-12 w-12 items-center justify-center rounded-kutu transition focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+      :class="
+        rota.name === 'yonetim'
+          ? 'bg-marka-soft text-marka-koyu'
+          : 'bg-yuzey-2 text-murekkep-3 hover:bg-yuzey-3 hover:text-murekkep-2'
+      "
+    >
+      <Ikon ad="yonetim" :boyut="20" />
+    </RouterLink>
     <button
       type="button"
       title="Ara (Ctrl+K)"

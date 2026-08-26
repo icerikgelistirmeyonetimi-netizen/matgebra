@@ -218,6 +218,38 @@ içinde toplandı; her sınıf dilimi onları kullanıyor.
   üzerine çokgen kurarak üretir. Öğrenci A → A′ eşleşmesini görebilsin diye;
   üretilen köşeler `${ad}_${eskiAd}` diye adlandırılır, ölçüm bağlamak için lazım.
 
+## Yönetim paneli
+
+`/yönetim` — yalnızca sunuculu kipte. İçerik okuma tarafı `depo.ts`'te, **yazma
+tarafı `yonetim.ts`'te**. İki kural:
+
+1. **Her yazma revizyon bırakır.** Önce mevcut satır okunur, sonra yazılır,
+   sonra `revizyon` tablosuna öncesi ve sonrası düşer. Panelde alan alan fark
+   görünür ve tek tıkla geri alınır — geri alma da bir revizyondur, sessiz
+   değildir.
+2. **Yaşam döngüsü tek yönlü değil.** taslak ↔ incelemede ↔ yayında ↔ arşiv
+   serbestçe gidilir ama her geçiş kaydedilir. Yayından çıkarma da silme değil,
+   arşivlemedir.
+
+Panelde: durum dökümü, süzgeç ve arama, çoklu seçimle toplu durum değişikliği,
+seçili kaydın düzenleyicisi, revizyon geçmişi + geri alma, kullanıcı rolleri ve
+konunun tamamını JSON olarak dışa aktarma.
+
+**Şema hiç değişmedi.** `revizyon` tablosu ve `durum` / `sürüm` / `güncelleme`
+alanları Faz 2'den beri bekliyordu; panel tek bir göç bile gerektirmedi —
+plandaki bitti kriteri tam olarak buydu.
+
+**Yönetilmeyenler bilinçli.** Sahne geometrisi (nesne, bağımlılık, parametre)
+panelden düzenlenmez: sahne kurulumu MCP araçlarıyla doğrulanarak yazılıyor,
+panelden elle bozulması kolay olurdu. `kavram` ve `formül` de dışarıda çünkü o
+iki tabloda yaşam döngüsü alanları yok — eklemek göç gerektirirdi.
+
+Panel yazılırken çıkan üç kusur düzeltildi: CORS listesi `PATCH` ve `DELETE`
+içermiyordu (çizim silme de bu yüzden tarayıcıdan çalışmıyormuş), gövdesiz
+`POST` isteklerinde `content-type: application/json` gönderildiği için Fastify
+400 dönüyordu, ve `yonetim.ts` var olmayan `*_norm` kolonlarını tazelemeye
+çalışıyordu.
+
 ## Erişilebilirlik, sunum ve çıktı
 
 **Kontrast denetimi otomatik.** Pastel palet güzel görünüyor diye geçilemez:
@@ -333,7 +365,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
 | 09 | İçerik üretimi | **tamam** — 97 konunun 97'si kapsandı, 103 sahne |
 | 10 | Cila ve dışa aktarım | **tamam** — erişilebilirlik, sunum kipi, SVG/PNG, çalışma kâğıdı |
-| 11 | Yönetim paneli | şema hazır |
+| 11 | Yönetim paneli | **tamam** — CRUD, durum akışı, revizyon/geri alma, roller, dışa aktarım |
 
 ## Veri kaynağı
 

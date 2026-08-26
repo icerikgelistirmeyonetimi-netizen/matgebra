@@ -59,6 +59,12 @@ const rotalar: RouteRecordRaw[] = [
     meta: { baslik: 'Olasılık Laboratuvarı', modul: 'olasilik' },
   },
   {
+    path: '/yonetim',
+    name: 'yonetim',
+    component: () => import('../moduller/yonetim/YonetimGorunumu.vue'),
+    meta: { baslik: 'Yönetim', modul: 'yonetim', genis: true },
+  },
+  {
     path: '/kutuphane',
     name: 'kutuphane',
     component: () => import('../moduller/kutuphane/KutuphaneGorunumu.vue'),

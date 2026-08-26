@@ -1,6 +1,7 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 import * as depo from './depo.js'
+import * as yonetim from './yonetim.js'
 
 /**
  * Matgebra API.
@@ -15,7 +16,13 @@ const app = Fastify({
   logger: { transport: { target: 'pino-pretty', options: { translateTime: 'HH:MM:ss', ignore: 'pid,hostname' } } },
 })
 
-await app.register(cors, { origin: true })
+// PATCH ve DELETE de acik olmali: yonetim paneli kaydi guncellemek icin
+// PATCH, cizim silme DELETE kullaniyor. Varsayilan liste yalnizca
+// GET/HEAD/POST icerdigi icin tarayici on kontrolde ikisini de reddediyordu.
+await app.register(cors, {
+  origin: true,
+  methods: ['GET', 'HEAD', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+})
 
 app.get('/saglik', async () => ({ durum: 'ayakta', zaman: new Date().toISOString() }))
 
@@ -131,6 +138,97 @@ app.post<{ Body: { ad?: string; sahneSlug?: string; veri?: unknown } }>(
 
 app.delete<{ Params: { id: string } }>('/cizimler/:id', async (istek) =>
   depo.cizimSil(Number(istek.params.id)),
+)
+
+/* ---------------------------------------------------------------- yonetim
+   Panelin yazma ucu. Okuma ucundan (depo) ayri tutuldu: buradaki her istek
+   revizyon birakiyor ve yalnizca izin listesindeki kolonlara dokunabiliyor.
+--------------------------------------------------------------------------- */
+
+/** Yonetim uclarinda hatayi 400 ile ve Turkce dondururuz. */
+const yonetimSar = async <T>(yanit: { code(n: number): { send(x: unknown): unknown } }, is: () => T) => {
+  try {
+    return is()
+  } catch (e) {
+    return yanit.code(400).send({ hata: e instanceof Error ? e.message : String(e) })
+  }
+}
+
+app.get('/yonetim/ozet', async () => yonetim.durumOzeti())
+
+app.get<{ Params: { tablo: string }; Querystring: { durum?: string; arama?: string } }>(
+  '/yonetim/icerik/:tablo',
+  async (istek, yanit) =>
+    yonetimSar(yanit, () => {
+      if (!yonetim.tabloGecerli(istek.params.tablo)) throw new Error('Yönetilmeyen tablo')
+      return yonetim.icerikListesi({
+        tablo: istek.params.tablo,
+        durum: istek.query.durum,
+        arama: istek.query.arama,
+      })
+    }),
+)
+
+app.get<{ Params: { tablo: string; id: string } }>(
+  '/yonetim/icerik/:tablo/:id',
+  async (istek, yanit) =>
+    yonetimSar(yanit, () => {
+      if (!yonetim.tabloGecerli(istek.params.tablo)) throw new Error('Yönetilmeyen tablo')
+      return yonetim.kayitAyrinti(istek.params.tablo, Number(istek.params.id))
+    }),
+)
+
+app.patch<{ Params: { tablo: string; id: string }; Body: Record<string, unknown> }>(
+  '/yonetim/icerik/:tablo/:id',
+  async (istek, yanit) =>
+    yonetimSar(yanit, () => {
+      if (!yonetim.tabloGecerli(istek.params.tablo)) throw new Error('Yönetilmeyen tablo')
+      return yonetim.kayitGuncelle({
+        tablo: istek.params.tablo,
+        id: Number(istek.params.id),
+        degisiklikler: istek.body ?? {},
+      })
+    }),
+)
+
+app.post<{ Params: { tablo: string }; Body: { idler?: number[]; durum?: string } }>(
+  '/yonetim/durum/:tablo',
+  async (istek, yanit) =>
+    yonetimSar(yanit, () => {
+      if (!yonetim.tabloGecerli(istek.params.tablo)) throw new Error('Yönetilmeyen tablo')
+      return yonetim.topluDurum({
+        tablo: istek.params.tablo,
+        idler: istek.body?.idler ?? [],
+        durum: istek.body?.durum ?? '',
+      })
+    }),
+)
+
+app.get<{ Querystring: { tablo?: string; kayitId?: string } }>(
+  '/yonetim/revizyonlar',
+  async (istek) =>
+    yonetim.revizyonlar({
+      tablo: istek.query.tablo,
+      kayitId: istek.query.kayitId ? Number(istek.query.kayitId) : undefined,
+    }),
+)
+
+app.post<{ Params: { id: string } }>('/yonetim/revizyonlar/:id/geri-al', async (istek, yanit) =>
+  yonetimSar(yanit, () => yonetim.revizyonaDon({ revizyonId: Number(istek.params.id) })),
+)
+
+app.get('/yonetim/kullanicilar', async () => yonetim.kullanicilar())
+
+app.patch<{ Params: { id: string }; Body: { rol?: string } }>(
+  '/yonetim/kullanicilar/:id',
+  async (istek, yanit) =>
+    yonetimSar(yanit, () =>
+      yonetim.rolYaz({ id: Number(istek.params.id), rol: istek.body?.rol ?? '' }),
+    ),
+)
+
+app.get<{ Params: { slug: string } }>('/yonetim/disa-aktar/:slug', async (istek, yanit) =>
+  yonetimSar(yanit, () => yonetim.konuDisaAktar(istek.params.slug)),
 )
 
 app.addHook('onClose', async () => depo.kapat())

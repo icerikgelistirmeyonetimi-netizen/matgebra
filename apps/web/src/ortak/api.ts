@@ -18,10 +18,13 @@ const TEMEL = STATIK ? `${import.meta.env.BASE_URL}api` : '/api'
 
 async function gonder<T>(yol: string, govde: unknown, yontem = 'POST'): Promise<T> {
   if (STATIK) throw new Error('Statik sürümde kaydetme yok; uygulamayı sunucuyla çalıştırın.')
+  // Govdesiz istekte content-type gonderilmiyor: Fastify "application/json"
+  // gorup bos govde bulunca FST_ERR_CTP_EMPTY_JSON_BODY ile 400 donuyor.
+  const govdesiz = govde === undefined
   const yanit = await fetch(`${TEMEL}${yol}`, {
     method: yontem,
-    headers: { 'content-type': 'application/json' },
-    body: govde === undefined ? undefined : JSON.stringify(govde),
+    headers: govdesiz ? undefined : { 'content-type': 'application/json' },
+    body: govdesiz ? undefined : JSON.stringify(govde),
   })
   if (!yanit.ok) throw new Error(`${yanit.status} ${yol}: ${(await yanit.text()).slice(0, 200)}`)
   return (await yanit.json()) as T
@@ -229,6 +232,41 @@ export interface Olcek {
   aciklama?: string
 }
 
+export interface YonetimOzeti {
+  tablo: string
+  ad: string
+  toplam: number
+  durumlar: Record<string, number>
+}
+
+export interface YonetimSatiri {
+  id: number
+  baslik: string
+  durum: string
+  surum: number
+  guncelleme: string
+  slug?: string
+}
+
+export interface Revizyon {
+  id: number
+  tablo: string
+  kayitId: number
+  islem: string
+  zaman: string
+  kullaniciId: number | null
+  geriAlinabilir: boolean
+  fark: Array<{ alan: string; onceki: string; sonraki: string }>
+}
+
+export interface KullaniciKaydi {
+  id: number
+  ad: string
+  rol: string
+  sinifId: number | null
+  olusturma: string
+}
+
 export interface SahneVerisi {
   id: number
   slug: string
@@ -331,6 +369,43 @@ export const api = {
   cizimSil: (id: number) => gonder<{ silindi: number }>(`/cizimler/${id}`, undefined, 'DELETE'),
   /** Statik sürümde kaydetme kapalı; arayüz düğmeyi ona göre gizler. */
   kaydedebilir: !STATIK,
+
+  /* ------------------------------------------------------------- yönetim
+   * Panel yalnızca sunuculu kipte çalışır: statik yayında yazma yok.
+   */
+  yonetimOzet: () => getir<YonetimOzeti[]>('/yonetim/ozet'),
+  yonetimListe: (tablo: string, durum?: string, arama?: string) => {
+    const q = new URLSearchParams()
+    if (durum) q.set('durum', durum)
+    if (arama) q.set('arama', arama)
+    const ek = q.toString()
+    return getir<YonetimSatiri[]>(`/yonetim/icerik/${tablo}${ek ? `?${ek}` : ''}`)
+  },
+  yonetimKayit: (tablo: string, id: number) =>
+    getir<{ tablo: string; id: number; duzenlenebilir: string[]; kayit: Record<string, unknown> }>(
+      `/yonetim/icerik/${tablo}/${id}`,
+    ),
+  yonetimGuncelle: (tablo: string, id: number, degisiklikler: Record<string, unknown>) =>
+    gonder<{ tablo: string; id: number; kayit: Record<string, unknown> }>(
+      `/yonetim/icerik/${tablo}/${id}`,
+      degisiklikler,
+      'PATCH',
+    ),
+  yonetimDurum: (tablo: string, idler: number[], durum: string) =>
+    gonder<{ degisen: number; istenen: number }>(`/yonetim/durum/${tablo}`, { idler, durum }),
+  yonetimRevizyonlar: (tablo?: string, kayitId?: number) => {
+    const q = new URLSearchParams()
+    if (tablo) q.set('tablo', tablo)
+    if (kayitId) q.set('kayitId', String(kayitId))
+    const ek = q.toString()
+    return getir<Revizyon[]>(`/yonetim/revizyonlar${ek ? `?${ek}` : ''}`)
+  },
+  yonetimGeriAl: (revizyonId: number) =>
+    gonder<{ tablo: string; id: number }>(`/yonetim/revizyonlar/${revizyonId}/geri-al`, undefined),
+  yonetimKullanicilar: () => getir<KullaniciKaydi[]>('/yonetim/kullanicilar'),
+  yonetimRol: (id: number, rol: string) =>
+    gonder<{ id: number; rol: string }>(`/yonetim/kullanicilar/${id}`, { rol }, 'PATCH'),
+  yonetimDisaAktar: (slug: string) => getir<unknown>(`/yonetim/disa-aktar/${slug}`),
   kapsama: () =>
     getir<{
       siniflar: Array<{ seviye: number; alan: string; konu: number; sahne: number; ornek: number }>
