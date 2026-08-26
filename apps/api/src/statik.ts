@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { asc, eq } from 'drizzle-orm'
@@ -15,6 +15,10 @@ import * as depo from './depo.js'
  *
  * Cikti apps/web/public/api/ altina yazilir; Vite onu oldugu gibi dist'e
  * kopyalar. Veri yine veritabanindan gelir, elle yazilmaz.
+ *
+ * Klasor her uretimde bastan siliniyor: uzerine yazmak silinmis bir sahnenin
+ * JSON'unu geride birakiyordu ve statik yayin artik var olmayan bir icerigi
+ * sunuyordu.
  */
 
 const buradan = dirname(fileURLToPath(import.meta.url))
@@ -35,6 +39,10 @@ function yaz(yol: string, veri: unknown): void {
 function main(): void {
   const { ham, db } = veritabaniAc()
   const s = sema
+
+  // Uzerine yazmak yetmiyor: silinmis bir sahnenin JSON'u geride kaliyor ve
+  // statik yayin artik var olmayan bir icerigi sunmaya devam ediyordu.
+  rmSync(HEDEF, { recursive: true, force: true })
 
   console.log(`Statik API uretiliyor -> ${HEDEF}\n`)
 

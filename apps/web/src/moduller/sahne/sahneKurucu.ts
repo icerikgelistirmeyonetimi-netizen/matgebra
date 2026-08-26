@@ -944,6 +944,15 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
   }
 
   tahta.unsuspendUpdate()
+
+  // Kurulamayan nesne sessizce atlaniyor (desteklenmeyen tip, eksik
+  // bagimlilik, motorun reddettigi bir kurulus). Sahne yine aciliyor ama
+  // eksik aciliyor - icerik yazarken bunun fark edilmemesi en kotusu.
+  if (el.size < sahne.nesneler.length) {
+    const eksik = sahne.nesneler.filter((n) => !el.has(n.ad)).map((n) => `${n.ad} (${n.tip})`)
+    console.warn(`[sahne:${sahne.slug}] kurulamayan nesne: ${eksik.join(', ')}`)
+  }
+
   return el
 }
 

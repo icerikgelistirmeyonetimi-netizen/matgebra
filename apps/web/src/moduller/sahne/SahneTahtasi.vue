@@ -51,8 +51,9 @@ function tahtayiKur(): void {
   // Izgara: 1-3. sinifta sayisiz kareli zemin, sonrasinda eksenlerle birlikte.
   if (eksenModu !== 'yok') {
     t.create('grid', [], {
-      gridX: izgaraAdimi,
-      gridY: izgaraAdimi,
+      // gridX/gridY JSXGraph 1.6'da birakildi; majorStep her sahne acilisinda
+      // konsolu uyariyla dolduran eskisinin karsiligi.
+      majorStep: [izgaraAdimi, izgaraAdimi],
       strokeColor: p.izgara,
       strokeWidth: 1,
       strokeOpacity: 1,
