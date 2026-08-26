@@ -353,16 +353,19 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 
 ## Durum
 
+**On iki fazın tamamı bitti.** Boş bir veritabanından tam içeriğe iki komut:
+`npm run db:kur && npm run icerik`.
+
 | Faz | Konu | Durum |
 | --- | --- | --- |
 | 01 | İskelet ve kabuk | tamam |
 | 02 | Veri katmanı ve MEB içe aktarımı | tamam |
 | 03 | Sahne motoru — okuma yönü | tamam |
 | 04 | Çizim atölyesi | **tamam** — 38 aracın hepsi, geri/ileri alma, tarif olarak kaydetme |
-| 05 | MCP içerik hattı | tamam |
+| 05 | MCP içerik hattı | **tamam** — 16 araç |
 | 06 | Gerçek hayat modülü | **tamam** — arka plan görseli, ölçek kalibrasyonu, devralma ve karşılaştırma |
-| 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
-| 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
+| 07 | Olasılık laboratuvarı | **tamam** — 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
+| 08 | Öğrenme akışı | **tamam** — 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
 | 09 | İçerik üretimi | **tamam** — 97 konunun 97'si kapsandı, 103 sahne |
 | 10 | Cila ve dışa aktarım | **tamam** — erişilebilirlik, sunum kipi, SVG/PNG, çalışma kâğıdı |
 | 11 | Yönetim paneli | **tamam** — CRUD, durum akışı, revizyon/geri alma, roller, dışa aktarım |

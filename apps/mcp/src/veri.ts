@@ -309,6 +309,8 @@ export interface KonuYazmaGirdisi {
   onKosul?: string[]
   zorluk?: number
   slug?: string
+  /** Varsayilan 'yayin': dogrulanmis icerik dogrudan yayina giriyor. */
+  durum?: string
 }
 
 /** Konu ekler ya da gunceller; kazanim koprusunu ve on kosullari kurar. */
@@ -338,7 +340,7 @@ export function konuYaz(g: KonuYazmaGirdisi) {
         ozet: g.ozet,
         sira: sonSira + 1,
         zorluk: g.zorluk ?? 2,
-        durum: 'taslak',
+        durum: g.durum ?? 'yayin',
       })
       .onConflictDoUpdate({
         target: s.konu.slug,
@@ -403,6 +405,8 @@ export function gercekHayatYaz(g: {
   olcekAciklama?: string
   kaynak?: string
   yasAraligi?: string
+  /** Varsayilan 'yayin': dogrulanmis icerik dogrudan yayina giriyor. */
+  durum?: string
 }) {
   const konu = db.select({ id: s.konu.id }).from(s.konu).where(eq(s.konu.slug, g.konuSlug)).get()
   if (!konu) throw new Error(`Konu bulunamadi: ${g.konuSlug}`)
@@ -426,7 +430,7 @@ export function gercekHayatYaz(g: {
       olcekAciklama: g.olcekAciklama ?? '',
       kaynak: g.kaynak ?? '',
       yasAraligi: g.yasAraligi ?? '',
-      durum: 'taslak',
+      durum: g.durum ?? 'yayin',
     })
     .returning({ id: s.gercekHayatOrnegi.id })
     .all()
@@ -448,6 +452,8 @@ export function soruYaz(g: {
   cozum?: string
   zorluk?: number
   puan?: number
+  /** Varsayilan 'yayin': dogrulanmis icerik dogrudan yayina giriyor. */
+  durum?: string
 }) {
   const konu = db.select({ id: s.konu.id }).from(s.konu).where(eq(s.konu.slug, g.konuSlug)).get()
   if (!konu) throw new Error(`Konu bulunamadi: ${g.konuSlug}`)
@@ -472,7 +478,7 @@ export function soruYaz(g: {
       cozum: g.cozum ?? '',
       zorluk: g.zorluk ?? 2,
       puan: g.puan ?? 1,
-      durum: 'taslak',
+      durum: g.durum ?? 'yayin',
     })
     .returning({ id: s.soru.id })
     .all()
