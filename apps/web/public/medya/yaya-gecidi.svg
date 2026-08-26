@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800">
+<g transform="translate(500 400) scale(1 -1)">
+<rect x="-500" y="-400" width="1000" height="800" fill="#DCE3EA"/>
+<rect x="-500" y="-200" width="1000" height="400" fill="#9AA5B1"/>
+<line x1="-500" y1="200" x2="500" y2="200" stroke="#6C7885" stroke-width="4"/>
+<line x1="-500" y1="-200" x2="500" y2="-200" stroke="#6C7885" stroke-width="4"/>
+<polygon points="-425,-200 -375,-200 -241.5,200 -291.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="-325,-200 -275,-200 -141.5,200 -191.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="-225,-200 -175,-200 -41.5,200 -91.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="-125,-200 -75,-200 58.5,200 8.499999999999996,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="-25,-200 25,-200 158.5,200 108.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="75,-200 125,-200 258.5,200 208.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="175,-200 225,-200 358.5,200 308.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="275,-200 325,-200 458.5,200 408.5,200" fill="#F7F9FB" opacity="0.9"/>
+<polygon points="375,-200 425,-200 558.5,200 508.5,200" fill="#F7F9FB" opacity="0.9"/>
+<rect x="-500" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-500" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-400" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-400" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-300" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-300" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-200" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-200" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-100" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="-100" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="0" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="0" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="100" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="100" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="200" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="200" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="300" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="300" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="400" y="200" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+<rect x="400" y="-395" width="95" height="195" fill="#C9D2DB" stroke="#B4BEC8" stroke-width="1"/>
+</g>
+</svg>

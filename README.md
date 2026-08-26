@@ -74,6 +74,36 @@ Kavram sözlüğü konulara iki rolle bağlanır: *tanıtılan* (ilk kez orada
 öğretiliyor) ve *kullanılan*. Kütüphane ekranı sözlüğü, formül kartlarını ve
 kapsama raporunu bir arada tutar.
 
+## Gerçek hayat sahneleri
+
+Gerçek hayat sahnesi üç katmandan oluşur: **arka plan görseli**, üzerine oturan
+**soyutlama** (geometrik nesneler) ve **adım adım anlatım**.
+
+**Fotoğraf kullanmıyoruz.** Telif takibi zorunlu (`medya.lisans` boş bırakılamaz)
+ve konuya tam oturan serbest lisanslı fotoğraf bulmak güvenilir değil. Görseller
+`apps/mcp/scripts/gorsel-uret.mjs` ile kendimiz üretiliyor: lisans
+`kendi-uretimimiz`, kaynağı da o betik. Şema hazır olduğu için ileride lisanslı
+bir fotoğraf eklenmek istenirse yalnızca `medya` satırı değişir.
+
+```bash
+npm run gorsel -w @matgebra/mcp   # SVG arka planları üretir
+```
+
+**Ölçek kalibrasyonu.** Görseldeki bilinen bir uzunluk iki referans noktayla
+işaretlenir; motor oradan "1 tahta birimi = k gerçek birim" oranını çıkarır.
+Sahnedeki bütün uzunluk ölçümleri o birimde okunur, alan ölçümleri oranın
+karesiyle. Çini sahnesinde iki karo merkezi arası 26 santimetredir; altıgenin
+kenarı ekranda **20,80 cm** diye görünür, birimsiz bir sayı olarak değil.
+
+**Devralma.** Sahne başlığındaki *Kendin çiz* düğmesi serbest tuvali açar ama
+boş açmaz: tuval sahnenin sınır kutusunu, eksen kipini ve arka plan görselini
+devralır. Öğrenci aynı resmin üzerine kendi çizimini kurar; denetçi panelinde
+sahnenin yapı taşlarıyla karşılaştırmalı geri bildirim canlı güncellenir.
+
+Karşılaştırma **kategori** bazındadır: altıgeni pergelle mi yoksa düzgün çokgen
+aracıyla mı kurduğu sorulmaz, ortada bir çokgen olup olmadığı sorulur. Tek doğru
+yol dayatmak çizim atölyesinin amacını bozardı.
+
 ## Olasılık laboratuvarı
 
 Deney veritabanından gelir, benzetim tarayıcıda `@matgebra/core` ile koşar.
@@ -96,7 +126,7 @@ olasılık teması yoktur.
 ## İçerik üretimi (MCP)
 
 Eğitim içeriği dosyaya değil veritabanına yazılır. `apps/mcp` bunun arayüzüdür:
-15 araçlı bir MCP sunucusu. `.mcp.json` deponun kökünde olduğu için Claude Code
+16 araçlı bir MCP sunucusu. `.mcp.json` deponun kökünde olduğu için Claude Code
 projeyi açtığında sunucuyu kendiliğinden görür.
 
 | Araç | İş |
@@ -112,6 +142,7 @@ projeyi açtığında sunucuyu kendiliğinden görür.
 | `sahne_yaz` | Sahneyi tek işlemde yazar |
 | `gercek_hayat_yaz` | Sahneye bağlı gerçek hayat anlatısı |
 | `soru_yaz` | Konuya ya da sahneye bağlı soru |
+| `medya_yaz` | Arka plan görseli + ölçek kalibrasyonu (lisans zorunlu) |
 | `deney_yaz` / `deney_listele` | Olasılık deneyi ve olayları |
 | `kavram_yaz` / `formul_yaz` | Kavram sözlüğü ve formül kartları |
 
@@ -256,7 +287,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 03 | Sahne motoru — okuma yönü | tamam |
 | 04 | Çizim atölyesi | **tamam** — 38 aracın hepsi, geri/ileri alma, tarif olarak kaydetme |
 | 05 | MCP içerik hattı | tamam |
-| 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
+| 06 | Gerçek hayat modülü | **tamam** — arka plan görseli, ölçek kalibrasyonu, devralma ve karşılaştırma |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
 | 09 | İçerik üretimi | **tamam** — 97 konunun 97'si kapsandı, 103 sahne |

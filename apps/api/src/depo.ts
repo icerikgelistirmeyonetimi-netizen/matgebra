@@ -462,8 +462,23 @@ export function sahne(slug: string) {
     .where(eq(s.gercekHayatOrnegi.sahneId, temel.id))
     .get()
 
+  // Arka plan gorseli: gercek hayat sahnelerinde soyutlamanin uzerine
+  // oturdugu resim. Yalnizca yol degil alt metni de gidiyor - ekran
+  // okuyucu icin sart, ve lisans satiri veritabaninda kalir.
+  const medyaSatiri = ayarSatiri?.arkaPlanMedyaId
+    ? db.select().from(s.medya).where(eq(s.medya.id, ayarSatiri.arkaPlanMedyaId)).get()
+    : undefined
+
   return {
     ...temel,
+    arkaPlan: medyaSatiri
+      ? {
+          yol: medyaSatiri.yol,
+          altMetin: medyaSatiri.altMetin,
+          genislik: medyaSatiri.genislik,
+          yukseklik: medyaSatiri.yukseklik,
+        }
+      : null,
     ayar: {
       eksenModu: ayarSatiri?.eksenModu ?? 'tam',
       sinir: [

@@ -215,6 +215,20 @@ export interface SahneAdimi {
   vurgu: string[]
 }
 
+/**
+ * Iki referans noktayla gercek dunya olcegi.
+ * Arka plan gorselindeki bilinen bir uzunluk (kapi genisligi, serit boyu)
+ * tahtada isaretlenir; motor oradan "1 tahta birimi = k metre" oranini
+ * cikarir ve butun uzunluk olcumleri gercek birimde okunur.
+ */
+export interface Olcek {
+  referansA: [number, number]
+  referansB: [number, number]
+  gercekUzunluk: number
+  birim: string
+  aciklama?: string
+}
+
 export interface SahneVerisi {
   id: number
   slug: string
@@ -230,6 +244,8 @@ export interface SahneVerisi {
   alanAd: string
   seviye: number
   sinifAd: string
+  /** Gercek hayat sahnelerinde soyutlamanin uzerine oturdugu gorsel. */
+  arkaPlan: { yol: string; altMetin: string; genislik: number | null; yukseklik: number | null } | null
   ayar: {
     eksenModu: 'yok' | 'izgara' | 'tam'
     sinir: [number, number, number, number]
@@ -237,7 +253,7 @@ export interface SahneVerisi {
     birim: string
     yapisma: string
     oranKilidi: boolean
-    olcek: unknown
+    olcek: Olcek | null
   }
   nesneler: SahneNesnesi[]
   adimlar: SahneAdimi[]

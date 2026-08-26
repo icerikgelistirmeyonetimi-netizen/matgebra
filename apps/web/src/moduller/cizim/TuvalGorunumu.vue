@@ -14,7 +14,15 @@ import {
   type MetinSecenekleri,
   type Secenekler,
 } from './cizimMotoru'
-import { api, type Arac, type CizimOzeti, type KonuAyrinti, type SoruVerisi } from '@/ortak/api'
+import { karsilastir, KATEGORI_ADI } from './karsilastir'
+import {
+  api,
+  type Arac,
+  type CizimOzeti,
+  type KonuAyrinti,
+  type SahneVerisi,
+  type SoruVerisi,
+} from '@/ortak/api'
 import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
 import Ikon from '@/ortak/bilesenler/Ikon.vue'
@@ -49,6 +57,25 @@ const kaydetAcik = ref(false)
 const kaydediliyor = ref(false)
 /** Adres cubugundaki gorev: insa gorevi tahtada canli denetlenir. */
 const gorev = ref<SoruVerisi | null>(null)
+/**
+ * Devralinan sahne: "Kendin çiz" ile gelindiginde tuval o sahnenin sinir
+ * kutusunu, eksen kipini ve arka plan gorselini alir; ogrenci ayni resmin
+ * uzerine kendi cizimini kurar ve karsilastirmali geri bildirim gorur.
+ */
+const devralinan = ref<SahneVerisi | null>(null)
+
+const karsilastirma = computed(() =>
+  devralinan.value ? karsilastir(devralinan.value, ozet.value) : null,
+)
+
+/** Devralinan sahne varsa onun sinir kutusu, yoksa kipe gore varsayilan. */
+const tuvalSiniri = computed<[number, number, number, number]>(() =>
+  devralinan.value
+    ? devralinan.value.ayar.sinir
+    : eksenModu.value === 'tam'
+      ? [-12, 9, 12, -9]
+      : [-1, 17, 23, -1],
+)
 
 /** Tahtadaki nesne sayimi - insa gorevi denetimine gider. */
 const tahtaSayimi = computed(() =>
@@ -207,10 +234,24 @@ async function ac(id: number): Promise<void> {
 onMounted(async () => {
   window.addEventListener('keydown', klavye)
   void kayitlariYukle()
+  const sahneSlug = rota.query.sahne as string | undefined
+  if (sahneSlug) {
+    try {
+      const s = await api.sahne(sahneSlug)
+      devralinan.value = s
+      eksenModu.value = s.ayar.eksenModu
+      gunluk.value = [`Sahne devralındı: ${s.baslik}`, ...gunluk.value].slice(0, 14)
+    } catch {
+      devralinan.value = null
+    }
+  }
+
   const konuSlug = rota.query.konu as string | undefined
   if (konuSlug) {
     konu.value = await api.konu(konuSlug)
-    eksenModu.value = konu.value.seviye <= 3 ? 'yok' : konu.value.seviye <= 5 ? 'izgara' : 'tam'
+    if (!devralinan.value) {
+      eksenModu.value = konu.value.seviye <= 3 ? 'yok' : konu.value.seviye <= 5 ? 'izgara' : 'tam'
+    }
     kabuk.kirintiYaz([
       { ad: 'Sınıflar', rota: { name: 'siniflar' } },
       { ad: konu.value.sinifAd, rota: { name: 'konular', params: { seviye: konu.value.seviye } } },
@@ -382,9 +423,10 @@ onUnmounted(() => window.removeEventListener('keydown', klavye))
       <!-- tahta -->
       <div class="min-h-0 flex-1">
         <SahneTahtasi
-          :key="eksenModu"
+          :key="`${eksenModu}|${devralinan?.slug ?? ''}`"
           :eksen-modu="eksenModu"
-          :sinir="eksenModu === 'tam' ? [-12, 9, 12, -9] : [-1, 17, 23, -1]"
+          :sinir="tuvalSiniri"
+          :arka-plan="devralinan?.arkaPlan ?? null"
           @hazir="tahtaHazir"
         />
       </div>
@@ -410,6 +452,53 @@ onUnmounted(() => window.removeEventListener('keydown', klavye))
       </div>
 
       <div class="min-h-0 flex-1 overflow-y-auto p-3.5">
+        <!-- devralinan sahne: karsilastirmali geri bildirim -->
+        <section v-if="karsilastirma && devralinan" class="mb-4">
+          <p class="mb-2 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+            Devralınan sahne
+          </p>
+          <div
+            class="rounded-kutu border px-3 py-2.5"
+            :class="
+              karsilastirma.tamam
+                ? 'border-nane bg-nane/30 text-nane-koyu'
+                : 'border-kenar bg-yuzey-2'
+            "
+          >
+            <p class="mb-1 font-baslik text-kucuk font-semibold text-murekkep">
+              {{ devralinan.baslik }}
+            </p>
+            <p class="mb-2.5 text-mikro text-murekkep-2">{{ karsilastirma.ozetMetni }}</p>
+            <ul class="flex flex-col gap-1">
+              <li
+                v-for="satir in karsilastirma.satirlar"
+                :key="satir.kategori"
+                class="flex items-center gap-2 text-mikro"
+              >
+                <span
+                  class="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                  :class="
+                    satir.durum === 'eksik'
+                      ? 'bg-gul-koyu'
+                      : satir.durum === 'fazla'
+                        ? 'bg-tereyagi-koyu'
+                        : 'bg-nane-koyu'
+                  "
+                />
+                <span class="flex-1 truncate text-murekkep-2">
+                  {{ KATEGORI_ADI[satir.kategori] }}
+                </span>
+                <span class="font-mono tabular-nums text-murekkep-3">
+                  {{ satir.sende }} / {{ satir.hedef }}
+                </span>
+              </li>
+            </ul>
+            <p class="mt-2 text-nano text-murekkep-3">
+              Nasıl kurduğunuz serbest; sayılan şey türler, yöntem değil.
+            </p>
+          </div>
+        </section>
+
         <!-- insa gorevi: tahtadaki cizim canli denetlenir -->
         <section v-if="gorev" class="mb-4">
           <p class="mb-2 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">

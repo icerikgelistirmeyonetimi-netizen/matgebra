@@ -16,6 +16,38 @@ export type Kurulum = Map<string, JXG.GeometryElement>
 const derece = (radyan: number) => (radyan * 180) / Math.PI
 
 /**
+ * Gercek dunya olcegi.
+ *
+ * Arka plan gorselinde bilinen bir uzunluk iki referans noktayla
+ * isaretlenir (yaya gecidi seridi, kapi genisligi). Motor oradan
+ * "1 tahta birimi = k gercek birim" oranini cikarir; butun uzunluk,
+ * alan ve cevre olcumleri bu oranla carpilarak gercek birimde okunur.
+ * Olcek yoksa carpan 1, birim de sahnenin kendi birimi olur.
+ */
+interface OlcekBilgisi {
+  carpan: number
+  birim: string
+}
+
+function olcegiCoz(sahne: SahneVerisi): OlcekBilgisi {
+  const o = sahne.ayar.olcek
+  if (!o) return { carpan: 1, birim: '' }
+  const [ax, ay] = o.referansA
+  const [bx, by] = o.referansB
+  const tahtaUzunlugu = Math.hypot(bx - ax, by - ay)
+  if (!(tahtaUzunlugu > 1e-9)) return { carpan: 1, birim: o.birim }
+  return { carpan: o.gercekUzunluk / tahtaUzunlugu, birim: o.birim }
+}
+
+/** Olculen sayiyi gercek birime cevirip birim ekiyle yazar. */
+const olcuMetni = (deger: number, o: OlcekBilgisi, us = 1): string => {
+  const k = o.carpan ** us
+  const sayi = (deger * k).toFixed(2)
+  if (!o.birim) return sayi
+  return `${sayi} ${us === 1 ? o.birim : `${o.birim}²`}`
+}
+
+/**
  * JSXGraph'in create() dönüşü birlesik tip: cember, dogru ve cokgen icin
  * Composition da donebiliyor. Haritada tek bir eleman tuttugumuz icin
  * daralttik; ilgilendigimiz her tipte donen deger tekil elemandir.
@@ -93,6 +125,7 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
   const p = palet()
   const yapisir = sahne.ayar.yapisma === 'izgara' || sahne.ayar.yapisma === 'tamsayi'
   const adim = sahne.ayar.izgaraAdimi
+  const olcek = olcegiCoz(sahne)
 
   const bul = (ad: string) => el.get(ad)
 
@@ -423,7 +456,7 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
             [
               () => (a.X() + b.X()) / 2,
               () => (a.Y() + b.Y()) / 2,
-              () => `${n.etiket ? `${n.etiket} = ` : ''}${uzunluk().toFixed(2)}`,
+              () => `${n.etiket ? `${n.etiket} = ` : ''}${olcuMetni(uzunluk(), olcek)}`,
             ],
             {
               fontSize: 13,
@@ -900,7 +933,11 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           const kaydir = n.tip === 'olcum_cevre' ? -0.9 : 0
           const yazi = tahta.create(
             'text',
-            [merkezX, () => merkezY() + kaydir, () => `${onEk} = ${deger().toFixed(2)}`],
+            [
+              merkezX,
+              () => merkezY() + kaydir,
+              () => `${onEk} = ${olcuMetni(deger(), olcek, n.tip === 'olcum_alan' ? 2 : 1)}`,
+            ],
             {
               fontSize: 14,
               strokeColor: g.renk.kenar,

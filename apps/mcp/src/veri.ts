@@ -671,3 +671,85 @@ export function formulYaz(g: { konuSlug: string; ad: string; latex: string; acik
     .all()
   return { id: satir!.id }
 }
+
+/**
+ * Arka plan gorseli kaydeder ve bir sahneye baglar.
+ *
+ * Gorselin kendisi dosya sisteminde (apps/web/public/medya) durur; burada
+ * kaydedilen sey kayittir: yol, alt metin ve LISANS. Lisans zorunlu -
+ * telif takibi olmadan gorsel eklenemesin diye.
+ *
+ * Olcek verilirse sahne gercek dunyaya baglanir: iki referans nokta ve
+ * aralarindaki gercek uzunluk, "1 tahta birimi = k metre" oranini verir
+ * ve butun uzunluk/alan olcumleri o birimde okunur.
+ */
+export function medyaYaz(g: {
+  sahneSlug: string
+  yol: string
+  altMetin: string
+  lisans: string
+  kaynak?: string
+  genislik?: number
+  yukseklik?: number
+  olcek?: {
+    referansA: [number, number]
+    referansB: [number, number]
+    gercekUzunluk: number
+    birim: string
+    aciklama?: string
+  }
+}) {
+  const sahne = db
+    .select({ id: s.sahne.id })
+    .from(s.sahne)
+    .where(eq(s.sahne.slug, g.sahneSlug))
+    .get()
+  if (!sahne) throw new Error(`Sahne bulunamadi: ${g.sahneSlug}`)
+
+  const yaz = ham.transaction(() => {
+    // Ayni yol iki kez kaydedilmesin: tekrar calistirilabilir olmali.
+    const varOlan = db.select().from(s.medya).where(eq(s.medya.yol, g.yol)).get()
+    let medyaId: number
+    if (varOlan) {
+      db.update(s.medya)
+        .set({
+          altMetin: g.altMetin,
+          lisans: g.lisans,
+          kaynak: g.kaynak ?? '',
+          genislik: g.genislik ?? null,
+          yukseklik: g.yukseklik ?? null,
+        })
+        .where(eq(s.medya.id, varOlan.id))
+        .run()
+      medyaId = varOlan.id
+    } else {
+      const eklenen = db
+        .insert(s.medya)
+        .values({
+          tur: g.yol.endsWith('.svg') ? 'svg' : 'gorsel',
+          yol: g.yol,
+          altMetin: g.altMetin,
+          lisans: g.lisans,
+          kaynak: g.kaynak ?? '',
+          genislik: g.genislik ?? null,
+          yukseklik: g.yukseklik ?? null,
+        })
+        .returning({ id: s.medya.id })
+        .get()
+      medyaId = eklenen.id
+    }
+
+    db.update(s.sahneAyar)
+      .set({
+        arkaPlanMedyaId: medyaId,
+        olcekJson: g.olcek ? JSON.stringify(g.olcek) : null,
+      })
+      .where(eq(s.sahneAyar.sahneId, sahne.id))
+      .run()
+
+    return medyaId
+  })
+
+  const medyaId = yaz()
+  return { sahneSlug: g.sahneSlug, medyaId, olcekli: Boolean(g.olcek) }
+}

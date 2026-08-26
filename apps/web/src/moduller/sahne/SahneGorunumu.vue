@@ -70,9 +70,18 @@ function adimaGit(no: number): void {
   uygulaVurgu()
 }
 
+/**
+ * Devralma: serbest tuval sahneyi devralir - ayni sinir kutusu, ayni eksen
+ * kipi, ayni arka plan gorseli. Ogrenci soyutlamanin uzerine kendi
+ * cizimini kurar; tuval de sahneyi hedef alip karsilastirmali geri
+ * bildirim verir.
+ */
 function kendinCiz(): void {
   if (!sahne.value) return
-  yonlendirici.push({ name: 'tuval', query: { konu: sahne.value.konuSlug } })
+  yonlendirici.push({
+    name: 'tuval',
+    query: { konu: sahne.value.konuSlug, sahne: sahne.value.slug },
+  })
 }
 
 watch(
@@ -146,6 +155,7 @@ watch(
             :sinir="sahne.ayar.sinir"
             :izgara-adimi="sahne.ayar.izgaraAdimi"
             :oran-kilidi="sahne.ayar.oranKilidi"
+            :arka-plan="sahne.arkaPlan"
             @hazir="tahtaHazir"
           />
         </div>

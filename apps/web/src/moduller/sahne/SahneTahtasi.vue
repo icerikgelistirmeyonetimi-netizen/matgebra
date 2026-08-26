@@ -17,11 +17,14 @@ const {
   sinir = [-10, 10, 10, -10],
   izgaraAdimi = 1,
   oranKilidi = true,
+  arkaPlan = null,
 } = defineProps<{
   eksenModu?: 'yok' | 'izgara' | 'tam'
   sinir?: [number, number, number, number]
   izgaraAdimi?: number
   oranKilidi?: boolean
+  /** Gercek hayat sahnesinin altina serilen gorsel ve yerlesim kutusu. */
+  arkaPlan?: { yol: string; altMetin: string; kutu?: [number, number, number, number] } | null
 }>()
 
 const yayilan = defineEmits<{ hazir: [tahta: JXG.Board] }>()
@@ -47,6 +50,26 @@ function tahtayiKur(): void {
     pan: { enabled: true, needTwoFingers: false },
     zoom: { wheel: true, needShift: true, min: 0.2, max: 8 },
   })
+
+  // Arka plan gorseli en altta: izgara ve eksenler onun ustune biner,
+  // geometri de gorselin uzerine oturur. Yerlesim kutusu verilmezse
+  // sahnenin sinir kutusunu kaplar.
+  if (arkaPlan) {
+    const [sx, uy, sagX, altY] = arkaPlan.kutu ?? sinir
+    t.create(
+      'image',
+      [arkaPlan.yol, [Math.min(sx, sagX), Math.min(uy, altY)], [Math.abs(sagX - sx), Math.abs(uy - altY)]],
+      {
+        fixed: true,
+        highlight: false,
+        opacity: 0.9,
+        layer: 0,
+        attractors: [],
+        // Ekran okuyucu icin: gorselin ne anlattigi veritabaninda duruyor.
+        alt: arkaPlan.altMetin,
+      },
+    )
+  }
 
   // Izgara: 1-3. sinifta sayisiz kareli zemin, sonrasinda eksenlerle birlikte.
   if (eksenModu !== 'yok') {
@@ -108,7 +131,10 @@ onBeforeUnmount(() => {
   yikMi()
 })
 
-watch(() => [eksenModu, izgaraAdimi, oranKilidi, sinir.join(',')].join('|'), tahtayiKur)
+watch(
+  () => [eksenModu, izgaraAdimi, oranKilidi, sinir.join(','), arkaPlan?.yol ?? ''].join('|'),
+  tahtayiKur,
+)
 
 defineExpose({ tahta, rolRengi })
 </script>

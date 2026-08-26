@@ -374,6 +374,40 @@ sunucu.registerTool(
 )
 
 sunucu.registerTool(
+  'medya_yaz',
+  {
+    title: 'Arka plan görseli ve ölçek',
+    description:
+      'Bir sahneye arka plan görseli bağlar ve isteğe bağlı olarak gerçek dünya ölçeğini kurar. Görsel dosyası apps/web/public/medya altında durur; burada kaydedilen kayıttır. LİSANS ZORUNLU — telif takibi olmadan görsel eklenemez. Ölçek verilirse iki referans nokta arasındaki gerçek uzunluktan "1 tahta birimi = k birim" oranı çıkarılır ve sahnedeki bütün uzunluk, alan ve çevre ölçümleri o birimde okunur.',
+    inputSchema: {
+      sahneSlug: z.string().min(2),
+      yol: z.string().min(2).describe('Web kökünden yol: /medya/cini-altigen.svg'),
+      altMetin: z.string().min(4).describe('Ekran okuyucu için görselin anlatımı'),
+      lisans: z.string().min(2).describe('kendi-uretimimiz | CC0 | CC-BY-4.0 ...'),
+      kaynak: z.string().optional(),
+      genislik: z.number().int().positive().optional(),
+      yukseklik: z.number().int().positive().optional(),
+      olcek: z
+        .object({
+          referansA: z.tuple([z.number(), z.number()]),
+          referansB: z.tuple([z.number(), z.number()]),
+          gercekUzunluk: z.number().positive(),
+          birim: z.string().min(1).max(16),
+          aciklama: z.string().max(280).optional(),
+        })
+        .optional(),
+    },
+  },
+  async (girdi) => {
+    try {
+      return metin(veri.medyaYaz(girdi))
+    } catch (e) {
+      return hataMetni(e)
+    }
+  },
+)
+
+sunucu.registerTool(
   'formul_yaz',
   {
     title: 'Formül kartı yaz',

@@ -19,7 +19,9 @@
     "icerik-ilk1": "node scripts/icerik-ilk1.mjs",
     "icerik-ilk2": "node scripts/icerik-ilk2.mjs",
     "icerik-olasilik": "node scripts/icerik-olasilik.mjs",
-    "icerik": "npm run icerik-ilk1 && npm run icerik-ilk2 && npm run icerik-s5 && npm run icerik-s6 && npm run icerik-s7 && npm run icerik-s8 && npm run icerik-s9 && npm run icerik-s10 && npm run icerik-s11 && npm run icerik-s12 && npm run icerik-olasilik"
+    "icerik": "npm run icerik-ilk1 && npm run icerik-ilk2 && npm run icerik-s5 && npm run icerik-s6 && npm run icerik-s7 && npm run icerik-s8 && npm run icerik-s9 && npm run icerik-s10 && npm run icerik-s11 && npm run icerik-s12 && npm run icerik-olasilik && npm run icerik-arkaplan",
+    "gorsel": "node scripts/gorsel-uret.mjs",
+    "icerik-arkaplan": "node scripts/icerik-arkaplan.mjs"
   },
   "dependencies": {
     "@matgebra/core": "*",
