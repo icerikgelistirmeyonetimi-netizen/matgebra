@@ -40,6 +40,13 @@ const rotalar: RouteRecordRaw[] = [
     meta: { modul: 'sahne', genis: true },
   },
   {
+    path: '/calisma-kagidi/:slug',
+    name: 'calisma-kagidi',
+    component: () => import('../moduller/ogrenme/CalismaKagidi.vue'),
+    props: true,
+    meta: { modul: 'ogrenme', genis: true },
+  },
+  {
     path: '/tuval',
     name: 'tuval',
     component: () => import('../moduller/cizim/TuvalGorunumu.vue'),

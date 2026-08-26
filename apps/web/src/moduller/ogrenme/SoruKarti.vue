@@ -183,6 +183,7 @@ const durumRengi = computed(() => {
         type="text"
         inputmode="decimal"
         placeholder="Cevabınız"
+        :aria-label="soru.tip === 'tahtadan_olcum' ? 'Tahtadan okuduğunuz değer' : 'Sayısal cevabınız'"
         class="w-40 rounded-md border border-kenar bg-yuzey px-3 py-2 text-kucuk tabular-nums focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
         @keydown.enter="kontrolEt"
       />

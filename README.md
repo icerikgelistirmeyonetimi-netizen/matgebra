@@ -218,6 +218,47 @@ içinde toplandı; her sınıf dilimi onları kullanıyor.
   üzerine çokgen kurarak üretir. Öğrenci A → A′ eşleşmesini görebilsin diye;
   üretilen köşeler `${ad}_${eskiAd}` diye adlandırılır, ölçüm bağlamak için lazım.
 
+## Erişilebilirlik, sunum ve çıktı
+
+**Kontrast denetimi otomatik.** Pastel palet güzel görünüyor diye geçilemez:
+`npm run kontrast` `stil.css` içindeki 26 token çiftini WCAG AA eşiğine
+(4,5:1) göre ölçer ve altında kalan varsa çıkış kodu 1 verir. İlk denetimde
+dört ton eşiğin altındaydı (`murekkep-3` 3,03; `nane-koyu` 3,93; `gul-koyu`
+4,32; `seftali-koyu` 4,05) — hepsi koyulaştırıldı, şimdi 26/26 geçiyor.
+
+```bash
+npm run kontrast
+```
+
+**Klavye.** İçeriğe atlama bağlantısı (`Tab` ile ilk odak), her etkileşimli
+öğede odak halkası, `Ctrl+K` komut paleti, `Ctrl+\` liste, `F9` sunum kipi,
+`Ctrl+Z` / `Ctrl+Shift+Z` geri-ileri, `Enter` çokgeni kapatır, `Esc` seçimi
+bırakır. Sekiz sayfada tarandı: adsız etkileşimli öğe yok.
+
+**Sunum kipi (F9).** Yan paneller kapanır, yazı büyür, mürekkep ve kenar
+tonları koyulaşır. Ayrı bir stil dosyası yok: `@theme` tokenları kökte geçici
+olarak değiştiriliyor, bütün bileşenler zaten onları okuduğu için tek renk
+kaynağı bozulmadan projeksiyona uygun hâle geliyor.
+
+**Dışa aktarım.** Sahne başlığındaki `SVG` ve `PNG` düğmeleri tahtayı indirir.
+SVG motorun kendi kökünden seri hâle getirilir — ikinci bir çizim yolu yok,
+ekranda ne varsa dosyada da o var. PNG, aynı SVG'nin tuvale çizilmiş 2×
+ölçekli hâlidir. `Bağlantıyı kopyala` sahnenin adresini panoya alır.
+
+**Çalışma kâğıdı.** Konu sayfasındaki düğme `/calisma-kagidi/<konu>` açar:
+başlık, kazanımlar, en fazla üç şekil (sahneler gerçek SVG olarak) ve sorular,
+cevap alanlarıyla birlikte. Cevap anahtarı isteğe bağlı açılır — öğretmen
+kopyası için. PDF kütüphanesi kullanmıyoruz: yazdırma düzeni Tailwind'in
+`print:` varyantıyla kurulu, PDF'i tarayıcının kendi "PDF olarak kaydet"
+seçeneği üretiyor. Çıktı vektörel, çevrimdışı ve sıfır bağımlılık.
+
+**Performans.** Rotalar zaten tembel yükleniyor (her görünüm ayrı parça).
+En ağır sahne 96 öğe; ölçülen kurulum süresi 190–950 ms arası. Liste
+sanallaştırması eklenmedi çünkü gerekmiyor: arama sunucuda grup başına 20 ile
+sınırlı, en uzun liste bir sınıfın 14 konusu. Serbest tuvalde **çizim bütçesi**
+var: 600 nesneden sonra yeni işlem reddedilir ve kullanıcıya söylenir; serbest
+kalem ayrıca vuruş başına 400 noktayla sınırlıdır.
+
 ## Statik yayın
 
 ```bash
@@ -291,7 +332,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
 | 09 | İçerik üretimi | **tamam** — 97 konunun 97'si kapsandı, 103 sahne |
-| 10 | Cila ve dışa aktarım | bekliyor |
+| 10 | Cila ve dışa aktarım | **tamam** — erişilebilirlik, sunum kipi, SVG/PNG, çalışma kâğıdı |
 | 11 | Yönetim paneli | şema hazır |
 
 ## Veri kaynağı

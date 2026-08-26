@@ -49,6 +49,10 @@ function tahtayiKur(): void {
     showInfobox: false,
     pan: { enabled: true, needTwoFingers: false },
     zoom: { wheel: true, needShift: true, min: 0.2, max: 8 },
+    // JSXGraph kapsayiciya kendi role="region" ve aria-label'ini yaziyor;
+    // sablondan verilen deger eziliyordu. Erisilebilirlik metni bu yuzden
+    // motorun kendi secenegi uzerinden geciliyor.
+    title: arkaPlan?.altMetin || 'Geometri tahtası',
   })
 
   // Arka plan gorseli en altta: izgara ve eksenler onun ustune biner,
@@ -140,5 +144,11 @@ defineExpose({ tahta, rolRengi })
 </script>
 
 <template>
+  <!--
+    Erisilebilirlik metni initBoard'daki `title` ile veriliyor: JSXGraph
+    kapsayiciya kendi role/aria-label'ini yazdigi icin sablondan verilen
+    deger tutmuyor. Anlatim ve olcumler yanindaki metin panelinde de
+    durdugu icin ekran okuyucuda bilgi kaybi olmuyor.
+  -->
   <div ref="kapsayici" class="h-full w-full bg-yuzey" />
 </template>

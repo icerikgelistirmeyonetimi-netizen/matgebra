@@ -15,6 +15,27 @@ export const kabukDeposu = defineStore('kabuk', () => {
   const denetciAcik = ref(true)
   const paletAcik = ref(false)
 
+  /**
+   * Sunum kipi: siniftaki projeksiyon icin.
+   * Yan paneller kapanir, yazi buyur, kontrast artar. Token degerlerini
+   * degistiriyoruz - ayri bir stil dosyasi yok, tek renk kaynagi korunuyor.
+   */
+  const sunumKipi = ref(false)
+  /** Sunum kipine girmeden onceki panel durumu; cikista geri konur. */
+  let oncekiPaneller = { liste: true, denetci: true }
+
+  function sunumuDegistir(): void {
+    sunumKipi.value = !sunumKipi.value
+    if (sunumKipi.value) {
+      oncekiPaneller = { liste: listeAcik.value, denetci: denetciAcik.value }
+      listeAcik.value = false
+      denetciAcik.value = false
+    } else {
+      listeAcik.value = oncekiPaneller.liste
+      denetciAcik.value = oncekiPaneller.denetci
+    }
+  }
+
   const agac = ref<KademeDugumu[]>([])
   const agacYukleniyor = ref(false)
   const hata = ref<string | null>(null)
@@ -49,6 +70,8 @@ export const kabukDeposu = defineStore('kabuk', () => {
     listeAcik,
     denetciAcik,
     paletAcik,
+    sunumKipi,
+    sunumuDegistir,
     agac,
     agacYukleniyor,
     hata,

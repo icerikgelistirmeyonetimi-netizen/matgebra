@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { RouterView } from 'vue-router'
 import IkonRay from './IkonRay.vue'
 import BaglamListesi from './BaglamListesi.vue'
@@ -16,7 +16,40 @@ import { kabukDeposu } from './kabukDeposu'
  */
 const kabuk = kabukDeposu()
 
+/**
+ * Sunum kipi token ezmesi.
+ *
+ * Ayri bir stil dosyasi yazmiyoruz: @theme'deki olcek ve renk tokenlarini
+ * kokte gecici olarak degistiriyoruz. Butun bilesenler zaten bu tokenlari
+ * okudugu icin yazi buyuyor, kontrast artiyor ve tek renk kaynagi bozulmuyor.
+ */
+const sunumTokenlari = computed<Record<string, string> | undefined>(() =>
+  kabuk.sunumKipi
+    ? {
+        '--text-nano': '0.8rem',
+        '--text-mikro': '0.9rem',
+        '--text-kucuk': '1.05rem',
+        '--text-govde': '1.2rem',
+        '--text-orta': '1.35rem',
+        '--text-h3': '1.6rem',
+        '--text-h2': '2rem',
+        '--text-h1': '2.6rem',
+        // Projeksiyonda pastel tonlar soluyor: murekkep ve kenar koyulasiyor.
+        '--color-murekkep': '#0d1119',
+        '--color-murekkep-2': '#2f3648',
+        '--color-murekkep-3': '#5a6478',
+        '--color-kenar': '#b9c1d4',
+      }
+    : undefined,
+)
+
 function kisayol(olay: KeyboardEvent): void {
+  // F9: sunum kipi. Projeksiyonda fare aramadan girilip cikilabilsin.
+  if (olay.key === 'F9') {
+    olay.preventDefault()
+    kabuk.sunumuDegistir()
+    return
+  }
   if ((olay.ctrlKey || olay.metaKey) && olay.key.toLowerCase() === 'k') {
     olay.preventDefault()
     kabuk.paletAcik = !kabuk.paletAcik
@@ -36,14 +69,22 @@ onUnmounted(() => window.removeEventListener('keydown', kisayol))
 
 <template>
   <div
-    class="flex h-screen w-screen overflow-hidden bg-zemin font-govde text-murekkep antialiased"
+    class="flex h-screen w-screen overflow-hidden bg-zemin font-govde text-murekkep antialiased print:block print:h-auto print:w-auto print:overflow-visible"
+    :style="sunumTokenlari"
+    :data-sunum="kabuk.sunumKipi ? '1' : undefined"
   >
-    <IkonRay />
-    <BaglamListesi v-if="kabuk.listeAcik" />
+    <a
+      href="#calisma-alani"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-kutu focus:bg-marka focus:px-3 focus:py-2 focus:text-kucuk focus:text-white"
+    >
+      İçeriğe geç
+    </a>
+    <IkonRay v-if="!kabuk.sunumKipi" class="print:hidden" />
+    <BaglamListesi v-if="kabuk.listeAcik" class="print:hidden" />
 
-    <main class="flex min-w-0 flex-1 flex-col overflow-hidden">
-      <UstCubuk />
-      <div class="min-h-0 flex-1 overflow-hidden">
+    <main id="calisma-alani" class="flex min-w-0 flex-1 flex-col overflow-hidden print:block print:overflow-visible">
+      <UstCubuk class="print:hidden" />
+      <div class="min-h-0 flex-1 overflow-hidden print:block print:overflow-visible">
         <RouterView v-slot="{ Component }">
           <component :is="Component" />
         </RouterView>

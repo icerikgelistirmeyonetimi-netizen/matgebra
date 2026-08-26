@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   ChartLine,
+  Link2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -18,6 +19,8 @@ import {
   PanelLeft,
   Pencil,
   Pentagon,
+  Presentation,
+  Printer,
   RotateCw,
   Ruler,
   Scaling,
@@ -60,6 +63,9 @@ const LUCIDE = {
   kapat: X,
   panel: PanelLeft,
   bilgi: Info,
+  baglanti: Link2,
+  sunum: Presentation,
+  yazdir: Printer,
   kilit: Lock,
   // arac cubugu
   imlec: MousePointer2,

@@ -52,6 +52,10 @@ function tuvaleGit(): void {
   yonlendirici.push({ name: 'tuval', query: { konu: slug } })
 }
 
+function kagidaGit(): void {
+  yonlendirici.push({ name: 'calisma-kagidi', params: { slug } })
+}
+
 watch(
   () => slug,
   async (deger) => {
@@ -146,6 +150,20 @@ watch(
             <span>
               <span class="block text-govde font-semibold text-murekkep">Boş koordinat düzlemi</span>
               <span class="block text-kucuk text-murekkep-3">Bu konu için serbest çizim</span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="flex items-center gap-2.5 rounded-kutu border border-kenar bg-yuzey px-4 py-3 text-left shadow-panel transition hover:border-marka/40 focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+            @click="kagidaGit"
+          >
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-kutu bg-tereyagi text-tereyagi-koyu">
+              <Ikon ad="yazdir" :boyut="21" />
+            </span>
+            <span>
+              <span class="block text-govde font-semibold text-murekkep">Çalışma kâğıdı</span>
+              <span class="block text-kucuk text-murekkep-3">Şekiller ve sorular, yazdırmaya hazır</span>
             </span>
           </button>
         </div>

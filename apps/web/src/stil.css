@@ -25,7 +25,8 @@
   /* --- murekkep --------------------------------------------------------- */
   --color-murekkep: #1e2333;
   --color-murekkep-2: #565f78;
-  --color-murekkep-3: #8b94ab;
+  /* AA denetiminde 3.03 cikiyordu; kucuk puntoda okunmuyordu. 4.79. */
+  --color-murekkep-3: #666f89;
 
   /* --- marka ------------------------------------------------------------ */
   --color-marka: #6c5cc4;
@@ -42,18 +43,20 @@
   --color-notr: #e4e8f2;
 
   /* --- pastel palet: koyu kardesler (kenar, etiket, yazi) --------------- */
-  --color-nane-koyu: #2e7d62;
+  /* Her ton, kendi pastel dolgusu uzerinde en az 4.5:1 (AA) olacak sekilde
+     koyulastirildi. Denetim: npm run kontrast -w @matgebra/web */
+  --color-nane-koyu: #256b53;
   --color-lavanta-koyu: #5b4b9e;
-  --color-seftali-koyu: #a2591d;
+  --color-seftali-koyu: #8f4d17;
   --color-gok-koyu: #1f6193;
-  --color-gul-koyu: #a34551;
-  --color-tereyagi-koyu: #856713;
-  --color-notr-koyu: #5a637a;
+  --color-gul-koyu: #943c48;
+  --color-tereyagi-koyu: #7a5f11;
+  --color-notr-koyu: #4e576d;
 
   /* --- durum ------------------------------------------------------------ */
-  --color-basari: #2e7d62;
-  --color-uyari: #a2591d;
-  --color-hata: #a34551;
+  --color-basari: #256b53;
+  --color-uyari: #8f4d17;
+  --color-hata: #943c48;
 
   /* --- tipografi --------------------------------------------------------
      Uc yuz, uc gorev:

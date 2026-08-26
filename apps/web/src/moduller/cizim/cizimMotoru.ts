@@ -111,6 +111,17 @@ interface AracKurali {
 const isaret = (o: JXG.GeometryElement | undefined): string => (o ? o.name || o.id : '')
 
 /**
+ * Cizim butcesi.
+ *
+ * Tahtaya sinirsiz oge eklenebilseydi surukleme yavaslar, sonunda tarayici
+ * kilitlenirdi. En agir sahnede 96 oge var; 600 rahat bir tavan ama
+ * kacak bir dongude fren gorevi goruyor. Serbest kalemde ayrica nokta
+ * basina tavan var: uzun bir surukleme tek basina yuzlerce nokta uretir.
+ */
+const OGE_BUTCESI = 600
+const KALEM_NOKTA_TAVANI = 400
+
+/**
  * Tur sinamalari elType yerine elementClass uzerinden yapiliyor.
  *
  * elType'a bakmak tureilmis noktalari disarida birakiyordu: orta nokta
@@ -412,6 +423,13 @@ export class CizimMotoru {
     }
     if (this.arac === 'sec') return
 
+    if (this.tumOgeler().length >= OGE_BUTCESI) {
+      this.onNot(
+        `Çizim bütçesi doldu (${OGE_BUTCESI} nesne). Geri alın ya da tahtayı temizleyin.`,
+      )
+      return
+    }
+
     if (this.secim.length === 0 && this.uretilenBuTur.length === 0) this.islemBaslat()
 
     const [x, y] = this.tahta.getUsrCoordsOfMouse(olay as never)
@@ -535,6 +553,7 @@ export class CizimMotoru {
   private kalemSurukle(olay: Event): void {
     if (!this.kalemCiziyor) return
     const [x, y] = this.tahta.getUsrCoordsOfMouse(olay as never)
+    if (this.yol.length >= KALEM_NOKTA_TAVANI) return
     const son = this.yol[this.yol.length - 1]
     // Cok yakin noktalari atiyoruz: yol yuzlerce noktayla sismesin.
     if (son && Math.hypot(x - son[0], y - son[1]) < 0.06) return

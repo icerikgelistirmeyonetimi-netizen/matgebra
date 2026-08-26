@@ -8,6 +8,7 @@ import { api, type SahneVerisi, type SoruVerisi } from '@/ortak/api'
 import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
 import Ikon from '@/ortak/bilesenler/Ikon.vue'
+import { baglantiKopyala, pngIndir, svgIndir } from '@/ortak/disaAktar'
 
 /**
  * Sahne gorunumu - motorun okuma yonu.
@@ -28,6 +29,36 @@ const adimNo = ref(0)
 const kurulum = shallowRef<Kurulum | null>(null)
 const tahta = shallowRef<JXG.Board | null>(null)
 const sorular = ref<SoruVerisi[]>([])
+/** Disa aktarim ve paylasim geri bildirimi; bir sure sonra kendi siliniyor. */
+const bildirim = ref('')
+let bildirimZaman: ReturnType<typeof setTimeout> | null = null
+
+function bildir(metin: string): void {
+  bildirim.value = metin
+  if (bildirimZaman) clearTimeout(bildirimZaman)
+  bildirimZaman = setTimeout(() => (bildirim.value = ''), 2600)
+}
+
+async function disaAktar(bicim: 'svg' | 'png'): Promise<void> {
+  const t = tahta.value
+  if (!t || !sahne.value) return
+  try {
+    if (bicim === 'svg') svgIndir(t, sahne.value.slug)
+    else await pngIndir(t, sahne.value.slug)
+    bildir(`${bicim.toUpperCase()} indirildi`)
+  } catch (e) {
+    bildir(e instanceof Error ? e.message : String(e))
+  }
+}
+
+async function baglantiVer(): Promise<void> {
+  try {
+    await baglantiKopyala()
+    bildir('Bağlantı panoya kopyalandı')
+  } catch {
+    bildir('Bağlantı kopyalanamadı')
+  }
+}
 
 const SAHNE_TURU: Record<string, string> = {
   kesif: 'Keşif',
@@ -127,8 +158,8 @@ watch(
 
     <template v-else-if="sahne">
       <!-- tahta -->
-      <div class="flex min-w-0 flex-1 flex-col">
-        <div class="flex h-11 shrink-0 items-center gap-3 border-b border-kenar bg-yuzey px-4">
+      <div class="relative flex min-w-0 flex-1 flex-col">
+        <div class="flex h-11 shrink-0 items-center gap-1.5 border-b border-kenar bg-yuzey px-4">
           <span
             class="rounded px-2 py-0.5 text-mikro font-semibold"
             :class="sahne.tur === 'gercek_hayat' ? 'bg-nane text-nane-koyu' : 'bg-gok text-gok-koyu'"
@@ -142,12 +173,61 @@ watch(
           </span>
           <button
             type="button"
+            title="Bağlantıyı kopyala"
+            aria-label="Sahne bağlantısını kopyala"
+            class="rounded p-1.5 text-murekkep-3 transition hover:bg-yuzey-2 hover:text-murekkep-2 focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+            @click="baglantiVer"
+          >
+            <Ikon ad="baglanti" :boyut="15" />
+          </button>
+          <button
+            type="button"
+            title="SVG olarak indir"
+            aria-label="Sahneyi SVG olarak indir"
+            class="rounded px-1.5 py-1 font-mono text-mikro text-murekkep-3 transition hover:bg-yuzey-2 hover:text-murekkep-2 focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+            @click="disaAktar('svg')"
+          >
+            SVG
+          </button>
+          <button
+            type="button"
+            title="PNG olarak indir"
+            aria-label="Sahneyi PNG olarak indir"
+            class="rounded px-1.5 py-1 font-mono text-mikro text-murekkep-3 transition hover:bg-yuzey-2 hover:text-murekkep-2 focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+            @click="disaAktar('png')"
+          >
+            PNG
+          </button>
+          <button
+            type="button"
+            :title="kabuk.sunumKipi ? 'Sunum kipinden çık (F9)' : 'Sunum kipi (F9)'"
+            :aria-pressed="kabuk.sunumKipi"
+            class="rounded p-1.5 transition focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+            :class="
+              kabuk.sunumKipi
+                ? 'bg-marka text-white'
+                : 'text-murekkep-3 hover:bg-yuzey-2 hover:text-murekkep-2'
+            "
+            @click="kabuk.sunumuDegistir()"
+          >
+            <Ikon ad="sunum" :boyut="15" />
+          </button>
+          <button
+            type="button"
             class="rounded-kutu bg-marka px-3 py-1.5 text-kucuk font-medium text-white transition hover:bg-marka-koyu focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
             @click="kendinCiz"
           >
             Kendin çiz
           </button>
         </div>
+
+        <p
+          v-if="bildirim"
+          role="status"
+          class="pointer-events-none absolute top-14 left-1/2 z-30 -translate-x-1/2 rounded-kutu bg-murekkep px-3 py-1.5 text-kucuk text-white shadow-panel"
+        >
+          {{ bildirim }}
+        </p>
 
         <div class="min-h-0 flex-1">
           <SahneTahtasi
