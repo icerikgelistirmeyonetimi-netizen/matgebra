@@ -349,5 +349,50 @@ sunucu.registerTool(
   },
 )
 
+sunucu.registerTool(
+  'kavram_yaz',
+  {
+    title: 'Kavram yaz',
+    description:
+      'Kavram sözlüğüne giriş ekler ve konulara bağlar. "tanitilan" o kavramın ilk kez orada öğretildiğini, "kullanilan" önceden bilinip orada kullanıldığını söyler. Kütüphane ekranı ve konu sayfası bu bağı okur.',
+    inputSchema: {
+      alan: z.enum(ALANLAR),
+      ad: z.string().min(2).max(80),
+      tanim: z.string().min(10),
+      latex: z.string().optional(),
+      tanitilan: z.array(z.string()).optional().describe('Kavramı tanıtan konu slugları'),
+      kullanilan: z.array(z.string()).optional().describe('Kavramı kullanan konu slugları'),
+    },
+  },
+  async (girdi) => {
+    try {
+      return metin(veri.kavramYaz(girdi))
+    } catch (e) {
+      return hataMetni(e)
+    }
+  },
+)
+
+sunucu.registerTool(
+  'formul_yaz',
+  {
+    title: 'Formül kartı yaz',
+    description: 'Konuya formül kartı ekler. LaTeX olarak yazılır, konu sayfasında gösterilir.',
+    inputSchema: {
+      konuSlug: z.string(),
+      ad: z.string().min(2).max(80),
+      latex: z.string().min(1),
+      aciklama: z.string().optional().describe('Formülün neden böyle olduğunu anlatan bir cümle'),
+    },
+  },
+  async (girdi) => {
+    try {
+      return metin(veri.formulYaz(girdi))
+    } catch (e) {
+      return hataMetni(e)
+    }
+  },
+)
+
 const tasima = new StdioServerTransport()
 await sunucu.connect(tasima)

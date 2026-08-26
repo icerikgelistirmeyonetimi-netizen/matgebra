@@ -107,11 +107,35 @@ export interface SahneOzeti {
 
 export interface KonuAyrinti extends Omit<KonuOzeti, 'sira' | 'sahneSayisi' | 'ornekSayisi' | 'kazanimSayisi'> {
   sinifAd: string
+  kavramlar: Array<{ ad: string; slug: string; tanim: string; latex: string | null; rol: string }>
+  formuller: Array<{ ad: string; latex: string; aciklama: string }>
+  sorular: SoruVerisi[]
   kazanimlar: Kazanim[]
   onKosullar: KonuBagi[]
   sonrakiKonular: KonuBagi[]
   sahneler: SahneOzeti[]
   ornekler: Array<{ id: number; baslik: string; hikaye: string; soru: string }>
+}
+
+export interface SoruVerisi {
+  id: number
+  tip: string
+  govde: string
+  secenekler: string[]
+  cevap: unknown
+  ipucu: string
+  cozum: string
+  zorluk: number
+  puan: number
+  sahneSlug: string | null
+}
+
+export interface IlerlemeKaydi {
+  konuSlug: string
+  durum: string
+  puan: number
+  deneme: number
+  sonErisim: string | null
 }
 
 export interface DeneyOzeti {
@@ -248,6 +272,35 @@ export const api = {
       yol('palet', '/palet'),
     ),
   ara: (q: string) => (STATIK ? statikAra(q) : getir<AramaSonucu>(`/ara?q=${encodeURIComponent(q)}`)),
+  sahneSorulari: (slug: string) =>
+    getir<SoruVerisi[]>(yol(`sahneler/${slug}/sorular`, `/sahneler/${slug}/sorular`)),
+  kavramlar: () =>
+    getir<
+      Array<{
+        ad: string
+        slug: string
+        tanim: string
+        latex: string | null
+        alan: string
+        alanAd: string
+        konular: Array<{ slug: string; ad: string; seviye: number; rol: string }>
+      }>
+    >(yol('kavramlar', '/kavramlar')),
+  formuller: () =>
+    getir<
+      Array<{
+        ad: string
+        latex: string
+        aciklama: string
+        konuSlug: string
+        konuAd: string
+        seviye: number
+        alan: string
+      }>
+    >(yol('formuller', '/formuller')),
+  ilerleme: () => getir<IlerlemeKaydi[]>(yol('ilerleme', '/ilerleme')),
+  ilerlemeYaz: (govde: { konuSlug: string; dogru: boolean; puan: number }) =>
+    gonder<{ konuSlug: string; puan: number; deneme: number }>('/ilerleme', govde),
   deneyler: (konu?: string) =>
     getir<DeneyOzeti[]>(yol('deneyler', `/deneyler${konu ? `?konu=${konu}` : ''}`)).then((liste) =>
       STATIK && konu ? liste.filter((d) => d.konuSlug === konu) : liste,

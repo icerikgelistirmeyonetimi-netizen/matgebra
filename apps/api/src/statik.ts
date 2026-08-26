@@ -43,8 +43,11 @@ function main(): void {
   yaz('palet.json', depo.stiller())
   yaz('moduller.json', depo.moduller())
   yaz('kapsama.json', depo.kapsamaRaporu())
+  yaz('kavramlar.json', depo.kavramlar())
+  yaz('formuller.json', depo.formuller())
   // Statik surumde kaydetme yok; liste bos gecer ki arayuz hata vermesin.
   yaz('cizimler.json', [])
+  yaz('ilerleme.json', [])
 
   const siniflar = db
     .select({ seviye: s.sinif.seviye })
@@ -70,6 +73,7 @@ function main(): void {
   const sahneler = db.select({ slug: s.sahne.slug }).from(s.sahne).all()
   for (const { slug } of sahneler) {
     yaz(`sahneler/${slug}.json`, depo.sahne(slug))
+    yaz(`sahneler/${slug}/sorular.json`, depo.sahneSorulari(slug))
   }
 
   // Arama dizini: FTS5 sunucuda kalir; statik surumde arama tarayicida ayni

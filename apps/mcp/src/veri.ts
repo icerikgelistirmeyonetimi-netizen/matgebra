@@ -577,3 +577,80 @@ export function deneyListele(sinif?: number) {
     .orderBy(asc(s.sinif.seviye))
     .all()
 }
+
+/** Kavram sozlugune giris ekler ve konulara baglar. */
+export function kavramYaz(g: {
+  alan: 'geometri' | 'olasilik'
+  ad: string
+  tanim: string
+  latex?: string
+  tanitilan?: string[]
+  kullanilan?: string[]
+}) {
+  const alan = db.select({ id: s.alan.id }).from(s.alan).where(eq(s.alan.slug, g.alan)).get()
+  if (!alan) throw new Error(`Alan bulunamadi: ${g.alan}`)
+  const slug = slugla(g.ad)
+  const eksik: string[] = []
+
+  const yaz = ham.transaction(() => {
+    db.insert(s.kavram)
+      .values({
+        alanId: alan.id,
+        ad: g.ad,
+        adNorm: normalize(g.ad),
+        slug,
+        tanim: g.tanim,
+        latex: g.latex ?? null,
+      })
+      .onConflictDoUpdate({
+        target: s.kavram.slug,
+        set: { tanim: g.tanim, latex: g.latex ?? null, adNorm: normalize(g.ad) },
+      })
+      .run()
+    const kavramId = db
+      .select({ id: s.kavram.id })
+      .from(s.kavram)
+      .where(eq(s.kavram.slug, slug))
+      .get()!.id
+
+    db.delete(s.konuKavram).where(eq(s.konuKavram.kavramId, kavramId)).run()
+    for (const [rol, liste] of [
+      ['tanitilan', g.tanitilan ?? []],
+      ['kullanilan', g.kullanilan ?? []],
+    ] as const) {
+      for (const konuSlug of liste) {
+        const konu = db.select({ id: s.konu.id }).from(s.konu).where(eq(s.konu.slug, konuSlug)).get()
+        if (!konu) {
+          eksik.push(konuSlug)
+          continue
+        }
+        db.insert(s.konuKavram).values({ konuId: konu.id, kavramId, rol }).onConflictDoNothing().run()
+      }
+    }
+    return kavramId
+  })
+
+  return { slug, id: yaz(), eksikKonular: eksik }
+}
+
+/** Konuya formul karti ekler. */
+export function formulYaz(g: { konuSlug: string; ad: string; latex: string; aciklama?: string }) {
+  const konu = db.select({ id: s.konu.id }).from(s.konu).where(eq(s.konu.slug, g.konuSlug)).get()
+  if (!konu) throw new Error(`Konu bulunamadi: ${g.konuSlug}`)
+  const sonSira = db
+    .select({ n: sql<number>`coalesce(max(${s.formul.sira}), 0)` })
+    .from(s.formul)
+    .get()!.n
+  const [satir] = db
+    .insert(s.formul)
+    .values({
+      konuId: konu.id,
+      ad: g.ad,
+      latex: g.latex,
+      aciklama: g.aciklama ?? '',
+      sira: sonSira + 1,
+    })
+    .returning({ id: s.formul.id })
+    .all()
+  return { id: satir!.id }
+}

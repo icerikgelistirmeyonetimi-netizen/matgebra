@@ -525,7 +525,7 @@ export class CizimMotoru {
   ozet(): Array<{ tip: string; adet: number }> {
     const sayim = new Map<string, number>()
     for (const o of this.tumOgeler()) {
-      if (o.elType === 'text') continue
+      if (o.elType === 'text' || o.elType === 'label') continue
       sayim.set(o.elType, (sayim.get(o.elType) ?? 0) + 1)
     }
     return [...sayim.entries()].map(([tip, adet]) => ({ tip, adet }))
@@ -850,6 +850,29 @@ export const aracVarMi = (anahtar: string): boolean => anahtar in KURALLAR || an
 
 /** Arayuzun hangi araclari etkin gosterecegini bilmesi icin. */
 export const HAZIR_ARACLAR = new Set([...Object.keys(KURALLAR), 'sec', 'sil'])
+
+/** Motor tip adlarinin Turkce karsiliklari - arayuzde gosterim icin. */
+export const NESNE_TIP_ADI: Record<string, string> = {
+  point: 'nokta',
+  glider: 'bağlı nokta',
+  midpoint: 'orta nokta',
+  intersection: 'kesişim',
+  segment: 'doğru parçası',
+  line: 'doğru',
+  arrow: 'vektör',
+  circle: 'çember',
+  circumcircle: 'çember',
+  polygon: 'çokgen',
+  regularpolygon: 'düzgün çokgen',
+  arc: 'yay',
+  sector: 'daire dilimi',
+  angle: 'açı',
+  perpendicular: 'dikme',
+  parallel: 'paralel',
+  bisector: 'açıortay',
+  tangent: 'teğet',
+  reflection: 'yansıma',
+}
 
 /** Sayisal secenek etiketleri. */
 export const SECENEK_ETIKETI: Record<keyof Secenekler, string> = {

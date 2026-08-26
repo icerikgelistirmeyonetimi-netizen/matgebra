@@ -8,6 +8,8 @@ import { GERCEK_HAYAT_ORNEKLERI, SAHNELER } from './sahneler.js'
 import { sahneYaz } from './sahneYaz.js'
 import { DENEYLER } from './deneyler.js'
 import { deneyYaz } from './deneyYaz.js'
+import { SORULAR } from './sorular.js'
+import { KAVRAMLAR, FORMULLER } from './kavramlar.js'
 
 /**
  * Tohumlama.
@@ -161,6 +163,9 @@ function main(): void {
   // --- sahneler (konular yazildiktan sonra: sahne konuya baglidir)
   let sahneSayisi = 0
   let deneySayisi = 0
+  let soruSayisi = 0
+  let kavramSayisi = 0
+  let formulSayisi = 0
   let nesneSayisi = 0
   let adimSayisi = 0
   const sahneHatalari: string[] = []
@@ -226,6 +231,99 @@ function main(): void {
   })
   sahneleriYaz()
 
+  // --- sorular, kavramlar ve formuller (sahnelerden sonra: soru sahneye baglanir)
+  const ogretimYaz = ham.transaction(() => {
+    const alanId = new Map(
+      db.select({ id: s.alan.id, slug: s.alan.slug }).from(s.alan).all().map((a) => [a.slug, a.id]),
+    )
+    const konuIdSlug = new Map(
+      db.select({ id: s.konu.id, slug: s.konu.slug }).from(s.konu).all().map((k) => [k.slug, k.id]),
+    )
+    const sahneIdSlug = new Map(
+      db.select({ id: s.sahne.id, slug: s.sahne.slug }).from(s.sahne).all().map((x) => [x.slug, x.id]),
+    )
+
+    // --- sorular: tohumun sahiplendigi govdeler yeniden yazilir
+    for (const soru of SORULAR) {
+      const konuId = konuIdSlug.get(soru.konuSlug)
+      if (!konuId) {
+        sahneHatalari.push(`soru: konu bulunamadi (${soru.konuSlug})`)
+        continue
+      }
+      db.delete(s.soru).where(eq(s.soru.govde, soru.govde)).run()
+      db.insert(s.soru)
+        .values({
+          konuId,
+          sahneId: soru.sahneSlug ? (sahneIdSlug.get(soru.sahneSlug) ?? null) : null,
+          tip: soru.tip,
+          govde: soru.govde,
+          secenekJson: soru.secenekler.length ? JSON.stringify(soru.secenekler) : null,
+          cevapJson: JSON.stringify(soru.cevap),
+          ipucu: soru.ipucu,
+          cozum: soru.cozum,
+          zorluk: soru.zorluk,
+          puan: soru.puan,
+          durum: 'yayin',
+        })
+        .run()
+      soruSayisi++
+    }
+
+    // --- kavramlar
+    for (const k of KAVRAMLAR) {
+      const slug = slugla(k.ad)
+      db.insert(s.kavram)
+        .values({
+          alanId: alanId.get(k.alan)!,
+          ad: k.ad,
+          adNorm: normalize(k.ad),
+          slug,
+          tanim: k.tanim,
+          latex: k.latex ?? null,
+        })
+        .onConflictDoUpdate({
+          target: s.kavram.slug,
+          set: { tanim: k.tanim, latex: k.latex ?? null, adNorm: normalize(k.ad) },
+        })
+        .run()
+      const kavramId = db
+        .select({ id: s.kavram.id })
+        .from(s.kavram)
+        .where(eq(s.kavram.slug, slug))
+        .get()!.id
+      db.delete(s.konuKavram).where(eq(s.konuKavram.kavramId, kavramId)).run()
+      for (const [rol, liste] of [
+        ['tanitilan', k.tanitilan ?? []],
+        ['kullanilan', k.kullanilan ?? []],
+      ] as const) {
+        for (const konuSlug of liste) {
+          const konuId = konuIdSlug.get(konuSlug)
+          if (!konuId) {
+            sahneHatalari.push(`kavram ${k.ad}: konu bulunamadi (${konuSlug})`)
+            continue
+          }
+          db.insert(s.konuKavram).values({ konuId, kavramId, rol }).onConflictDoNothing().run()
+        }
+      }
+      kavramSayisi++
+    }
+
+    // --- formuller
+    for (const f of FORMULLER) {
+      const konuId = konuIdSlug.get(f.konuSlug)
+      if (!konuId) {
+        sahneHatalari.push(`formul ${f.ad}: konu bulunamadi (${f.konuSlug})`)
+        continue
+      }
+      db.delete(s.formul).where(eq(s.formul.ad, f.ad)).run()
+      db.insert(s.formul)
+        .values({ konuId, ad: f.ad, latex: f.latex, aciklama: f.aciklama, sira: formulSayisi })
+        .run()
+      formulSayisi++
+    }
+  })
+  ogretimYaz()
+
   // --- konu arama dizini
   ham.exec('DELETE FROM konu_fts')
   ham
@@ -265,6 +363,8 @@ function main(): void {
   console.log(`sahne         : ${sahneSayisi}  (${nesneSayisi} nesne, ${adimSayisi} adim)`)
   console.log(`gercek hayat  : ${GERCEK_HAYAT_ORNEKLERI.length}`)
   console.log(`deney         : ${deneySayisi}`)
+  console.log(`soru          : ${soruSayisi}`)
+  console.log(`kavram        : ${kavramSayisi}  (${formulSayisi} formül)`)
   console.log(`\nkazanim kapsamasi: ${kapsanan}/${toplamHedef}`)
 
   if (kapsanan < toplamHedef) {

@@ -45,6 +45,27 @@ saklanır: hangi araç hangi girdilerle çalıştı. Kayıt küçük kalır, ger
 aynı adımları yeniden oynatır ve motordan bağımsızdır. Geri/ileri alma da aynı
 mekanizmayı kullanır.
 
+## Öğrenme akışı
+
+Altı soru tipi: çoktan seçmeli, doğru/yanlış, sayısal, **tahtadan ölçüm**,
+**inşa görevi**, açık uçlu. Son ikisi soruyu metin olmaktan çıkarır:
+
+- *Tahtadan ölçüm* öğrenciyi sahneye gönderir, cevabı ekrandan okutur.
+- *İnşa görevi* serbest tuvalde çözülür; sistem tahtadaki nesneleri sayarak
+  denetler. Eksik varsa "1 çember, 1 düzgün çokgen" gibi Türkçe söyler.
+
+Denetim `@matgebra/core` içindeki `cevapDenetle` ile yapılır — arayüz kendi
+kuralını uydurmaz. İpucu ve çözüm kademeli açılır: çözüm ancak bir deneme
+yapıldıktan sonra görünür.
+
+> Denetim istemcide yapılıyor, yani cevaplar tarayıcıya iniyor. Bu bir öğretim
+> aracı, sınav değil. Sınav kipi gerekirse denetim sunucuya taşınır ve cevap
+> alanları yanıttan çıkarılır.
+
+Kavram sözlüğü konulara iki rolle bağlanır: *tanıtılan* (ilk kez orada
+öğretiliyor) ve *kullanılan*. Kütüphane ekranı sözlüğü, formül kartlarını ve
+kapsama raporunu bir arada tutar.
+
 ## Olasılık laboratuvarı
 
 Deney veritabanından gelir, benzetim tarayıcıda `@matgebra/core` ile koşar.
@@ -164,7 +185,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 05 | MCP içerik hattı | tamam |
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
-| 08 | Öğrenme akışı | bekliyor |
+| 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
 | 09 | İçerik üretimi | bekliyor |
 | 10 | Cila ve dışa aktarım | bekliyor |
 | 11 | Yönetim paneli | şema hazır |

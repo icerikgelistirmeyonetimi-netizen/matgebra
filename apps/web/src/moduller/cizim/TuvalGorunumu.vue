@@ -5,7 +5,8 @@ import type JXG from 'jsxgraph'
 import SahneTahtasi from '../sahne/SahneTahtasi.vue'
 import AracCubugu from './AracCubugu.vue'
 import { CizimMotoru, HAZIR_ARACLAR, SECENEK_ETIKETI, type Secenekler } from './cizimMotoru'
-import { api, type Arac, type CizimOzeti, type KonuAyrinti } from '@/ortak/api'
+import { api, type Arac, type CizimOzeti, type KonuAyrinti, type SoruVerisi } from '@/ortak/api'
+import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
 import Ikon from '@/ortak/bilesenler/Ikon.vue'
 
@@ -35,6 +36,13 @@ const kayitlar = ref<CizimOzeti[]>([])
 const kayitAdi = ref('')
 const kaydetAcik = ref(false)
 const kaydediliyor = ref(false)
+/** Adres cubugundaki gorev: insa gorevi tahtada canli denetlenir. */
+const gorev = ref<SoruVerisi | null>(null)
+
+/** Tahtadaki nesne sayimi - insa gorevi denetimine gider. */
+const tahtaSayimi = computed(() =>
+  Object.fromEntries(ozet.value.map((o) => [o.tip, o.adet])),
+)
 
 const seviye = computed(() => konu.value?.seviye ?? 12)
 
@@ -184,6 +192,11 @@ onMounted(async () => {
     kabuk.kirintiYaz([{ ad: 'Serbest Tuval' }])
   }
   araclar.value = await api.araclar(seviye.value)
+
+  const gorevId = Number(rota.query.gorev)
+  if (Number.isFinite(gorevId) && konu.value) {
+    gorev.value = konu.value.sorular.find((x) => x.id === gorevId) ?? null
+  }
 })
 
 onUnmounted(() => window.removeEventListener('keydown', klavye))
@@ -348,6 +361,14 @@ onUnmounted(() => window.removeEventListener('keydown', klavye))
       </div>
 
       <div class="min-h-0 flex-1 overflow-y-auto p-3.5">
+        <!-- insa gorevi: tahtadaki cizim canli denetlenir -->
+        <section v-if="gorev" class="mb-4">
+          <p class="mb-2 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+            Görev
+          </p>
+          <SoruKarti :soru="gorev" :konu-slug="konu?.slug ?? ''" :tahta-sayimi="tahtaSayimi" />
+        </section>
+
         <p class="mb-2 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
           Etkin araç
         </p>

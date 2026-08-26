@@ -58,6 +58,29 @@ app.get<{ Querystring: { q?: string } }>('/ara', async (istek) => depo.ara(istek
 
 app.get('/kapsama', async () => depo.kapsamaRaporu())
 
+/* --- sorular ve ilerleme ----------------------------------------------- */
+
+app.get<{ Params: { slug: string } }>('/sahneler/:slug/sorular', async (istek) =>
+  depo.sahneSorulari(istek.params.slug),
+)
+
+app.get('/kavramlar', async () => depo.kavramlar())
+
+app.get('/formuller', async () => depo.formuller())
+
+app.get('/ilerleme', async () => depo.ilerlemeOku())
+
+app.post<{ Body: { konuSlug?: string; dogru?: boolean; puan?: number } }>(
+  '/ilerleme',
+  async (istek, yanit) => {
+    const { konuSlug, dogru, puan } = istek.body ?? {}
+    if (!konuSlug || typeof dogru !== 'boolean') {
+      return yanit.code(400).send({ hata: 'konuSlug ve dogru zorunlu' })
+    }
+    return depo.ilerlemeYaz({ konuSlug, dogru, puan: puan ?? 1 })
+  },
+)
+
 /* --- olasilik deneyleri ------------------------------------------------ */
 
 app.get<{ Querystring: { konu?: string } }>('/deneyler', async (istek) =>

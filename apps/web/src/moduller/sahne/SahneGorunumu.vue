@@ -4,7 +4,8 @@ import { useRouter } from 'vue-router'
 import type JXG from 'jsxgraph'
 import SahneTahtasi from './SahneTahtasi.vue'
 import { sahneyiKur, vurgula, type Kurulum } from './sahneKurucu'
-import { api, type SahneVerisi } from '@/ortak/api'
+import { api, type SahneVerisi, type SoruVerisi } from '@/ortak/api'
+import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
 import Ikon from '@/ortak/bilesenler/Ikon.vue'
 
@@ -26,6 +27,7 @@ const hata = ref<string | null>(null)
 const adimNo = ref(0)
 const kurulum = shallowRef<Kurulum | null>(null)
 const tahta = shallowRef<JXG.Board | null>(null)
+const sorular = ref<SoruVerisi[]>([])
 
 const SAHNE_TURU: Record<string, string> = {
   kesif: 'Keşif',
@@ -83,6 +85,7 @@ watch(
     try {
       const veri = await api.sahne(deger)
       sahne.value = veri
+      sorular.value = await api.sahneSorulari(deger).catch(() => [])
       kabuk.kirintiYaz([
         { ad: 'Sınıflar', rota: { name: 'siniflar' } },
         { ad: veri.sinifAd, rota: { name: 'konular', params: { seviye: veri.seviye } } },
@@ -223,6 +226,21 @@ watch(
 
             <h3 class="mb-1.5 font-baslik text-orta font-semibold">{{ adim.baslik }}</h3>
             <p class="text-kucuk text-murekkep-2">{{ adim.anlatim }}</p>
+          </section>
+
+          <!-- sahneye bagli sorular -->
+          <section v-if="sorular.length" class="border-b border-kenar px-4 py-3.5">
+            <p class="mb-2.5 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+              Bu sahnenin soruları
+            </p>
+            <div class="space-y-2.5">
+              <SoruKarti
+                v-for="soru in sorular"
+                :key="soru.id"
+                :soru="soru"
+                :konu-slug="sahne.konuSlug"
+              />
+            </div>
           </section>
 
           <!-- nesne agaci -->

@@ -4,6 +4,7 @@ import { RouterLink, useRouter } from 'vue-router'
 import { api, type KonuAyrinti } from '@/ortak/api'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
 import Ikon from '@/ortak/bilesenler/Ikon.vue'
+import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 
 /**
  * Konu ayrinti ekrani.
@@ -19,6 +20,13 @@ const yonlendirici = useRouter()
 const konu = ref<KonuAyrinti | null>(null)
 const yukleniyor = ref(true)
 const acikKazanim = ref<number | null>(null)
+/** Bu oturumda dogru cozulen sorular - ilerleme cubugu icin. */
+const cozulenler = ref(new Set<number>())
+const cozulen = computed(() => cozulenler.value.size)
+
+function soruCozuldu(id: number, dogru: boolean): void {
+  if (dogru) cozulenler.value = new Set([...cozulenler.value, id])
+}
 
 const gercekHayatSahnesi = computed(() =>
   konu.value?.sahneler.find((s) => s.tur === 'gercek_hayat'),
@@ -49,6 +57,7 @@ watch(
   async (deger) => {
     yukleniyor.value = true
     acikKazanim.value = null
+    cozulenler.value = new Set()
     try {
       konu.value = await api.konu(deger)
       kabuk.kirintiYaz([
@@ -213,6 +222,73 @@ watch(
             </article>
           </div>
         </section>
+
+        <!-- alistirmalar -->
+        <section v-if="konu.sorular.length" class="mt-8">
+          <h2 class="mb-3 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+            Alıştırmalar
+            <span class="ml-1 font-govde tracking-normal normal-case text-murekkep-2">
+              {{ cozulen }} / {{ konu.sorular.length }} çözüldü
+            </span>
+          </h2>
+          <div class="space-y-3">
+            <SoruKarti
+              v-for="soru in konu.sorular"
+              :key="soru.id"
+              :soru="soru"
+              :konu-slug="konu.slug"
+              @cozuldu="(d) => soruCozuldu(soru.id, d)"
+            />
+          </div>
+        </section>
+
+        <!-- formuller -->
+        <section v-if="konu.formuller.length" class="mt-8">
+          <h2 class="mb-3 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+            Formüller
+          </h2>
+          <div class="grid gap-2.5 md:grid-cols-2">
+            <div
+              v-for="f in konu.formuller"
+              :key="f.ad"
+              class="rounded-kutu border border-kenar bg-yuzey p-3.5 shadow-panel"
+            >
+              <p class="mb-1.5 text-kucuk font-semibold">{{ f.ad }}</p>
+              <p class="mb-1.5 rounded bg-yuzey-2 px-2.5 py-1.5 font-mono text-kucuk text-marka-koyu">
+                {{ f.latex }}
+              </p>
+              <p class="text-mikro text-murekkep-2">{{ f.aciklama }}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- kavramlar -->
+        <section v-if="konu.kavramlar.length" class="mt-8">
+          <h2 class="mb-3 text-mikro tracking-[0.05em] font-semibold text-murekkep-3 uppercase">
+            Kavramlar
+          </h2>
+          <div class="overflow-hidden rounded-kutu border border-kenar bg-yuzey shadow-panel">
+            <div
+              v-for="(k, i) in konu.kavramlar"
+              :key="k.slug"
+              class="px-4 py-3"
+              :class="i > 0 ? 'border-t border-kenar' : ''"
+            >
+              <p class="mb-1 flex items-center gap-2">
+                <span class="text-kucuk font-semibold">{{ k.ad }}</span>
+                <span
+                  class="rounded px-1.5 py-0.5 text-mikro"
+                  :class="k.rol === 'tanitilan' ? 'bg-nane text-nane-koyu' : 'bg-yuzey-2 text-murekkep-3'"
+                >
+                  {{ k.rol === 'tanitilan' ? 'burada tanıtılıyor' : 'kullanılıyor' }}
+                </span>
+                <span v-if="k.latex" class="font-mono text-mikro text-marka-koyu">{{ k.latex }}</span>
+              </p>
+              <p class="text-kucuk text-murekkep-2">{{ k.tanim }}</p>
+            </div>
+          </div>
+        </section>
+
       </div>
 
       <!-- yan sutun: on kosul haritasi -->

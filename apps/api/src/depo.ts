@@ -209,8 +209,31 @@ export function konu(slug: string) {
     .where(eq(s.gercekHayatOrnegi.konuId, temel.id))
     .all()
 
+  const kavramlar = db
+    .select({
+      ad: s.kavram.ad,
+      slug: s.kavram.slug,
+      tanim: s.kavram.tanim,
+      latex: s.kavram.latex,
+      rol: s.konuKavram.rol,
+    })
+    .from(s.konuKavram)
+    .innerJoin(s.kavram, eq(s.kavram.id, s.konuKavram.kavramId))
+    .where(eq(s.konuKavram.konuId, temel.id))
+    .all()
+
+  const formuller = db
+    .select({ ad: s.formul.ad, latex: s.formul.latex, aciklama: s.formul.aciklama })
+    .from(s.formul)
+    .where(eq(s.formul.konuId, temel.id))
+    .orderBy(asc(s.formul.sira))
+    .all()
+
   return {
     ...temel,
+    kavramlar,
+    formuller,
+    sorular: sorular(temel.id),
     kazanimlar: kazanimlar.map((k) => ({
       ...k,
       maddeler: maddeler.filter((m) => m.kazanimId === k.id),
@@ -673,5 +696,158 @@ export function kosumlar(deneySlug: string, limit = 20) {
     .where(eq(s.deney.slug, deneySlug))
     .orderBy(desc(s.deneyKosum.id))
     .limit(limit)
+    .all()
+}
+
+/* ---------------------------------------------------------------- soru
+ * Denetim istemcide yapiliyor, yani cevap tarayiciya iniyor. Bu bir ogretim
+ * araci; sinav degil. Sinav kipi gerekirse cevap alani yanittan cikarilir
+ * ve denetim buraya tasinir.
+ */
+
+export function sorular(konuId: number, sahneSlug?: string) {
+  const kosullar = [eq(s.soru.konuId, konuId)]
+  if (sahneSlug) {
+    const sahne = db.select({ id: s.sahne.id }).from(s.sahne).where(eq(s.sahne.slug, sahneSlug)).get()
+    if (sahne) kosullar.push(eq(s.soru.sahneId, sahne.id))
+  }
+  const satirlar = db
+    .select({
+      id: s.soru.id,
+      tip: s.soru.tip,
+      govde: s.soru.govde,
+      secenekJson: s.soru.secenekJson,
+      cevapJson: s.soru.cevapJson,
+      ipucu: s.soru.ipucu,
+      cozum: s.soru.cozum,
+      zorluk: s.soru.zorluk,
+      puan: s.soru.puan,
+      sahneSlug: s.sahne.slug,
+    })
+    .from(s.soru)
+    .leftJoin(s.sahne, eq(s.sahne.id, s.soru.sahneId))
+    .where(and(...kosullar))
+    .orderBy(asc(s.soru.zorluk), asc(s.soru.id))
+    .all()
+
+  return satirlar.map((x) => ({
+    id: x.id,
+    tip: x.tip,
+    govde: x.govde,
+    secenekler: x.secenekJson ? (JSON.parse(x.secenekJson) as string[]) : [],
+    cevap: JSON.parse(x.cevapJson) as unknown,
+    ipucu: x.ipucu,
+    cozum: x.cozum,
+    zorluk: x.zorluk,
+    puan: x.puan,
+    sahneSlug: x.sahneSlug,
+  }))
+}
+
+/** Sahneye bagli sorular - sahne ekraninda gosterilir. */
+export function sahneSorulari(sahneSlug: string) {
+  const sahne = db
+    .select({ id: s.sahne.id, konuId: s.sahne.konuId })
+    .from(s.sahne)
+    .where(eq(s.sahne.slug, sahneSlug))
+    .get()
+  if (!sahne) return []
+  return sorular(sahne.konuId, sahneSlug)
+}
+
+/* -------------------------------------------------------------- ilerleme */
+
+export function ilerlemeOku() {
+  return db
+    .select({
+      konuSlug: s.konu.slug,
+      durum: s.ilerleme.durum,
+      puan: s.ilerleme.puan,
+      deneme: s.ilerleme.deneme,
+      sonErisim: s.ilerleme.sonErisim,
+    })
+    .from(s.ilerleme)
+    .innerJoin(s.konu, eq(s.konu.id, s.ilerleme.konuId))
+    .all()
+}
+
+export function ilerlemeYaz(g: { konuSlug: string; dogru: boolean; puan: number }) {
+  const konu = db.select({ id: s.konu.id }).from(s.konu).where(eq(s.konu.slug, g.konuSlug)).get()
+  if (!konu) throw new Error(`Konu bulunamadi: ${g.konuSlug}`)
+  const kullanici = yerelKullanici()
+  const mevcut = db
+    .select()
+    .from(s.ilerleme)
+    .where(and(eq(s.ilerleme.kullaniciId, kullanici), eq(s.ilerleme.konuId, konu.id)))
+    .get()
+
+  const puan = (mevcut?.puan ?? 0) + (g.dogru ? g.puan : 0)
+  const deneme = (mevcut?.deneme ?? 0) + 1
+
+  if (mevcut) {
+    db.update(s.ilerleme)
+      .set({ puan, deneme, durum: 'devam', sonErisim: new Date().toISOString() })
+      .where(eq(s.ilerleme.id, mevcut.id))
+      .run()
+  } else {
+    db.insert(s.ilerleme)
+      .values({
+        kullaniciId: kullanici,
+        konuId: konu.id,
+        durum: 'devam',
+        puan,
+        deneme,
+        sonErisim: new Date().toISOString(),
+      })
+      .run()
+  }
+  return { konuSlug: g.konuSlug, puan, deneme }
+}
+
+/* ------------------------------------------------------- kavram ve formul */
+
+export function kavramlar() {
+  return db
+    .select({
+      ad: s.kavram.ad,
+      slug: s.kavram.slug,
+      tanim: s.kavram.tanim,
+      latex: s.kavram.latex,
+      alan: s.alan.slug,
+      alanAd: s.alan.ad,
+    })
+    .from(s.kavram)
+    .innerJoin(s.alan, eq(s.alan.id, s.kavram.alanId))
+    .orderBy(asc(s.alan.sira), asc(s.kavram.ad))
+    .all()
+    .map((k) => ({
+      ...k,
+      konular: db
+        .select({ slug: s.konu.slug, ad: s.konu.ad, seviye: s.sinif.seviye, rol: s.konuKavram.rol })
+        .from(s.konuKavram)
+        .innerJoin(s.konu, eq(s.konu.id, s.konuKavram.konuId))
+        .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+        .innerJoin(s.kavram, eq(s.kavram.id, s.konuKavram.kavramId))
+        .where(eq(s.kavram.slug, k.slug))
+        .all(),
+    }))
+}
+
+export function formuller() {
+  return db
+    .select({
+      ad: s.formul.ad,
+      latex: s.formul.latex,
+      aciklama: s.formul.aciklama,
+      konuSlug: s.konu.slug,
+      konuAd: s.konu.ad,
+      seviye: s.sinif.seviye,
+      alan: s.alan.slug,
+    })
+    .from(s.formul)
+    .innerJoin(s.konu, eq(s.konu.id, s.formul.konuId))
+    .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+    .innerJoin(s.alan, eq(s.alan.id, s.konu.alanId))
+    .orderBy(asc(s.sinif.seviye), asc(s.formul.sira))
     .all()
 }
