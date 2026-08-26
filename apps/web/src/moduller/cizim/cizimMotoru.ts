@@ -31,6 +31,8 @@ export interface Secenekler {
   kenarSayisi: number
   aci: number
   oran: number
+  enAz: number
+  enCok: number
 }
 
 export const VARSAYILAN_SECENEK: Secenekler = {
@@ -38,6 +40,25 @@ export const VARSAYILAN_SECENEK: Secenekler = {
   kenarSayisi: 6,
   aci: 90,
   oran: 2,
+  enAz: -5,
+  enCok: 5,
+}
+
+/**
+ * Metin gerektiren araclarin girdileri.
+ *
+ * Sayisal seceneklerden ayri tutuldu: denetci paneli ikisini farkli
+ * bicimde gosteriyor (biri sayi kutusu, digeri yazi kutusu) ve tarif
+ * kaydinda ikisi de saklaniyor ki geri yukleme birebir olsun.
+ */
+export interface MetinSecenekleri {
+  ifade: string
+  yazi: string
+}
+
+export const VARSAYILAN_METIN: MetinSecenekleri = {
+  ifade: 'x^2 - 3',
+  yazi: 'not',
 }
 
 /** Bir arac cagrisinin yeniden calistirilabilir kaydi. */
@@ -56,18 +77,61 @@ interface Islem {
    */
   uretilenler: string[]
   secenek: Secenekler
+  /** Metin girdili araclarin (fonksiyon, metin, etiket) yazisi. */
+  metin?: MetinSecenekleri
+  /** Konumla calisan araclarin (kaydirici, metin, fonksiyon) tiklama yeri. */
+  konum?: { x: number; y: number }
+  /** Serbest kalemin gectigi yol. */
+  yol?: Array<[number, number]>
 }
 
 interface AracKurali {
   bekle: Beklenen[]
   /** Cokgen gibi degisken sayida nokta toplayan araclar. */
   serbest?: boolean
+  /**
+   * Nesne degil yer isteyen araclar: tek tiklamayla, tahtaya nokta
+   * birakmadan calisirlar. Tiklama yeri `m.konum` uzerinden okunur.
+   */
+  konumlu?: boolean
+  /** Suruklenerek cizilen araclar (serbest kalem). */
+  kalem?: boolean
+  /**
+   * Yeni oge uretmeyen, nesnenin bir ozelligini aciip kapatan araclar.
+   * Gecmise girmezler; ayni nesneye yeniden tiklamak geri alir.
+   */
+  anahtar?: boolean
   /** Denetci panelinde gosterilecek sayisal secenekler. */
   secenekler?: Array<keyof Secenekler>
+  /** Denetci panelinde gosterilecek yazi kutulari. */
+  metinler?: Array<keyof MetinSecenekleri>
   yap(m: CizimMotoru, secim: Secim): JXG.GeometryElement[]
 }
 
 const isaret = (o: JXG.GeometryElement | undefined): string => (o ? o.name || o.id : '')
+
+/**
+ * Tur sinamalari elType yerine elementClass uzerinden yapiliyor.
+ *
+ * elType'a bakmak tureilmis noktalari disarida birakiyordu: orta nokta
+ * 'midpoint', kayan nokta 'glider', kesisim 'intersection' dondurur ve
+ * hicbiri 'point' degildir. Bu yuzden bir orta noktanin uzerine cember
+ * kurulamiyor, bir kesisim noktasindan dogru cizilemiyordu. elementClass
+ * hepsini tek bir sinifta topluyor.
+ */
+const SINIF = JXG as unknown as {
+  OBJECT_CLASS_POINT: number
+  OBJECT_CLASS_LINE: number
+  OBJECT_CLASS_CIRCLE: number
+  OBJECT_CLASS_CURVE: number
+}
+const sinifi = (o: JXG.GeometryElement): number =>
+  (o as unknown as { elementClass: number }).elementClass
+
+const noktaMi = (o: JXG.GeometryElement): boolean => sinifi(o) === SINIF.OBJECT_CLASS_POINT
+const cizgiMi = (o: JXG.GeometryElement): boolean => sinifi(o) === SINIF.OBJECT_CLASS_LINE
+const cemberMi = (o: JXG.GeometryElement): boolean => sinifi(o) === SINIF.OBJECT_CLASS_CIRCLE
+const egriMi = (o: JXG.GeometryElement): boolean => sinifi(o) === SINIF.OBJECT_CLASS_CURVE
 
 export class CizimMotoru {
   readonly tahta: JXG.Board
@@ -88,8 +152,16 @@ export class CizimMotoru {
    */
   private readonly sistemIdleri: Set<string>
   secenek: Secenekler = { ...VARSAYILAN_SECENEK }
+  metin: MetinSecenekleri = { ...VARSAYILAN_METIN }
   yapisma = true
   yapismaAdimi = 1
+  /** Konumlu araclarin tiklama yeri; `yap` icinden okunur. */
+  konum: { x: number; y: number } = { x: 0, y: 0 }
+  /** Serbest kalemin o anki yolu. */
+  yol: Array<[number, number]> = []
+  /** Kaydiricilara sirayla a, b, c ... adi verilir. */
+  private kaydiriciSayaci = 0
+  private kalemCiziyor = false
 
   /** Dis dunyaya haber: gunluk satiri, secim durumu, gecmis degisimi. */
   onNot: (metin: string) => void = () => {}
@@ -99,6 +171,10 @@ export class CizimMotoru {
     this.tahta = tahta
     this.sistemIdleri = new Set(Object.keys(tahta.objects))
     tahta.on('down', (olay: Event) => this.tikla(olay))
+    // Serbest kalem tek tiklamayla degil surukleyerek calisiyor; digerleri
+    // bu iki olayi hic gormuyor.
+    tahta.on('move', (olay: Event) => this.kalemSurukle(olay))
+    tahta.on('up', () => this.kalemBirak())
   }
 
   // ------------------------------------------------------------- durum
@@ -115,6 +191,8 @@ export class CizimMotoru {
   get ipucu(): string {
     const kural = KURALLAR[this.arac]
     if (!kural) return ''
+    if (kural.kalem) return 'Basılı tutup sürükleyerek çizin'
+    if (kural.konumlu) return 'Tahtada bir yere tıklayın'
     if (kural.serbest) {
       return this.secim.length < 3
         ? `${3 - this.secim.length} nokta daha ekleyin`
@@ -142,6 +220,10 @@ export class CizimMotoru {
 
   get aktifSecenekler(): Array<keyof Secenekler> {
     return KURALLAR[this.arac]?.secenekler ?? []
+  }
+
+  get aktifMetinler(): Array<keyof MetinSecenekleri> {
+    return KURALLAR[this.arac]?.metinler ?? []
   }
 
   aracSec(anahtar: string): void {
@@ -243,6 +325,45 @@ export class CizimMotoru {
     return oge
   }
 
+  /** Kaydiricilara sirayla a, b, c ... adi verilir; ifadelerde kullanilir. */
+  kaydiriciAdi(): string {
+    const harfler = 'abcdefghkmnpqrstuvwz'
+    const i = this.kaydiriciSayaci++
+    const h = harfler[i % harfler.length] ?? 'a'
+    const tur = Math.floor(i / harfler.length)
+    return tur === 0 ? h : `${h}${tur}`
+  }
+
+  /** Nesnenin ekrandaki merkezi - etiket yerlestirmek icin. */
+  nesneMerkezi(o: JXG.GeometryElement): () => { x: number; y: number } {
+    const her = o as unknown as {
+      X?(): number
+      Y?(): number
+      point1?: JXG.Point
+      point2?: JXG.Point
+      center?: JXG.Point
+      vertices?: JXG.Point[]
+    }
+    if (typeof her.X === 'function' && typeof her.Y === 'function') {
+      return () => ({ x: her.X!(), y: her.Y!() })
+    }
+    if (her.point1 && her.point2) {
+      return () => ({
+        x: (her.point1!.X() + her.point2!.X()) / 2,
+        y: (her.point1!.Y() + her.point2!.Y()) / 2,
+      })
+    }
+    if (her.vertices?.length) {
+      const k = her.vertices.slice(0, -1)
+      return () => ({
+        x: k.reduce((t, v) => t + v.X(), 0) / k.length,
+        y: k.reduce((t, v) => t + v.Y(), 0) / k.length,
+      })
+    }
+    if (her.center) return () => ({ x: her.center!.X(), y: her.center!.Y() })
+    return () => ({ x: 0, y: 0 })
+  }
+
   /** Olcum etiketi - iki nesneye bagli, degeri canli hesaplanan metin. */
   olcumYaz(
     x: () => number,
@@ -269,9 +390,16 @@ export class CizimMotoru {
     const kural = KURALLAR[this.arac]
     if (!kural) return
 
+    // Ust uste duran nesnelerde once nokta secilir, en son cokgen.
+    // Bir cemberin uzerindeki noktaya tiklandiginda cember degil nokta
+    // secilmeli; cokgen genis alan kapladigi icin her zaman en arkada.
+    const oncelik = (o: JXG.GeometryElement) =>
+      noktaMi(o) ? 0 : o.elType.endsWith('polygon') ? 2 : 1
     const altinda = (
       this.tahta.getAllObjectsUnderMouse(olay as never) as JXG.GeometryElement[]
-    ).filter((o) => !['grid', 'axis', 'ticks'].includes(o.elType))
+    )
+      .filter((o) => !['grid', 'axis', 'ticks'].includes(o.elType))
+      .sort((a, b) => oncelik(a) - oncelik(b))
 
     if (this.arac === 'sil') {
       const hedef = altinda[0]
@@ -287,6 +415,20 @@ export class CizimMotoru {
     if (this.secim.length === 0 && this.uretilenBuTur.length === 0) this.islemBaslat()
 
     const [x, y] = this.tahta.getUsrCoordsOfMouse(olay as never)
+
+    // Serbest kalem: tiklama yolu baslatir, surukleme devam ettirir.
+    if (kural.kalem) {
+      this.kalemCiziyor = true
+      this.yol = [[x, y]]
+      return
+    }
+
+    // Konumlu arac: nesne toplamaz, tek tiklamayla tiklanan yerde calisir.
+    if (kural.konumlu) {
+      this.konum = { x, y }
+      this.bitir()
+      return
+    }
     const beklenen = kural.serbest ? 'nokta' : kural.bekle[this.secim.length]
     if (!beklenen) return
 
@@ -318,13 +460,13 @@ export class CizimMotoru {
     y: number,
   ): JXG.GeometryElement | null {
     if (beklenen === 'nokta') {
-      const mevcut = altinda.find((o) => o.elType === 'point')
+      const mevcut = altinda.find(noktaMi)
       if (mevcut) {
         this.girdiBuTur.push(isaret(mevcut))
         return mevcut
       }
-      const egri = altinda.find((o) =>
-        ['line', 'segment', 'circle', 'arc', 'curve', 'polygon'].includes(o.elType),
+      const egri = altinda.find(
+        (o) => cizgiMi(o) || cemberMi(o) || egriMi(o) || o.elType === 'polygon',
       )
       if (egri && egri.elType !== 'polygon') {
         const kayan = this.olustur('glider', [x, y, egri], {
@@ -342,13 +484,14 @@ export class CizimMotoru {
       return this.noktaYarat(x, y)
     }
 
-    const tur: Record<Exclude<Beklenen, 'nokta'>, string[]> = {
-      cizgi: ['line', 'segment', 'axis'],
-      cember: ['circle'],
-      cokgen: ['polygon'],
-      nesne: ['point', 'line', 'segment', 'circle', 'polygon', 'arc', 'curve'],
+    const sinama: Record<Exclude<Beklenen, 'nokta'>, (o: JXG.GeometryElement) => boolean> = {
+      cizgi: cizgiMi,
+      cember: cemberMi,
+      cokgen: (o) => o.elType === 'polygon' || o.elType === 'regularpolygon',
+      nesne: (o) =>
+        noktaMi(o) || cizgiMi(o) || cemberMi(o) || egriMi(o) || o.elType.endsWith('polygon'),
     }
-    const bulunan = altinda.find((o) => tur[beklenen].includes(o.elType))
+    const bulunan = altinda.find(sinama[beklenen])
     if (bulunan) this.girdiBuTur.push(isaret(bulunan))
     return bulunan ?? null
   }
@@ -373,6 +516,9 @@ export class CizimMotoru {
         girdiler: this.girdiBuTur,
         uretilenler: uretilen,
         secenek: { ...this.secenek },
+        metin: { ...this.metin },
+        konum: { ...this.konum },
+        yol: this.yol.length ? this.yol.map((p) => [...p] as [number, number]) : undefined,
       })
       this.ileri = []
     }
@@ -380,8 +526,29 @@ export class CizimMotoru {
     this.uretilenBuTur = []
     this.noktaBuTur = []
     this.girdiBuTur = []
+    this.yol = []
     this.secimiBirak()
     this.tahta.update()
+  }
+
+  // -------------------------------------------------------- serbest kalem
+  private kalemSurukle(olay: Event): void {
+    if (!this.kalemCiziyor) return
+    const [x, y] = this.tahta.getUsrCoordsOfMouse(olay as never)
+    const son = this.yol[this.yol.length - 1]
+    // Cok yakin noktalari atiyoruz: yol yuzlerce noktayla sismesin.
+    if (son && Math.hypot(x - son[0], y - son[1]) < 0.06) return
+    this.yol.push([x, y])
+  }
+
+  private kalemBirak(): void {
+    if (!this.kalemCiziyor) return
+    this.kalemCiziyor = false
+    if (this.yol.length < 2) {
+      this.yol = []
+      return
+    }
+    this.bitir()
   }
 
   /** Cokgeni el ile kapat (Enter). */
@@ -435,7 +602,13 @@ export class CizimMotoru {
     if (!kural) return null
 
     const oncekiSecenek = this.secenek
+    const oncekiMetin = this.metin
+    const oncekiKonum = this.konum
+    const oncekiYol = this.yol
     this.secenek = islem.secenek
+    if (islem.metin) this.metin = islem.metin
+    if (islem.konum) this.konum = islem.konum
+    this.yol = islem.yol ?? []
     this.islemBaslat()
     this.uretilenBuTur = []
     this.noktaBuTur = []
@@ -449,7 +622,8 @@ export class CizimMotoru {
       if (oge) secim.push(oge)
     }
 
-    const eksik = !kural.serbest && secim.length !== kural.bekle.length
+    const eksik = !kural.serbest && !kural.konumlu && !kural.kalem &&
+      secim.length !== kural.bekle.length
     let sonuc: Islem | null = null
     if (!eksik) {
       try {
@@ -461,6 +635,9 @@ export class CizimMotoru {
     }
 
     this.secenek = oncekiSecenek
+    this.metin = oncekiMetin
+    this.konum = oncekiKonum
+    this.yol = oncekiYol
     this.uretilenBuTur = []
     this.noktaBuTur = []
     this.girdiBuTur = []
@@ -516,6 +693,10 @@ export class CizimMotoru {
     this.gecmis = []
     this.ileri = []
     this.harfSayaci = 0
+    // Kaydirici sayaci da sifirlanmali: yoksa geri yuklenen cizimde
+    // kaydirici 'a' yerine 'b' adini aliyor ve ona dayanan fonksiyon
+    // ifadesi ("a*x^2") artik bos bir degiskene bakiyordu.
+    this.kaydiriciSayaci = 0
     this.secim = []
     this.tahta.update()
     this.onDurum()
@@ -525,7 +706,8 @@ export class CizimMotoru {
   ozet(): Array<{ tip: string; adet: number }> {
     const sayim = new Map<string, number>()
     for (const o of this.tumOgeler()) {
-      if (o.elType === 'text' || o.elType === 'label') continue
+      // Yazi ve eksen isaretleri cizim degil; sayimda gorunmemeli.
+      if (['text', 'label', 'ticks'].includes(o.elType)) continue
       sayim.set(o.elType, (sayim.get(o.elType) ?? 0) + 1)
     }
     return [...sayim.entries()].map(([tip, adet]) => ({ tip, adet }))
@@ -562,6 +744,13 @@ const ARAC_ADI: Record<string, string> = {
   dondurme: 'Döndürme',
   homoteti: 'Benzerlik',
   vektor: 'Vektör',
+  fonksiyon: 'Fonksiyon grafiği',
+  kaydirici: 'Kaydırıcı',
+  egri_yeri: 'Eğri yeri',
+  iz: 'İz',
+  metin: 'Metin',
+  etiket: 'Etiket',
+  kalem: 'Serbest kalem',
 }
 
 const derece = (r: number) => (r * 180) / Math.PI
@@ -817,6 +1006,109 @@ const KURALLAR: Record<string, AracKurali> = {
       return [m.kaydet(m.olustur('point', [nesne, d]) as never, 'nane')]
     },
   },
+  // --------------------------------------------------------------- ileri
+  fonksiyon: {
+    bekle: [],
+    konumlu: true,
+    metinler: ['ifade'],
+    yap: (m) => {
+      // Ifade JessieCode ile derleniyor: JSXGraph'in kendi ayristiricisi.
+      // eval kullanmiyoruz; kaydirici adlari (a, b, c) da ifadede gecerli
+      // oldugu icin "a*x^2" gibi canli parametreli grafikler kurulabiliyor.
+      const f = m.tahta.jc.snippet(m.metin.ifade, true, 'x', true)
+      const g = m.kaydet(m.olustur('functiongraph', [f], { strokeWidth: 2.5 }), 'gul')
+      return [
+        g,
+        m.olcumYaz(
+          () => m.konum.x,
+          () => m.konum.y,
+          () => `y = ${m.metin.ifade}`,
+          'gul',
+        ),
+      ]
+    },
+  },
+  kaydirici: {
+    bekle: [],
+    konumlu: true,
+    secenekler: ['enAz', 'enCok'],
+    yap: (m) => {
+      const ad = m.kaydiriciAdi()
+      const { x, y } = m.konum
+      return [
+        m.kaydet(
+          m.olustur(
+            'slider',
+            [
+              [x, y],
+              [x + 4, y],
+              [m.secenek.enAz, (m.secenek.enAz + m.secenek.enCok) / 2, m.secenek.enCok],
+            ],
+            { name: ad, snapWidth: 0.1, withLabel: true },
+          ),
+          'lavanta',
+        ),
+      ]
+    },
+  },
+  egri_yeri: {
+    bekle: ['nokta', 'nokta'],
+    yap: (m, [kayan, bagli]) => [
+      m.kaydet(m.olustur('tracecurve', [kayan, bagli], { strokeWidth: 2 }), 'seftali'),
+    ],
+  },
+  iz: {
+    bekle: ['nesne'],
+    anahtar: true,
+    yap: (m, [nesne]) => {
+      const acik = !nesne.visProp.trace
+      nesne.setAttribute({ trace: acik })
+      if (!acik) (nesne as unknown as { clearTrace?(): void }).clearTrace?.()
+      m.onNot(`${isaret(nesne)}: iz ${acik ? 'açıldı' : 'kapandı'}`)
+      return []
+    },
+  },
+
+  // ----------------------------------------------------------------- not
+  metin: {
+    bekle: [],
+    konumlu: true,
+    metinler: ['yazi'],
+    yap: (m) => {
+      const yazi = m.metin.yazi
+      return [m.olcumYaz(() => m.konum.x, () => m.konum.y, () => yazi, 'notr')]
+    },
+  },
+  etiket: {
+    bekle: ['nesne'],
+    metinler: ['yazi'],
+    yap: (m, [nesne]) => {
+      // Nesnenin adini degistirmiyoruz: ad kimliktir ve tarif kaydinda
+      // girdiler ada gore aranir. Bunun yerine nesneyi izleyen ayri bir
+      // yazi kuruluyor - silinebilir, geri alinabilir, kimligi bozmaz.
+      const yazi = m.metin.yazi
+      const yer = m.nesneMerkezi(nesne)
+      return [m.olcumYaz(() => yer().x, () => yer().y + 0.5, () => yazi, 'lavanta')]
+    },
+  },
+  kalem: {
+    bekle: [],
+    kalem: true,
+    yap: (m) => {
+      const yol = m.yol.map((p) => [...p] as [number, number])
+      return [
+        m.kaydet(
+          m.olustur(
+            'curve',
+            [yol.map((p) => p[0]), yol.map((p) => p[1])],
+            { strokeWidth: 3, highlight: false },
+          ),
+          'gul',
+        ),
+      ]
+    },
+  },
+
   homoteti: {
     bekle: ['nesne', 'nokta'],
     secenekler: ['oran'],
@@ -872,6 +1164,11 @@ export const NESNE_TIP_ADI: Record<string, string> = {
   bisector: 'açıortay',
   tangent: 'teğet',
   reflection: 'yansıma',
+  curve: 'eğri',
+  tracecurve: 'eğri yeri',
+  slider: 'kaydırıcı',
+  incircle: 'iç teğet çember',
+  orthogonalprojection: 'dik izdüşüm',
 }
 
 /** Sayisal secenek etiketleri. */
@@ -880,6 +1177,14 @@ export const SECENEK_ETIKETI: Record<keyof Secenekler, string> = {
   kenarSayisi: 'Kenar sayısı',
   aci: 'Açı (derece)',
   oran: 'Oran',
+  enAz: 'En az',
+  enCok: 'En çok',
+}
+
+/** Yazi kutusu etiketleri ve ipuclari. */
+export const METIN_ETIKETI: Record<keyof MetinSecenekleri, { ad: string; ipucu: string }> = {
+  ifade: { ad: 'y =', ipucu: 'x^2 - 3, sin(x), a*x + 2' },
+  yazi: { ad: 'Yazı', ipucu: 'tahtaya yazılacak metin' },
 }
 
 export { JXG }

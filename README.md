@@ -35,10 +35,18 @@ var olan bir noktaya tıklamak onu yeniden kullanır, bir çember ya da doğru
 üzerine tıklamak o nesne üzerinde **kayan nokta** (glider) yaratır — pergel
 davranışı buradan gelir.
 
-31 araç çalışıyor: temel çizim, şekil, inşa (dikme, paralel, orta dikme,
-açıortay, kesişim, teğet), ölçüm (uzunluk, açı, alan, çevre, eğim) ve dönüşüm
-(öteleme, yansıma, döndürme, benzerlik). Henüz bekleyen 7 araç: fonksiyon
-grafiği, kaydırıcı, eğri yeri, iz bırakma, metin, etiket, serbest kalem.
+**38 aracın hepsi çalışıyor:** temel çizim, şekil, inşa (dikme, paralel, orta
+dikme, açıortay, kesişim, teğet), ölçüm (uzunluk, açı, alan, çevre, eğim),
+dönüşüm (öteleme, yansıma, döndürme, benzerlik), ileri (fonksiyon grafiği,
+kaydırıcı, eğri yeri, iz) ve not (metin, etiket, serbest kalem).
+
+Üç etkileşim biçimi var: nesne toplayanlar (çoğu araç), **konumlu** olanlar
+(fonksiyon, kaydırıcı, metin — tek tıklamayla tıklanan yerde çalışır, tahtaya
+nokta bırakmaz) ve **sürüklenen** olan (serbest kalem).
+
+Fonksiyon ifadesi JSXGraph'in kendi ayrıştırıcısı JessieCode ile derlenir —
+`eval` yok. Kaydırıcılara sırayla `a`, `b`, `c` adı verildiği için ifadede
+geçebilirler: `a*x^2` yazıp kaydırıcıyı çekince parabol canlı değişir.
 
 **Kaydetme tarif olarak yapılır.** Tahtanın ham hâli değil, onu üreten adımlar
 saklanır: hangi araç hangi girdilerle çalıştı. Kayıt küçük kalır, geri yükleme
@@ -246,7 +254,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 01 | İskelet ve kabuk | tamam |
 | 02 | Veri katmanı ve MEB içe aktarımı | tamam |
 | 03 | Sahne motoru — okuma yönü | tamam |
-| 04 | Çizim atölyesi | 31 araç, geri/ileri alma, kaydetme çalışıyor; 7 araç bekliyor |
+| 04 | Çizim atölyesi | **tamam** — 38 aracın hepsi, geri/ileri alma, tarif olarak kaydetme |
 | 05 | MCP içerik hattı | tamam |
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |

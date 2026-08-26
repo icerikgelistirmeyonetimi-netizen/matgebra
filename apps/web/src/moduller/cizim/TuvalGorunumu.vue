@@ -4,7 +4,16 @@ import { useRoute } from 'vue-router'
 import type JXG from 'jsxgraph'
 import SahneTahtasi from '../sahne/SahneTahtasi.vue'
 import AracCubugu from './AracCubugu.vue'
-import { CizimMotoru, HAZIR_ARACLAR, SECENEK_ETIKETI, type Secenekler } from './cizimMotoru'
+import {
+  CizimMotoru,
+  HAZIR_ARACLAR,
+  METIN_ETIKETI,
+  SECENEK_ETIKETI,
+  VARSAYILAN_METIN,
+  VARSAYILAN_SECENEK,
+  type MetinSecenekleri,
+  type Secenekler,
+} from './cizimMotoru'
 import { api, type Arac, type CizimOzeti, type KonuAyrinti, type SoruVerisi } from '@/ortak/api'
 import SoruKarti from '@/moduller/ogrenme/SoruKarti.vue'
 import { kabukDeposu } from '@/uygulama/kabukDeposu'
@@ -30,7 +39,9 @@ const ipucu = ref('')
 const geriAlinabilir = ref(false)
 const ileriAlinabilir = ref(false)
 const aktifSecenekler = ref<Array<keyof Secenekler>>([])
-const secenek = ref<Secenekler>({ yaricap: 3, kenarSayisi: 6, aci: 90, oran: 2 })
+const secenek = ref<Secenekler>({ ...VARSAYILAN_SECENEK })
+const aktifMetinler = ref<Array<keyof MetinSecenekleri>>([])
+const metinSecenek = ref<MetinSecenekleri>({ ...VARSAYILAN_METIN })
 const ozet = ref<Array<{ tip: string; adet: number }>>([])
 const kayitlar = ref<CizimOzeti[]>([])
 const kayitAdi = ref('')
@@ -58,6 +69,17 @@ const TIP_ADI: Record<string, string> = {
   sector: 'daire dilimi',
   angle: 'açı',
   arrow: 'vektör',
+  midpoint: 'orta nokta',
+  intersection: 'kesişim',
+  perpendicular: 'dikme',
+  parallel: 'paralel',
+  bisector: 'açıortay',
+  tangent: 'teğet',
+  reflection: 'yansıma',
+  curve: 'eğri',
+  tracecurve: 'eğri yeri',
+  slider: 'kaydırıcı',
+  orthogonalprojection: 'dik izdüşüm',
 }
 
 function durumuTazele(): void {
@@ -67,6 +89,7 @@ function durumuTazele(): void {
   geriAlinabilir.value = m.geriAlinabilir
   ileriAlinabilir.value = m.ileriAlinabilir
   aktifSecenekler.value = m.aktifSecenekler
+  aktifMetinler.value = m.aktifMetinler
   ozet.value = m.ozet()
 }
 
@@ -74,6 +97,7 @@ function tahtaHazir(t: JXG.Board): void {
   const m = new CizimMotoru(t)
   m.yapisma = eksenModu.value !== 'yok'
   m.secenek = { ...secenek.value }
+  m.metin = { ...metinSecenek.value }
   m.onNot = (metin) => {
     gunluk.value = [metin, ...gunluk.value].slice(0, 14)
   }
@@ -91,6 +115,11 @@ function aracSec(anahtar: string): void {
 function seceneginiYaz(anahtar: keyof Secenekler, deger: number): void {
   secenek.value = { ...secenek.value, [anahtar]: deger }
   if (motor.value) motor.value.secenek = { ...secenek.value }
+}
+
+function metniYaz(anahtar: keyof MetinSecenekleri, deger: string): void {
+  metinSecenek.value = { ...metinSecenek.value, [anahtar]: deger }
+  if (motor.value) motor.value.metin = { ...metinSecenek.value }
 }
 
 function eksenDegistir(mod: 'yok' | 'izgara' | 'tam'): void {
@@ -276,6 +305,26 @@ onUnmounted(() => window.removeEventListener('keydown', klavye))
               :step="a === 'oran' ? 0.5 : 1"
               class="w-16 rounded-md border border-kenar bg-yuzey px-2 py-1 text-kucuk tabular-nums focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
               @input="seceneginiYaz(a, Number(($event.target as HTMLInputElement).value))"
+            />
+          </label>
+        </template>
+
+        <!-- araca ozel yazi kutulari: fonksiyon ifadesi, metin, etiket -->
+        <template v-if="aktifMetinler.length">
+          <span class="h-5 w-px bg-kenar" />
+          <label
+            v-for="a in aktifMetinler"
+            :key="a"
+            class="flex items-center gap-1.5 text-kucuk text-murekkep-2"
+          >
+            {{ METIN_ETIKETI[a].ad }}
+            <input
+              type="text"
+              :value="metinSecenek[a]"
+              :placeholder="METIN_ETIKETI[a].ipucu"
+              :class="a === 'ifade' ? 'w-48 font-mono' : 'w-36'"
+              class="rounded-md border border-kenar bg-yuzey px-2 py-1 text-kucuk focus-visible:ring-2 focus-visible:ring-marka focus-visible:outline-none"
+              @input="metniYaz(a, ($event.target as HTMLInputElement).value)"
             />
           </label>
         </template>
