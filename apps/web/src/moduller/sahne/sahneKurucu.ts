@@ -441,6 +441,47 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'olcum_oran': {
+          // Iki dogru parcasinin uzunluk orani. Trigonometrik oranlar
+          // bununla canli okunuyor: aci degisince sin, cos, tan da
+          // degisiyor ve ogrenci hangi kenarin hangisine bolundugunu
+          // ekranda goruyor. Konum, pay parcasinin ortasinin biraz ustu.
+          const uzunlugu = (x: JXG.GeometryElement | undefined) => {
+            const c = x as (JXG.Line & { point1?: JXG.Point; point2?: JXG.Point }) | undefined
+            if (!c?.point1 || !c.point2) return 0
+            return Math.hypot(c.point2.X() - c.point1.X(), c.point2.Y() - c.point1.Y())
+          }
+          const pay = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '') as JXG.Line | undefined
+          const payda = bul(baglilar(n, 'hedef', 'uc2')[0] ?? '') as JXG.Line | undefined
+          if (!pay || !payda) break
+          const yer = pay as JXG.Line & { point1?: JXG.Point; point2?: JXG.Point }
+          const yazi = tahta.create(
+            'text',
+            [
+              () => ((yer.point1?.X() ?? 0) + (yer.point2?.X() ?? 0)) / 2,
+              () => ((yer.point1?.Y() ?? 0) + (yer.point2?.Y() ?? 0)) / 2 + sayi(n, 'dy', 0.7),
+              () => {
+                const b = uzunlugu(payda)
+                const deger = b < 1e-9 ? null : uzunlugu(pay) / b
+                return `${n.etiket ?? 'oran'} = ${deger === null ? 'tanımsız' : deger.toFixed(3)}`
+              },
+            ],
+            {
+              fontSize: 13,
+              strokeColor: g.renk.kenar,
+              anchorX: 'middle',
+              anchorY: 'middle',
+              cssStyle: `font-family: inherit; font-weight: 700; background: ${p.yuzey}; padding: 1px 6px; border-radius: 5px`,
+              visible: n.gorunur,
+              fixed: true,
+              highlight: false,
+              layer: 10,
+            },
+          )
+          el.set(n.ad, tekOge(yazi))
+          break
+        }
+
         case 'olcum_egim': {
           // Iki nokta arasindaki egim: analitik geometride dogrunun
           // kimligi. Dikey dogruda tanimsiz oldugu icin oyle yaziliyor.

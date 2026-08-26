@@ -83,6 +83,8 @@ export const NESNE_TIPLERI = [
   'olcum_alan',
   'olcum_cevre',
   'olcum_egim',
+  // Iki uzunlugun orani: trigonometrik oranlar, Tales, benzerlik orani.
+  'olcum_oran',
   // donusum
   'oteleme',
   'yansima',

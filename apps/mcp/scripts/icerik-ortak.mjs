@@ -146,6 +146,17 @@ export const izdusum = (ad, kaynak, dogru, sira, o = {}) => ({
   ],
 })
 
+/** Merkez kosesindeki acinin ortay dogrusu. */
+export const aciOrtay = (ad, a, merkez, b, sira, o = {}) => ({
+  ...temel(ad, 'aci_ortay', sira, { rol: o.rol ?? 'seftali', gorunur: o.gorunur ?? true }),
+  stil: { rol: o.rol ?? 'seftali', kalinlik: o.kalinlik ?? 2, cizgiTipi: o.cizgiTipi ?? 'kesik' },
+  bagimliliklar: [
+    { kaynak: a, rol: 'uc1', sira: 0 },
+    { kaynak: merkez, rol: 'merkez', sira: 1 },
+    { kaynak: b, rol: 'uc2', sira: 2 },
+  ],
+})
+
 /** Iki noktanin orta dikmesi. */
 export const ortaDikme = (ad, a, b, sira, o = {}) => ({
   ...temel(ad, 'orta_dikme', sira, { rol: o.rol ?? 'lavanta', gorunur: o.gorunur ?? true }),
@@ -202,6 +213,23 @@ export const ucgenMerkezi = (ad, tip, koseler, sira, o = {}) => ({
     cizgiTipi: o.cizgiTipi ?? 'duz',
   },
   bagimliliklar: koseler.map((k, i) => ({ kaynak: k, rol: `uc${i + 1}`, sira: i })),
+})
+
+/**
+ * Iki dogru parcasinin uzunluk orani - trigonometrik oranlar burada canli
+ * okunuyor. `pay` ve `payda` cizgi nesnelerinin adlaridir, nokta degil.
+ */
+export const oran = (ad, pay, payda, sira, o = {}) => ({
+  ...temel(ad, 'olcum_oran', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? null,
+    katman: 3,
+  }),
+  parametreler: o.dy === undefined ? [] : [{ anahtar: 'dy', deger: o.dy, tur: 'sayi' }],
+  bagimliliklar: [
+    { kaynak: pay, rol: 'kaynak', sira: 0 },
+    { kaynak: payda, rol: 'hedef', sira: 1 },
+  ],
 })
 
 /** Iki nokta arasindaki egim olcumu. */
