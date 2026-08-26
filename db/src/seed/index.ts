@@ -1,4 +1,4 @@
-import { eq, sql } from 'drizzle-orm'
+import { eq, inArray, sql } from 'drizzle-orm'
 import { veritabaniAc } from '../baglanti.js'
 import * as s from '../schema/index.js'
 import { normalize, slugla } from '../metin.js'
@@ -6,6 +6,8 @@ import { KONULAR, konuSlug } from './konular.js'
 import { ALANLAR, ARACLAR, MODULLER, STILLER } from './temel.js'
 import { GERCEK_HAYAT_ORNEKLERI, SAHNELER } from './sahneler.js'
 import { sahneYaz } from './sahneYaz.js'
+import { DENEYLER } from './deneyler.js'
+import { deneyYaz } from './deneyYaz.js'
 
 /**
  * Tohumlama.
@@ -118,8 +120,14 @@ function main(): void {
     })
 
     // --- kazanim koprusu ve on kosullar bastan kurulur
-    db.delete(s.konuKazanim).run()
-    db.delete(s.onKosul).run()
+    //
+    // Yalnizca tohumun sahiplendigi konular icin: MCP ile sonradan eklenen
+    // konularin baglari toptan silmeyle yok olmamali.
+    const sahipId = [...konuId.values()]
+    if (sahipId.length) {
+      db.delete(s.konuKazanim).where(inArray(s.konuKazanim.konuId, sahipId)).run()
+      db.delete(s.onKosul).where(inArray(s.onKosul.konuId, sahipId)).run()
+    }
 
     for (const k of KONULAR) {
       const slug = konuSlug(k.sinif, k.ad, slugla)
@@ -152,6 +160,7 @@ function main(): void {
 
   // --- sahneler (konular yazildiktan sonra: sahne konuya baglidir)
   let sahneSayisi = 0
+  let deneySayisi = 0
   let nesneSayisi = 0
   let adimSayisi = 0
   const sahneHatalari: string[] = []
@@ -168,7 +177,23 @@ function main(): void {
       }
     }
 
-    db.delete(s.gercekHayatOrnegi).run()
+    for (const deney of DENEYLER) {
+      try {
+        deneySayisi += deneyYaz(db, deney).olay > -1 ? 1 : 0
+      } catch (e) {
+        sahneHatalari.push(`deney ${deney.slug}: ${e instanceof Error ? e.message : String(e)}`)
+      }
+    }
+
+    // Ayni sebep: MCP ile yazilmis ornekler tohumlamada silinmemeli.
+    db.delete(s.gercekHayatOrnegi)
+      .where(
+        inArray(
+          s.gercekHayatOrnegi.baslik,
+          GERCEK_HAYAT_ORNEKLERI.map((o) => o.baslik),
+        ),
+      )
+      .run()
     for (const ornek of GERCEK_HAYAT_ORNEKLERI) {
       const konu = db
         .select({ id: s.konu.id })
@@ -239,6 +264,7 @@ function main(): void {
   console.log(`on kosul      : ${kenarlar.length}`)
   console.log(`sahne         : ${sahneSayisi}  (${nesneSayisi} nesne, ${adimSayisi} adim)`)
   console.log(`gercek hayat  : ${GERCEK_HAYAT_ORNEKLERI.length}`)
+  console.log(`deney         : ${deneySayisi}`)
   console.log(`\nkazanim kapsamasi: ${kapsanan}/${toplamHedef}`)
 
   if (kapsanan < toplamHedef) {

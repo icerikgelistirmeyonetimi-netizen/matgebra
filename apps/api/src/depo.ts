@@ -556,3 +556,122 @@ export function cizimSil(id: number) {
   db.delete(s.cizim).where(eq(s.cizim.id, id)).run()
   return { silindi: id }
 }
+
+/* ---------------------------------------------------------------- deney
+ * Deney, arayuze @matgebra/core icindeki Deney bicimiyle verilir; boylece
+ * benzetim tarayicida ayni kodla kosar ve tohum ayni sonucu uretir.
+ */
+
+export function deneyler(konuSlug?: string) {
+  const kosullar = []
+  if (konuSlug) kosullar.push(eq(s.konu.slug, konuSlug))
+  return db
+    .select({
+      id: s.deney.id,
+      slug: s.deney.slug,
+      ad: s.deney.ad,
+      tur: s.deney.tur,
+      aciklama: s.deney.aciklama,
+      cekimSayisi: s.deney.cekimSayisi,
+      iadeVarMi: s.deney.iadeVarMi,
+      konuSlug: s.konu.slug,
+      konuAd: s.konu.ad,
+      seviye: s.sinif.seviye,
+      sinifAd: s.sinif.ad,
+    })
+    .from(s.deney)
+    .innerJoin(s.konu, eq(s.konu.id, s.deney.konuId))
+    .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+    .where(kosullar.length ? and(...kosullar) : undefined)
+    .orderBy(asc(s.sinif.seviye), asc(s.deney.id))
+    .all()
+}
+
+export function deney(slug: string) {
+  const temel = db
+    .select({
+      id: s.deney.id,
+      slug: s.deney.slug,
+      ad: s.deney.ad,
+      tur: s.deney.tur,
+      aciklama: s.deney.aciklama,
+      bagimsizMi: s.deney.bagimsizMi,
+      iadeVarMi: s.deney.iadeVarMi,
+      cekimSayisi: s.deney.cekimSayisi,
+      konuSlug: s.konu.slug,
+      konuAd: s.konu.ad,
+      seviye: s.sinif.seviye,
+      sinifAd: s.sinif.ad,
+    })
+    .from(s.deney)
+    .innerJoin(s.konu, eq(s.konu.id, s.deney.konuId))
+    .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+    .where(eq(s.deney.slug, slug))
+    .get()
+  if (!temel) return null
+
+  const sonuclar = db
+    .select()
+    .from(s.deneySonuc)
+    .where(eq(s.deneySonuc.deneyId, temel.id))
+    .orderBy(asc(s.deneySonuc.sira))
+    .all()
+
+  const olaylar = db.select().from(s.olay).where(eq(s.olay.deneyId, temel.id)).all()
+
+  return {
+    ...temel,
+    sonuclar: sonuclar.map((c) => ({
+      sonuc: c.sonuc,
+      agirlik: c.agirlik,
+      renkAnahtari: c.renkAnahtari,
+      sira: c.sira,
+    })),
+    olaylar: olaylar.map((o) => {
+      const kosul = JSON.parse(o.kosulJson) as {
+        sonuclar: string[]
+        kosul: string | null
+        deger: number | null
+      }
+      return { ad: o.ad, ...kosul, teorik: o.beklenenOlasilik }
+    }),
+  }
+}
+
+export function kosumKaydet(g: {
+  deneySlug: string
+  tohum: number
+  denemeSayisi: number
+  sonuc: unknown
+}) {
+  const d = db.select({ id: s.deney.id }).from(s.deney).where(eq(s.deney.slug, g.deneySlug)).get()
+  if (!d) throw new Error(`Deney bulunamadi: ${g.deneySlug}`)
+  const [satir] = db
+    .insert(s.deneyKosum)
+    .values({
+      deneyId: d.id,
+      tohum: g.tohum,
+      denemeSayisi: g.denemeSayisi,
+      sonucJson: JSON.stringify(g.sonuc),
+      zaman: new Date().toISOString(),
+    })
+    .returning({ id: s.deneyKosum.id })
+    .all()
+  return { id: satir!.id }
+}
+
+export function kosumlar(deneySlug: string, limit = 20) {
+  return db
+    .select({
+      id: s.deneyKosum.id,
+      tohum: s.deneyKosum.tohum,
+      denemeSayisi: s.deneyKosum.denemeSayisi,
+      zaman: s.deneyKosum.zaman,
+    })
+    .from(s.deneyKosum)
+    .innerJoin(s.deney, eq(s.deney.id, s.deneyKosum.deneyId))
+    .where(eq(s.deney.slug, deneySlug))
+    .orderBy(desc(s.deneyKosum.id))
+    .limit(limit)
+    .all()
+}

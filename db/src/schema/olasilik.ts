@@ -25,6 +25,8 @@ export const deney = sqliteTable(
     bagimsizMi: integer('bagimsiz_mi', { mode: 'boolean' }).notNull().default(true),
     /** Torba deneylerinde cekilen geri konuyor mu. */
     iadeVarMi: integer('iade_var_mi', { mode: 'boolean' }).notNull().default(true),
+    /** Kac cekim bir denemeyi olusturur; iki zar atisi icin 2. */
+    cekimSayisi: integer('cekim_sayisi').notNull().default(1),
     ...izlemeAlanlari,
   },
   (t) => [index('ix_deney_konu').on(t.konuId)],

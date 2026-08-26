@@ -45,6 +45,25 @@ saklanır: hangi araç hangi girdilerle çalıştı. Kayıt küçük kalır, ger
 aynı adımları yeniden oynatır ve motordan bağımsızdır. Geri/ileri alma da aynı
 mekanizmayı kullanır.
 
+## Olasılık laboratuvarı
+
+Deney veritabanından gelir, benzetim tarayıcıda `@matgebra/core` ile koşar.
+Zar, para, çark ve torba koordinat düzlemi gerektirmez; kendi görsel dillerinde
+çizilirler ama renkleri aynı palet tokenlarından alırlar.
+
+**Tohumlu rastgelelik.** `Math.random` yerine mulberry32 kullanılıyor: aynı
+tohum aynı sonuç dizisini üretir. Öğretmen tahtada gördüğünü öğrenciye aynen
+tekrarlatabilir, kaydedilen koşum sonradan doğrulanabilir. Tohum ekranda
+görünür ve değiştirilebilir.
+
+Her olayın teorik olasılığı yazma anında hesaplanıp saklanır; arayüz onu
+deneysel değerle yan yana gösterir. Bileşik deneylerde (iki zar) bütün sonuç
+uzayı sayılarak bulunur — 6×6 ızgarası ekranda da görünür. Koşul biçimleri:
+`toplam`, `toplam_en_az`, `hepsi_ayni`, `en_az_bir`, `hepsi`.
+
+Olasılık müfredatta 4. sınıfta başlar, 10. sınıfta biter; 11 ve 12'de ayrı bir
+olasılık teması yoktur.
+
 ## İçerik üretimi (MCP)
 
 Eğitim içeriği dosyaya değil veritabanına yazılır. `apps/mcp` bunun arayüzüdür:
@@ -144,7 +163,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 04 | Çizim atölyesi | 31 araç, geri/ileri alma, kaydetme çalışıyor; 7 araç bekliyor |
 | 05 | MCP içerik hattı | tamam |
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
-| 07 | Olasılık laboratuvarı | bekliyor |
+| 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | bekliyor |
 | 09 | İçerik üretimi | bekliyor |
 | 10 | Cila ve dışa aktarım | bekliyor |

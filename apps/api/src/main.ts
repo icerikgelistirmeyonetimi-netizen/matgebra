@@ -58,6 +58,33 @@ app.get<{ Querystring: { q?: string } }>('/ara', async (istek) => depo.ara(istek
 
 app.get('/kapsama', async () => depo.kapsamaRaporu())
 
+/* --- olasilik deneyleri ------------------------------------------------ */
+
+app.get<{ Querystring: { konu?: string } }>('/deneyler', async (istek) =>
+  depo.deneyler(istek.query.konu),
+)
+
+app.get<{ Params: { slug: string } }>('/deneyler/:slug', async (istek, yanit) => {
+  const sonuc = depo.deney(istek.params.slug)
+  if (!sonuc) return yanit.code(404).send({ hata: 'Deney bulunamadı' })
+  return sonuc
+})
+
+app.get<{ Params: { slug: string } }>('/deneyler/:slug/kosumlar', async (istek) =>
+  depo.kosumlar(istek.params.slug),
+)
+
+app.post<{
+  Params: { slug: string }
+  Body: { tohum?: number; denemeSayisi?: number; sonuc?: unknown }
+}>('/deneyler/:slug/kosumlar', async (istek, yanit) => {
+  const { tohum, denemeSayisi, sonuc } = istek.body ?? {}
+  if (typeof tohum !== 'number' || typeof denemeSayisi !== 'number') {
+    return yanit.code(400).send({ hata: 'tohum ve denemeSayisi zorunlu' })
+  }
+  return depo.kosumKaydet({ deneySlug: istek.params.slug, tohum, denemeSayisi, sonuc })
+})
+
 /* --- cizimler: tek yerel kullanici, kimlik dogrulama yok --------------- */
 
 app.get('/cizimler', async () => depo.cizimListele())

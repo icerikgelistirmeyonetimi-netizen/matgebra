@@ -3,13 +3,16 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod'
 import {
   ALANLAR,
+  DENEY_TURLERI,
   NESNE_TIPLERI,
   SAHNE_TURLERI,
   SORU_TIPLERI,
   bagimlilikGrafiginiDogrula,
+  deneySemasi,
   sahneSemasi,
+  teorikOlasilik,
 } from '@matgebra/core'
-import { sahneYaz } from '@matgebra/db'
+import { deneyYaz, sahneYaz } from '@matgebra/db'
 import * as veri from './veri.js'
 
 /**
@@ -53,6 +56,7 @@ sunucu.registerTool(
         tablolar: veri.semaOzeti(),
         nesneTipleri: NESNE_TIPLERI,
         sahneTurleri: SAHNE_TURLERI,
+        deneyTurleri: DENEY_TURLERI,
         alanlar: ALANLAR,
         paletRolleri: veri.palet(),
       })
@@ -298,6 +302,47 @@ sunucu.registerTool(
   async (girdi) => {
     try {
       return metin(veri.soruYaz(girdi))
+    } catch (e) {
+      return hataMetni(e)
+    }
+  },
+)
+
+sunucu.registerTool(
+  'deney_yaz',
+  {
+    title: 'Olasılık deneyi yaz',
+    description:
+      'Deneyi, sonuç uzayını ve olayları tek işlemde yazar. Her olayın teorik olasılığı yazma anında hesaplanıp saklanır; arayüz onu deneysel değerle yan yana gösterir. Ağırlıklar hileli zar gibi eşit olmayan durumları anlatır. cekimSayisi 2 verilirse iki zar atışı gibi bileşik deney olur; olay koşulları: toplam, toplam_en_az, hepsi_ayni, en_az_bir, hepsi.',
+    inputSchema: { deney: deneySemasi },
+  },
+  async ({ deney }) => {
+    try {
+      const sonuc = veri.ham.transaction(() => deneyYaz(veri.db, deney))()
+      return metin({
+        ...sonuc,
+        slug: deney.slug,
+        teorikOlasiliklar: deney.olaylar.map((o) => ({
+          olay: o.ad,
+          olasilik: teorikOlasilik(deney, o),
+        })),
+      })
+    } catch (e) {
+      return hataMetni(e)
+    }
+  },
+)
+
+sunucu.registerTool(
+  'deney_listele',
+  {
+    title: 'Deneyleri listele',
+    description: 'Yazılmış olasılık deneylerini sınıf ve konuyla birlikte listeler.',
+    inputSchema: { sinif: z.number().int().min(0).max(12).optional() },
+  },
+  async ({ sinif }) => {
+    try {
+      return metin(veri.deneyListele(sinif))
     } catch (e) {
       return hataMetni(e)
     }

@@ -61,6 +61,12 @@ function main(): void {
     yaz(`konular/${slug}.json`, depo.konu(slug))
   }
 
+  yaz('deneyler.json', depo.deneyler())
+  const deneyler = db.select({ slug: s.deney.slug }).from(s.deney).all()
+  for (const { slug } of deneyler) {
+    yaz(`deneyler/${slug}.json`, depo.deney(slug))
+  }
+
   const sahneler = db.select({ slug: s.sahne.slug }).from(s.sahne).all()
   for (const { slug } of sahneler) {
     yaz(`sahneler/${slug}.json`, depo.sahne(slug))

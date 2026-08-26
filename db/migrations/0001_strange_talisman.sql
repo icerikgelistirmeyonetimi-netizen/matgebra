@@ -1,0 +1,1 @@
+ALTER TABLE `deney` ADD `cekim_sayisi` integer DEFAULT 1 NOT NULL;

@@ -554,3 +554,26 @@ export function konuAra(metin: string) {
     .limit(20)
     .all()
 }
+
+/** Yazilmis olasilik deneyleri. */
+export function deneyListele(sinif?: number) {
+  const kosullar = []
+  if (typeof sinif === 'number') kosullar.push(eq(s.sinif.seviye, sinif))
+  return db
+    .select({
+      slug: s.deney.slug,
+      ad: s.deney.ad,
+      tur: s.deney.tur,
+      cekimSayisi: s.deney.cekimSayisi,
+      iadeVarMi: s.deney.iadeVarMi,
+      konuSlug: s.konu.slug,
+      seviye: s.sinif.seviye,
+      olaySayisi: sql<number>`(select count(*) from olay where olay.deney_id = ${s.deney.id})`,
+    })
+    .from(s.deney)
+    .innerJoin(s.konu, eq(s.konu.id, s.deney.konuId))
+    .innerJoin(s.sinif, eq(s.sinif.id, s.konu.sinifId))
+    .where(kosullar.length ? and(...kosullar) : undefined)
+    .orderBy(asc(s.sinif.seviye))
+    .all()
+}

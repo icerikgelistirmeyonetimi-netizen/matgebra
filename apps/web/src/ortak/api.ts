@@ -114,6 +114,32 @@ export interface KonuAyrinti extends Omit<KonuOzeti, 'sira' | 'sahneSayisi' | 'o
   ornekler: Array<{ id: number; baslik: string; hikaye: string; soru: string }>
 }
 
+export interface DeneyOzeti {
+  id: number
+  slug: string
+  ad: string
+  tur: string
+  aciklama: string
+  cekimSayisi: number
+  iadeVarMi: boolean
+  konuSlug: string
+  konuAd: string
+  seviye: number
+  sinifAd: string
+}
+
+export interface DeneyVerisi extends DeneyOzeti {
+  bagimsizMi: boolean
+  sonuclar: Array<{ sonuc: string; agirlik: number; renkAnahtari: string; sira: number }>
+  olaylar: Array<{
+    ad: string
+    sonuclar: string[]
+    kosul: string | null
+    deger: number | null
+    teorik: number | null
+  }>
+}
+
 export interface CizimOzeti {
   id: number
   ad: string
@@ -222,6 +248,13 @@ export const api = {
       yol('palet', '/palet'),
     ),
   ara: (q: string) => (STATIK ? statikAra(q) : getir<AramaSonucu>(`/ara?q=${encodeURIComponent(q)}`)),
+  deneyler: (konu?: string) =>
+    getir<DeneyOzeti[]>(yol('deneyler', `/deneyler${konu ? `?konu=${konu}` : ''}`)).then((liste) =>
+      STATIK && konu ? liste.filter((d) => d.konuSlug === konu) : liste,
+    ),
+  deney: (slug: string) => getir<DeneyVerisi>(yol(`deneyler/${slug}`, `/deneyler/${slug}`)),
+  kosumKaydet: (slug: string, govde: { tohum: number; denemeSayisi: number; sonuc: unknown }) =>
+    gonder<{ id: number }>(`/deneyler/${slug}/kosumlar`, govde),
   cizimler: () => getir<CizimOzeti[]>(yol('cizimler', '/cizimler')),
   cizim: (id: number) => getir<{ id: number; ad: string; veri: unknown }>(`/cizimler/${id}`),
   cizimKaydet: (govde: { ad: string; sahneSlug?: string; veri: unknown }) =>

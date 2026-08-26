@@ -1,0 +1,3386 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "be73955a-c72b-4808-9a0e-979dcf1fc9e7",
+  "prevId": "281cfab8-b523-4c07-82b6-fb8f2d696a6f",
+  "tables": {
+    "ders": {
+      "name": "ders",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kaynak_ders_adi": {
+          "name": "kaynak_ders_adi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        }
+      },
+      "indexes": {
+        "ders_slug_unique": {
+          "name": "ders_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "kademe": {
+      "name": "kademe",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "kademe_slug_unique": {
+          "name": "kademe_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "kazanim": {
+      "name": "kazanim",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tema_id": {
+          "name": "tema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kod": {
+          "name": "kod",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "metin": {
+          "name": "metin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "metin_norm": {
+          "name": "metin_norm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "kaynak_id": {
+          "name": "kaynak_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ix_kazanim_tema": {
+          "name": "ix_kazanim_tema",
+          "columns": [
+            "tema_id"
+          ],
+          "isUnique": false
+        },
+        "ix_kazanim_kod": {
+          "name": "ix_kazanim_kod",
+          "columns": [
+            "kod"
+          ],
+          "isUnique": false
+        },
+        "ux_kazanim_kaynak": {
+          "name": "ux_kazanim_kaynak",
+          "columns": [
+            "kaynak_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "kazanim_tema_id_tema_id_fk": {
+          "name": "kazanim_tema_id_tema_id_fk",
+          "tableFrom": "kazanim",
+          "tableTo": "tema",
+          "columnsFrom": [
+            "tema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "kazanim_maddesi": {
+      "name": "kazanim_maddesi",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "kazanim_id": {
+          "name": "kazanim_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "harf": {
+          "name": "harf",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "metin": {
+          "name": "metin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "ix_madde_kazanim": {
+          "name": "ix_madde_kazanim",
+          "columns": [
+            "kazanim_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "kazanim_maddesi_kazanim_id_kazanim_id_fk": {
+          "name": "kazanim_maddesi_kazanim_id_kazanim_id_fk",
+          "tableFrom": "kazanim_maddesi",
+          "tableTo": "kazanim",
+          "columnsFrom": [
+            "kazanim_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "sinif": {
+      "name": "sinif",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "kademe_id": {
+          "name": "kademe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "seviye": {
+          "name": "seviye",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "sinif_slug_unique": {
+          "name": "sinif_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ix_sinif_kademe": {
+          "name": "ix_sinif_kademe",
+          "columns": [
+            "kademe_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "sinif_kademe_id_kademe_id_fk": {
+          "name": "sinif_kademe_id_kademe_id_fk",
+          "tableFrom": "sinif",
+          "tableTo": "kademe",
+          "columnsFrom": [
+            "kademe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "tema": {
+      "name": "tema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "ders_id": {
+          "name": "ders_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sinif_id": {
+          "name": "sinif_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kod": {
+          "name": "kod",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad_norm": {
+          "name": "ad_norm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "ders_saati": {
+          "name": "ders_saati",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ozet": {
+          "name": "ozet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "kaynak_unite_id": {
+          "name": "kaynak_unite_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "alan_slug": {
+          "name": "alan_slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ix_tema_sinif": {
+          "name": "ix_tema_sinif",
+          "columns": [
+            "sinif_id"
+          ],
+          "isUnique": false
+        },
+        "ix_tema_alan": {
+          "name": "ix_tema_alan",
+          "columns": [
+            "alan_slug"
+          ],
+          "isUnique": false
+        },
+        "ux_tema_kaynak": {
+          "name": "ux_tema_kaynak",
+          "columns": [
+            "kaynak_unite_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "tema_ders_id_ders_id_fk": {
+          "name": "tema_ders_id_ders_id_fk",
+          "tableFrom": "tema",
+          "tableTo": "ders",
+          "columnsFrom": [
+            "ders_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "tema_sinif_id_sinif_id_fk": {
+          "name": "tema_sinif_id_sinif_id_fk",
+          "tableFrom": "tema",
+          "tableTo": "sinif",
+          "columnsFrom": [
+            "sinif_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "tema_bolum": {
+      "name": "tema_bolum",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tema_id": {
+          "name": "tema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tur": {
+          "name": "tur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "icerik": {
+          "name": "icerik",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ix_tema_bolum_tema": {
+          "name": "ix_tema_bolum_tema",
+          "columns": [
+            "tema_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "tema_bolum_tema_id_tema_id_fk": {
+          "name": "tema_bolum_tema_id_tema_id_fk",
+          "tableFrom": "tema_bolum",
+          "tableTo": "tema",
+          "columnsFrom": [
+            "tema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "alan": {
+      "name": "alan",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "renk_anahtari": {
+          "name": "renk_anahtari",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'gok'"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "alan_slug_unique": {
+          "name": "alan_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "formul": {
+      "name": "formul",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "latex": {
+          "name": "latex",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "aciklama": {
+          "name": "aciklama",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "ix_formul_konu": {
+          "name": "ix_formul_konu",
+          "columns": [
+            "konu_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "formul_konu_id_konu_id_fk": {
+          "name": "formul_konu_id_konu_id_fk",
+          "tableFrom": "formul",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "kavram": {
+      "name": "kavram",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "alan_id": {
+          "name": "alan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad_norm": {
+          "name": "ad_norm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tanim": {
+          "name": "tanim",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "latex": {
+          "name": "latex",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "medya_id": {
+          "name": "medya_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "kavram_slug_unique": {
+          "name": "kavram_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ix_kavram_alan": {
+          "name": "ix_kavram_alan",
+          "columns": [
+            "alan_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "kavram_alan_id_alan_id_fk": {
+          "name": "kavram_alan_id_alan_id_fk",
+          "tableFrom": "kavram",
+          "tableTo": "alan",
+          "columnsFrom": [
+            "alan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "konu": {
+      "name": "konu",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "alan_id": {
+          "name": "alan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sinif_id": {
+          "name": "sinif_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad_norm": {
+          "name": "ad_norm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ozet": {
+          "name": "ozet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "zorluk": {
+          "name": "zorluk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 2
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'taslak'"
+        },
+        "surum": {
+          "name": "surum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "olusturan": {
+          "name": "olusturan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "konu_slug_unique": {
+          "name": "konu_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ix_konu_sinif_alan": {
+          "name": "ix_konu_sinif_alan",
+          "columns": [
+            "sinif_id",
+            "alan_id"
+          ],
+          "isUnique": false
+        },
+        "ix_konu_ad_norm": {
+          "name": "ix_konu_ad_norm",
+          "columns": [
+            "ad_norm"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "konu_alan_id_alan_id_fk": {
+          "name": "konu_alan_id_alan_id_fk",
+          "tableFrom": "konu",
+          "tableTo": "alan",
+          "columnsFrom": [
+            "alan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "konu_sinif_id_sinif_id_fk": {
+          "name": "konu_sinif_id_sinif_id_fk",
+          "tableFrom": "konu",
+          "tableTo": "sinif",
+          "columnsFrom": [
+            "sinif_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "konu_kavram": {
+      "name": "konu_kavram",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kavram_id": {
+          "name": "kavram_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rol": {
+          "name": "rol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'kullanilan'"
+        }
+      },
+      "indexes": {
+        "ux_konu_kavram": {
+          "name": "ux_konu_kavram",
+          "columns": [
+            "konu_id",
+            "kavram_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "konu_kavram_konu_id_konu_id_fk": {
+          "name": "konu_kavram_konu_id_konu_id_fk",
+          "tableFrom": "konu_kavram",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "konu_kavram_kavram_id_kavram_id_fk": {
+          "name": "konu_kavram_kavram_id_kavram_id_fk",
+          "tableFrom": "konu_kavram",
+          "tableTo": "kavram",
+          "columnsFrom": [
+            "kavram_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "konu_kazanim": {
+      "name": "konu_kazanim",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kazanim_id": {
+          "name": "kazanim_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kapsama": {
+          "name": "kapsama",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'tam'"
+        }
+      },
+      "indexes": {
+        "ux_konu_kazanim": {
+          "name": "ux_konu_kazanim",
+          "columns": [
+            "konu_id",
+            "kazanim_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "konu_kazanim_konu_id_konu_id_fk": {
+          "name": "konu_kazanim_konu_id_konu_id_fk",
+          "tableFrom": "konu_kazanim",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "konu_kazanim_kazanim_id_kazanim_id_fk": {
+          "name": "konu_kazanim_kazanim_id_kazanim_id_fk",
+          "tableFrom": "konu_kazanim",
+          "tableTo": "kazanim",
+          "columnsFrom": [
+            "kazanim_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "on_kosul": {
+      "name": "on_kosul",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "gereken_konu_id": {
+          "name": "gereken_konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "zorunlu": {
+          "name": "zorunlu",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "ux_on_kosul": {
+          "name": "ux_on_kosul",
+          "columns": [
+            "konu_id",
+            "gereken_konu_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "on_kosul_konu_id_konu_id_fk": {
+          "name": "on_kosul_konu_id_konu_id_fk",
+          "tableFrom": "on_kosul",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "on_kosul_gereken_konu_id_konu_id_fk": {
+          "name": "on_kosul_gereken_konu_id_konu_id_fk",
+          "tableFrom": "on_kosul",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "gereken_konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "adim": {
+      "name": "adim",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "baslik": {
+          "name": "baslik",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "anlatim": {
+          "name": "anlatim",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "vurgu_json": {
+          "name": "vurgu_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'[]'"
+        },
+        "aksiyon_json": {
+          "name": "aksiyon_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "beklenen_json": {
+          "name": "beklenen_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ux_adim_sahne_sira": {
+          "name": "ux_adim_sahne_sira",
+          "columns": [
+            "sahne_id",
+            "sira"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "adim_sahne_id_sahne_id_fk": {
+          "name": "adim_sahne_id_sahne_id_fk",
+          "tableFrom": "adim",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "arac": {
+      "name": "arac",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "anahtar": {
+          "name": "anahtar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "etiket": {
+          "name": "etiket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "grup": {
+          "name": "grup",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ikon": {
+          "name": "ikon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'nokta'"
+        },
+        "min_sinif": {
+          "name": "min_sinif",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "kisayol": {
+          "name": "kisayol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "aktif": {
+          "name": "aktif",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "arac_anahtar_unique": {
+          "name": "arac_anahtar_unique",
+          "columns": [
+            "anahtar"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "gercek_hayat_ornegi": {
+      "name": "gercek_hayat_ornegi",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "baslik": {
+          "name": "baslik",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "hikaye": {
+          "name": "hikaye",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "soru": {
+          "name": "soru",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "medya_id": {
+          "name": "medya_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olcek_aciklama": {
+          "name": "olcek_aciklama",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "kaynak": {
+          "name": "kaynak",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "yas_araligi": {
+          "name": "yas_araligi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'taslak'"
+        },
+        "surum": {
+          "name": "surum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "olusturan": {
+          "name": "olusturan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "ix_ornek_konu": {
+          "name": "ix_ornek_konu",
+          "columns": [
+            "konu_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "gercek_hayat_ornegi_konu_id_konu_id_fk": {
+          "name": "gercek_hayat_ornegi_konu_id_konu_id_fk",
+          "tableFrom": "gercek_hayat_ornegi",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "gercek_hayat_ornegi_sahne_id_sahne_id_fk": {
+          "name": "gercek_hayat_ornegi_sahne_id_sahne_id_fk",
+          "tableFrom": "gercek_hayat_ornegi",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "nesne": {
+      "name": "nesne",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tip": {
+          "name": "tip",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "etiket": {
+          "name": "etiket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "katman": {
+          "name": "katman",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "gorunur": {
+          "name": "gorunur",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "kilitli": {
+          "name": "kilitli",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "surukleme": {
+          "name": "surukleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'yok'"
+        },
+        "stil_id": {
+          "name": "stil_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ux_nesne_sahne_ad": {
+          "name": "ux_nesne_sahne_ad",
+          "columns": [
+            "sahne_id",
+            "ad"
+          ],
+          "isUnique": true
+        },
+        "ix_nesne_sahne": {
+          "name": "ix_nesne_sahne",
+          "columns": [
+            "sahne_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "nesne_sahne_id_sahne_id_fk": {
+          "name": "nesne_sahne_id_sahne_id_fk",
+          "tableFrom": "nesne",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "nesne_stil_id_stil_id_fk": {
+          "name": "nesne_stil_id_stil_id_fk",
+          "tableFrom": "nesne",
+          "tableTo": "stil",
+          "columnsFrom": [
+            "stil_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "nesne_bagimlilik": {
+      "name": "nesne_bagimlilik",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nesne_id": {
+          "name": "nesne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kaynak_nesne_id": {
+          "name": "kaynak_nesne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rol": {
+          "name": "rol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "ix_bagimlilik_nesne": {
+          "name": "ix_bagimlilik_nesne",
+          "columns": [
+            "nesne_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "nesne_bagimlilik_nesne_id_nesne_id_fk": {
+          "name": "nesne_bagimlilik_nesne_id_nesne_id_fk",
+          "tableFrom": "nesne_bagimlilik",
+          "tableTo": "nesne",
+          "columnsFrom": [
+            "nesne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "nesne_bagimlilik_kaynak_nesne_id_nesne_id_fk": {
+          "name": "nesne_bagimlilik_kaynak_nesne_id_nesne_id_fk",
+          "tableFrom": "nesne_bagimlilik",
+          "tableTo": "nesne",
+          "columnsFrom": [
+            "kaynak_nesne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "nesne_parametre": {
+      "name": "nesne_parametre",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nesne_id": {
+          "name": "nesne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "anahtar": {
+          "name": "anahtar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deger": {
+          "name": "deger",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tur": {
+          "name": "tur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'sayi'"
+        }
+      },
+      "indexes": {
+        "ux_parametre": {
+          "name": "ux_parametre",
+          "columns": [
+            "nesne_id",
+            "anahtar"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "nesne_parametre_nesne_id_nesne_id_fk": {
+          "name": "nesne_parametre_nesne_id_nesne_id_fk",
+          "tableFrom": "nesne_parametre",
+          "tableTo": "nesne",
+          "columnsFrom": [
+            "nesne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "sahne": {
+      "name": "sahne",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tur": {
+          "name": "tur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "baslik": {
+          "name": "baslik",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ozet": {
+          "name": "ozet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "zorluk": {
+          "name": "zorluk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 2
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'taslak'"
+        },
+        "surum": {
+          "name": "surum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "olusturan": {
+          "name": "olusturan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "sahne_slug_unique": {
+          "name": "sahne_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ix_sahne_konu": {
+          "name": "ix_sahne_konu",
+          "columns": [
+            "konu_id"
+          ],
+          "isUnique": false
+        },
+        "ix_sahne_tur": {
+          "name": "ix_sahne_tur",
+          "columns": [
+            "tur"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "sahne_konu_id_konu_id_fk": {
+          "name": "sahne_konu_id_konu_id_fk",
+          "tableFrom": "sahne",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "sahne_ayar": {
+      "name": "sahne_ayar",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "eksen_modu": {
+          "name": "eksen_modu",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'tam'"
+        },
+        "sinir_x1": {
+          "name": "sinir_x1",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": -10
+        },
+        "sinir_y1": {
+          "name": "sinir_y1",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 10
+        },
+        "sinir_x2": {
+          "name": "sinir_x2",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 10
+        },
+        "sinir_y2": {
+          "name": "sinir_y2",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": -10
+        },
+        "izgara_adimi": {
+          "name": "izgara_adimi",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "birim": {
+          "name": "birim",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "yapisma": {
+          "name": "yapisma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'izgara'"
+        },
+        "oran_kilidi": {
+          "name": "oran_kilidi",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "arka_plan_medya_id": {
+          "name": "arka_plan_medya_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olcek_json": {
+          "name": "olcek_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "sahne_ayar_sahne_id_unique": {
+          "name": "sahne_ayar_sahne_id_unique",
+          "columns": [
+            "sahne_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "sahne_ayar_sahne_id_sahne_id_fk": {
+          "name": "sahne_ayar_sahne_id_sahne_id_fk",
+          "tableFrom": "sahne_ayar",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "soru": {
+      "name": "soru",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tip": {
+          "name": "tip",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "govde": {
+          "name": "govde",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "latex": {
+          "name": "latex",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "secenek_json": {
+          "name": "secenek_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cevap_json": {
+          "name": "cevap_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "ipucu": {
+          "name": "ipucu",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "cozum": {
+          "name": "cozum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "zorluk": {
+          "name": "zorluk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 2
+        },
+        "puan": {
+          "name": "puan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'taslak'"
+        },
+        "surum": {
+          "name": "surum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "olusturan": {
+          "name": "olusturan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "ix_soru_konu": {
+          "name": "ix_soru_konu",
+          "columns": [
+            "konu_id"
+          ],
+          "isUnique": false
+        },
+        "ix_soru_sahne": {
+          "name": "ix_soru_sahne",
+          "columns": [
+            "sahne_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "soru_konu_id_konu_id_fk": {
+          "name": "soru_konu_id_konu_id_fk",
+          "tableFrom": "soru",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "soru_sahne_id_sahne_id_fk": {
+          "name": "soru_sahne_id_sahne_id_fk",
+          "tableFrom": "soru",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "stil": {
+      "name": "stil",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rol": {
+          "name": "rol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'gok'"
+        },
+        "dolgu": {
+          "name": "dolgu",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kenar": {
+          "name": "kenar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kalinlik": {
+          "name": "kalinlik",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 2
+        },
+        "opaklik": {
+          "name": "opaklik",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "cizgi_tipi": {
+          "name": "cizgi_tipi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'duz'"
+        },
+        "nokta_boyutu": {
+          "name": "nokta_boyutu",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 4
+        }
+      },
+      "indexes": {
+        "stil_ad_unique": {
+          "name": "stil_ad_unique",
+          "columns": [
+            "ad"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "varyant": {
+      "name": "varyant",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "soru_id": {
+          "name": "soru_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tohum": {
+          "name": "tohum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "parametre_json": {
+          "name": "parametre_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        }
+      },
+      "indexes": {
+        "ux_varyant": {
+          "name": "ux_varyant",
+          "columns": [
+            "soru_id",
+            "tohum"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "varyant_soru_id_soru_id_fk": {
+          "name": "varyant_soru_id_soru_id_fk",
+          "tableFrom": "varyant",
+          "tableTo": "soru",
+          "columnsFrom": [
+            "soru_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "deney": {
+      "name": "deney",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tur": {
+          "name": "tur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "aciklama": {
+          "name": "aciklama",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "bagimsiz_mi": {
+          "name": "bagimsiz_mi",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "iade_var_mi": {
+          "name": "iade_var_mi",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "cekim_sayisi": {
+          "name": "cekim_sayisi",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'taslak'"
+        },
+        "surum": {
+          "name": "surum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "olusturan": {
+          "name": "olusturan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "deney_slug_unique": {
+          "name": "deney_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ix_deney_konu": {
+          "name": "ix_deney_konu",
+          "columns": [
+            "konu_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "deney_konu_id_konu_id_fk": {
+          "name": "deney_konu_id_konu_id_fk",
+          "tableFrom": "deney",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "deney_kosum": {
+      "name": "deney_kosum",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "deney_id": {
+          "name": "deney_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tohum": {
+          "name": "tohum",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deneme_sayisi": {
+          "name": "deneme_sayisi",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sonuc_json": {
+          "name": "sonuc_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "zaman": {
+          "name": "zaman",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        }
+      },
+      "indexes": {
+        "ix_kosum_deney": {
+          "name": "ix_kosum_deney",
+          "columns": [
+            "deney_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "deney_kosum_deney_id_deney_id_fk": {
+          "name": "deney_kosum_deney_id_deney_id_fk",
+          "tableFrom": "deney_kosum",
+          "tableTo": "deney",
+          "columnsFrom": [
+            "deney_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "deney_kosum_sahne_id_sahne_id_fk": {
+          "name": "deney_kosum_sahne_id_sahne_id_fk",
+          "tableFrom": "deney_kosum",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "deney_sonuc": {
+      "name": "deney_sonuc",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "deney_id": {
+          "name": "deney_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sonuc": {
+          "name": "sonuc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "agirlik": {
+          "name": "agirlik",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "renk_anahtari": {
+          "name": "renk_anahtari",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'gok'"
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "ux_deney_sonuc": {
+          "name": "ux_deney_sonuc",
+          "columns": [
+            "deney_id",
+            "sonuc"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "deney_sonuc_deney_id_deney_id_fk": {
+          "name": "deney_sonuc_deney_id_deney_id_fk",
+          "tableFrom": "deney_sonuc",
+          "tableTo": "deney",
+          "columnsFrom": [
+            "deney_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "olay": {
+      "name": "olay",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "deney_id": {
+          "name": "deney_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kosul_json": {
+          "name": "kosul_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "beklenen_olasilik": {
+          "name": "beklenen_olasilik",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ix_olay_deney": {
+          "name": "ix_olay_deney",
+          "columns": [
+            "deney_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "olay_deney_id_deney_id_fk": {
+          "name": "olay_deney_id_deney_id_fk",
+          "tableFrom": "olay",
+          "tableTo": "deney",
+          "columnsFrom": [
+            "deney_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cizim": {
+      "name": "cizim",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "kullanici_id": {
+          "name": "kullanici_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'Adsiz cizim'"
+        },
+        "veri_json": {
+          "name": "veri_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ekran_goruntusu": {
+          "name": "ekran_goruntusu",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "guncelleme": {
+          "name": "guncelleme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "ix_cizim_kullanici": {
+          "name": "ix_cizim_kullanici",
+          "columns": [
+            "kullanici_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "cizim_kullanici_id_kullanici_id_fk": {
+          "name": "cizim_kullanici_id_kullanici_id_fk",
+          "tableFrom": "cizim",
+          "tableTo": "kullanici",
+          "columnsFrom": [
+            "kullanici_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "cizim_sahne_id_sahne_id_fk": {
+          "name": "cizim_sahne_id_sahne_id_fk",
+          "tableFrom": "cizim",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "ilerleme": {
+      "name": "ilerleme",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "kullanici_id": {
+          "name": "kullanici_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "konu_id": {
+          "name": "konu_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "durum": {
+          "name": "durum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'baslanmadi'"
+        },
+        "puan": {
+          "name": "puan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "deneme": {
+          "name": "deneme",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "son_erisim": {
+          "name": "son_erisim",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ux_ilerleme": {
+          "name": "ux_ilerleme",
+          "columns": [
+            "kullanici_id",
+            "konu_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "ilerleme_kullanici_id_kullanici_id_fk": {
+          "name": "ilerleme_kullanici_id_kullanici_id_fk",
+          "tableFrom": "ilerleme",
+          "tableTo": "kullanici",
+          "columnsFrom": [
+            "kullanici_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ilerleme_konu_id_konu_id_fk": {
+          "name": "ilerleme_konu_id_konu_id_fk",
+          "tableFrom": "ilerleme",
+          "tableTo": "konu",
+          "columnsFrom": [
+            "konu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "kullanici": {
+      "name": "kullanici",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rol": {
+          "name": "rol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'ogrenci'"
+        },
+        "sinif_id": {
+          "name": "sinif_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "olusturma": {
+          "name": "olusturma",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "kullanici_sinif_id_sinif_id_fk": {
+          "name": "kullanici_sinif_id_sinif_id_fk",
+          "tableFrom": "kullanici",
+          "tableTo": "sinif",
+          "columnsFrom": [
+            "sinif_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "etiket": {
+      "name": "etiket",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "etiket_slug_unique": {
+          "name": "etiket_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "medya": {
+      "name": "medya",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tur": {
+          "name": "tur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'gorsel'"
+        },
+        "yol": {
+          "name": "yol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alt_metin": {
+          "name": "alt_metin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "lisans": {
+          "name": "lisans",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kaynak": {
+          "name": "kaynak",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "genislik": {
+          "name": "genislik",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "yukseklik": {
+          "name": "yukseklik",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "modul": {
+      "name": "modul",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ad": {
+          "name": "ad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "surum": {
+          "name": "surum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'0.1.0'"
+        },
+        "aktif": {
+          "name": "aktif",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "sira": {
+          "name": "sira",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "ayar_json": {
+          "name": "ayar_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        }
+      },
+      "indexes": {
+        "modul_slug_unique": {
+          "name": "modul_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "revizyon": {
+      "name": "revizyon",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tablo": {
+          "name": "tablo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kayit_id": {
+          "name": "kayit_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "islem": {
+          "name": "islem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "onceki_json": {
+          "name": "onceki_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sonraki_json": {
+          "name": "sonraki_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kullanici_id": {
+          "name": "kullanici_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "zaman": {
+          "name": "zaman",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "ix_revizyon_kayit": {
+          "name": "ix_revizyon_kayit",
+          "columns": [
+            "tablo",
+            "kayit_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "revizyon_kullanici_id_kullanici_id_fk": {
+          "name": "revizyon_kullanici_id_kullanici_id_fk",
+          "tableFrom": "revizyon",
+          "tableTo": "kullanici",
+          "columnsFrom": [
+            "kullanici_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "sahne_etiket": {
+      "name": "sahne_etiket",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "sahne_id": {
+          "name": "sahne_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "etiket_id": {
+          "name": "etiket_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ux_sahne_etiket": {
+          "name": "ux_sahne_etiket",
+          "columns": [
+            "sahne_id",
+            "etiket_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "sahne_etiket_sahne_id_sahne_id_fk": {
+          "name": "sahne_etiket_sahne_id_sahne_id_fk",
+          "tableFrom": "sahne_etiket",
+          "tableTo": "sahne",
+          "columnsFrom": [
+            "sahne_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "sahne_etiket_etiket_id_etiket_id_fk": {
+          "name": "sahne_etiket_etiket_id_etiket_id_fk",
+          "tableFrom": "sahne_etiket",
+          "tableTo": "etiket",
+          "columnsFrom": [
+            "etiket_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
