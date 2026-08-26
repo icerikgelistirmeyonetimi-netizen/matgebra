@@ -255,6 +255,76 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'nokta_donme':
+        case 'nokta_homoteti': {
+          // Iki nokta donusumu ayni kaliba oturuyor: kaynagi merkeze gore
+          // ya dondururuz (aci) ya da olcekleriz (oran). Sekli bir butun
+          // olarak donusturmek yerine koseleri tek tek donusturup uzerine
+          // cokgen kurmayi tercih ettik: ogrenci hangi kosenin nereye
+          // gittigini goruyor ve kose kose eslestirebiliyor.
+          const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '') as JXG.Point | undefined
+          const merkez = bul(baglilar(n, 'merkez')[0] ?? '') as JXG.Point | undefined
+          if (!kaynak || !merkez) break
+          const donuk = n.tip === 'nokta_donme'
+          const t = (sayi(n, 'aci', 90) * Math.PI) / 180
+          const oran = sayi(n, 'oran', 2)
+          const konum = (): [number, number] => {
+            const dx = kaynak.X() - merkez.X()
+            const dy = kaynak.Y() - merkez.Y()
+            return donuk
+              ? [dx * Math.cos(t) - dy * Math.sin(t), dx * Math.sin(t) + dy * Math.cos(t)]
+              : [dx * oran, dy * oran]
+          }
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create(
+                'point',
+                [() => merkez.X() + konum()[0], () => merkez.Y() + konum()[1]],
+                {
+                  name: n.etiket ?? n.ad,
+                  withLabel: Boolean(n.etiket),
+                  size: n.stil.noktaBoyutu,
+                  fillColor: g.renk.dolgu,
+                  strokeColor: g.renk.kenar,
+                  strokeWidth: 2,
+                  fixed: true,
+                  visible: n.gorunur,
+                  label: etiketAyari,
+                  layer: 9,
+                },
+              ),
+            ),
+          )
+          break
+        }
+
+        case 'dik_izdusum': {
+          // Bir noktanin bir dogru uzerindeki dik izdusumu: yuksekligin
+          // ayagi, Oklid bagintisindaki ayak noktasi. Dikme cizip kesisim
+          // almak da mumkun ama iki fazla nesne demek.
+          const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '')
+          const dogru = bul(baglilar(n, 'uzerinde', 'hedef')[0] ?? '')
+          if (!kaynak || !dogru) break
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('orthogonalprojection', [kaynak as never, dogru as never], {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: 2,
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 9,
+              }),
+            ),
+          )
+          break
+        }
+
         case 'cember': {
           const merkez = bul(baglilar(n, 'merkez')[0] ?? '')
           if (!merkez) break
@@ -293,11 +363,18 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
 
         case 'dogru_parcasi':
         case 'isin':
+        case 'vektor':
         case 'dogru': {
           const [a, b] = baglilar(n, 'uc1', 'uc2').map(bul)
           if (!a || !b) break
           const tur =
-            n.tip === 'dogru_parcasi' ? 'segment' : n.tip === 'isin' ? 'axis' : 'line'
+            n.tip === 'dogru_parcasi'
+              ? 'segment'
+              : n.tip === 'vektor'
+                ? 'arrow'
+                : n.tip === 'isin'
+                  ? 'axis'
+                  : 'line'
           const cizgi = tahta.create(tur, [a as never, b as never], {
             strokeColor: g.strokeColor,
             strokeWidth: g.strokeWidth,
@@ -306,7 +383,7 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
             fixed: true,
             highlight: false,
             straightFirst: n.tip === 'dogru',
-            straightLast: n.tip !== 'dogru_parcasi',
+            straightLast: n.tip !== 'dogru_parcasi' && n.tip !== 'vektor',
             layer: 5,
           })
           el.set(n.ad, tekOge(cizgi))
@@ -347,6 +424,44 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
               () => (a.X() + b.X()) / 2,
               () => (a.Y() + b.Y()) / 2,
               () => `${n.etiket ? `${n.etiket} = ` : ''}${uzunluk().toFixed(2)}`,
+            ],
+            {
+              fontSize: 13,
+              strokeColor: g.renk.kenar,
+              anchorX: 'middle',
+              anchorY: 'middle',
+              cssStyle: `font-family: inherit; font-weight: 600; background: ${p.yuzey}; padding: 1px 5px; border-radius: 5px`,
+              visible: n.gorunur,
+              fixed: true,
+              highlight: false,
+              layer: 10,
+            },
+          )
+          el.set(n.ad, tekOge(yazi))
+          break
+        }
+
+        case 'olcum_egim': {
+          // Iki nokta arasindaki egim: analitik geometride dogrunun
+          // kimligi. Dikey dogruda tanimsiz oldugu icin oyle yaziliyor.
+          const [a, b] = baglilar(n, 'uc1', 'uc2').map(bul) as [
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+          ]
+          if (!a || !b) break
+          const egim = () => {
+            const dx = b.X() - a.X()
+            return Math.abs(dx) < 1e-9 ? null : (b.Y() - a.Y()) / dx
+          }
+          const yazi = tahta.create(
+            'text',
+            [
+              () => (a.X() + b.X()) / 2,
+              () => (a.Y() + b.Y()) / 2 + 0.6,
+              () => {
+                const m = egim()
+                return `${n.etiket ?? 'eğim'} = ${m === null ? 'tanımsız' : m.toFixed(2)}`
+              },
             ],
             {
               fontSize: 13,
@@ -502,6 +617,168 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
               }),
             ),
           )
+          break
+        }
+
+        case 'orta_dikme': {
+          // Iki noktanin orta dikmesi: bir kenarin orta noktasindan gecen
+          // ve o kenara dik olan dogru. Ucgende cevrel merkezi veren
+          // dogrulardan biri.
+          const [a, b] = baglilar(n, 'uc1', 'uc2').map(bul) as [
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+          ]
+          if (!a || !b) break
+          const orta = tahta.create('midpoint', [a as never, b as never], { visible: false })
+          // Kenara dik dogrultu: (-dy, dx). Ikinci nokta da islevle
+          // verildigi icin uclar oynayinca dikme canli guncelleniyor.
+          const ikinci = tahta.create(
+            'point',
+            [
+              () => orta.X() - (b.Y() - a.Y()),
+              () => orta.Y() + (b.X() - a.X()),
+            ],
+            { visible: false, fixed: true },
+          )
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('line', [orta as never, ikinci as never], {
+                strokeColor: g.strokeColor,
+                strokeWidth: g.strokeWidth,
+                dash: g.dash,
+                visible: n.gorunur,
+                fixed: true,
+                highlight: false,
+                layer: 5,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'teget': {
+          // Iki kullanim: cember uzerindeki bir surgunun tegeti, ya da
+          // disaridaki bir noktadan cembere cizilen teget.
+          const surgu = bul(baglilar(n, 'uzerinde')[0] ?? '')
+          const cember = bul(baglilar(n, 'kaynak', 'merkez')[0] ?? '')
+          const dis = bul(baglilar(n, 'hedef')[0] ?? '')
+          const ortak = {
+            strokeColor: g.strokeColor,
+            strokeWidth: g.strokeWidth,
+            dash: g.dash,
+            visible: n.gorunur,
+            fixed: true,
+            highlight: false,
+            layer: 5,
+          }
+          if (surgu) {
+            el.set(n.ad, tekOge(tahta.create('tangent', [surgu as never], ortak)))
+          } else if (cember && dis) {
+            el.set(
+              n.ad,
+              tekOge(
+                tahta.create('tangentto', [cember as never, dis as never], {
+                  ...ortak,
+                  polar: { visible: false },
+                  point: { visible: false },
+                }),
+              ),
+            )
+          }
+          break
+        }
+
+        case 'duzgun_cokgen': {
+          // Iki komsu koseden ve kenar sayisindan uretilir: kenar sayisi
+          // degistikce ic aci toplaminin nasil degistigi burada gorunur.
+          const [a, b] = baglilar(n, 'uc1', 'uc2', 'kose').map(bul) as [
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+          ]
+          if (!a || !b) break
+          const kenar = Math.max(3, Math.round(sayi(n, 'kenar_sayisi', 5)))
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('regularpolygon', [a as never, b as never, kenar], {
+                name: n.etiket ?? '',
+                withLabel: Boolean(n.etiket),
+                fillColor: g.fillColor,
+                fillOpacity: g.fillOpacity,
+                highlightFillOpacity: g.fillOpacity,
+                borders: { strokeColor: g.strokeColor, strokeWidth: g.strokeWidth },
+                // Duzgun cokgeni JSXGraph kendi yardimci koselerini
+                // uretecek sekilde kuruyor; onlar sahnede gorunmemeli.
+                vertices: { visible: false, fixed: true, withLabel: false },
+                visible: n.gorunur,
+                layer: 2,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'agirlik_merkezi':
+        case 'ic_merkez':
+        case 'cevrel_merkez':
+        case 'ic_teget_cember':
+        case 'cevrel_cember': {
+          // Ucgenin uc kosesinden turetilen merkezler ve cemberler.
+          const [a, b, c] = baglilar(n, 'uc1', 'uc2', 'uc3', 'kose').map(bul) as [
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+            JXG.Point | undefined,
+          ]
+          if (!a || !b || !c) break
+          const noktaAyar = {
+            name: n.etiket ?? n.ad,
+            withLabel: Boolean(n.etiket),
+            size: n.stil.noktaBoyutu,
+            fillColor: g.renk.dolgu,
+            strokeColor: g.renk.kenar,
+            strokeWidth: 2,
+            visible: n.gorunur,
+            label: etiketAyari,
+            layer: 9,
+          }
+          const cemberAyar = {
+            strokeColor: g.strokeColor,
+            strokeWidth: g.strokeWidth,
+            dash: g.dash,
+            fillColor: g.fillColor,
+            fillOpacity: g.fillOpacity,
+            visible: n.gorunur,
+            highlight: false,
+            layer: 2,
+            center: { visible: false },
+            point: { visible: false },
+          }
+          const uc = [a as never, b as never, c as never] as const
+          if (n.tip === 'agirlik_merkezi') {
+            // JSXGraph'te hazir agirlik merkezi yok; uc kosenin ortalamasi.
+            el.set(
+              n.ad,
+              tekOge(
+                tahta.create(
+                  'point',
+                  [
+                    () => (a.X() + b.X() + c.X()) / 3,
+                    () => (a.Y() + b.Y() + c.Y()) / 3,
+                  ],
+                  { ...noktaAyar, fixed: true },
+                ),
+              ),
+            )
+          } else if (n.tip === 'ic_merkez') {
+            el.set(n.ad, tekOge(tahta.create('incenter', [...uc], noktaAyar)))
+          } else if (n.tip === 'cevrel_merkez') {
+            el.set(n.ad, tekOge(tahta.create('circumcenter', [...uc], noktaAyar)))
+          } else if (n.tip === 'ic_teget_cember') {
+            el.set(n.ad, tekOge(tahta.create('incircle', [...uc], cemberAyar)))
+          } else {
+            el.set(n.ad, tekOge(tahta.create('circumcircle', [...uc], cemberAyar)))
+          }
           break
         }
 

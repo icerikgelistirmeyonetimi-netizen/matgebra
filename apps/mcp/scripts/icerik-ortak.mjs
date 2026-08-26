@@ -102,6 +102,121 @@ export const oteleme = (ad, kaynak, dx, dy, sira, o = {}) => ({
   bagimliliklar: [{ kaynak, rol: 'kaynak', sira: 0 }],
 })
 
+/** Kaynagi merkez etrafinda aci kadar dondurur. */
+export const donme = (ad, kaynak, merkez, aciDerece, sira, o = {}) => ({
+  ...temel(ad, 'nokta_donme', sira, {
+    rol: o.rol ?? 'gul',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  parametreler: [{ anahtar: 'aci', deger: aciDerece, tur: 'sayi' }],
+  bagimliliklar: [
+    { kaynak, rol: 'kaynak', sira: 0 },
+    { kaynak: merkez, rol: 'merkez', sira: 1 },
+  ],
+})
+
+/** Kaynagi merkeze gore oran katinda uzaklastirir (homoteti / benzerlik). */
+export const homoteti = (ad, kaynak, merkez, oran, sira, o = {}) => ({
+  ...temel(ad, 'nokta_homoteti', sira, {
+    rol: o.rol ?? 'gok',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  parametreler: [{ anahtar: 'oran', deger: oran, tur: 'sayi' }],
+  bagimliliklar: [
+    { kaynak, rol: 'kaynak', sira: 0 },
+    { kaynak: merkez, rol: 'merkez', sira: 1 },
+  ],
+})
+
+/** Bir noktanin bir dogru uzerindeki dik izdusumu - yuksekligin ayagi. */
+export const izdusum = (ad, kaynak, dogru, sira, o = {}) => ({
+  ...temel(ad, 'dik_izdusum', sira, {
+    rol: o.rol ?? 'gok',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  bagimliliklar: [
+    { kaynak, rol: 'kaynak', sira: 0 },
+    { kaynak: dogru, rol: 'uzerinde', sira: 1 },
+  ],
+})
+
+/** Iki noktanin orta dikmesi. */
+export const ortaDikme = (ad, a, b, sira, o = {}) => ({
+  ...temel(ad, 'orta_dikme', sira, { rol: o.rol ?? 'lavanta', gorunur: o.gorunur ?? true }),
+  stil: { rol: o.rol ?? 'lavanta', kalinlik: o.kalinlik ?? 2, cizgiTipi: o.cizgiTipi ?? 'kesik' },
+  bagimliliklar: [
+    { kaynak: a, rol: 'uc1', sira: 0 },
+    { kaynak: b, rol: 'uc2', sira: 1 },
+  ],
+})
+
+/** Iki komsu koseden n kenarli duzgun cokgen. */
+export const duzgunCokgen = (ad, a, b, kenarSayisi, sira, o = {}) => ({
+  ...temel(ad, 'duzgun_cokgen', sira, {
+    rol: o.rol ?? 'nane',
+    etiket: o.etiket ?? null,
+    katman: 0,
+  }),
+  stil: { rol: o.rol ?? 'nane', opaklik: o.opaklik ?? 0.4, kalinlik: o.kalinlik ?? 2 },
+  parametreler: [{ anahtar: 'kenar_sayisi', deger: kenarSayisi, tur: 'sayi' }],
+  bagimliliklar: [
+    { kaynak: a, rol: 'uc1', sira: 0 },
+    { kaynak: b, rol: 'uc2', sira: 1 },
+  ],
+})
+
+/**
+ * Cembere teget.
+ * o.uzerinde verilirse cember uzerindeki surgunun tegeti,
+ * o.disNokta verilirse disaridaki noktadan cizilen teget olur.
+ */
+export const teget = (ad, sira, o = {}) => ({
+  ...temel(ad, 'teget', sira, { rol: o.rol ?? 'gul', gorunur: o.gorunur ?? true }),
+  stil: { rol: o.rol ?? 'gul', kalinlik: o.kalinlik ?? 2, cizgiTipi: o.cizgiTipi ?? 'duz' },
+  bagimliliklar: o.uzerinde
+    ? [{ kaynak: o.uzerinde, rol: 'uzerinde', sira: 0 }]
+    : [
+        { kaynak: o.cember, rol: 'kaynak', sira: 0 },
+        { kaynak: o.disNokta, rol: 'hedef', sira: 1 },
+      ],
+})
+
+/** Ucgenin uc kosesinden turetilen merkez ya da cember. */
+export const ucgenMerkezi = (ad, tip, koseler, sira, o = {}) => ({
+  ...temel(ad, tip, sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? null,
+    katman: tip.endsWith('cember') ? 0 : 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  stil: {
+    rol: o.rol ?? 'lavanta',
+    opaklik: o.opaklik ?? 0.15,
+    kalinlik: o.kalinlik ?? 2,
+    cizgiTipi: o.cizgiTipi ?? 'duz',
+  },
+  bagimliliklar: koseler.map((k, i) => ({ kaynak: k, rol: `uc${i + 1}`, sira: i })),
+})
+
+/** Iki nokta arasindaki egim olcumu. */
+export const egim = (ad, a, b, sira, o = {}) => ({
+  ...temel(ad, 'olcum_egim', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? null,
+    katman: 3,
+  }),
+  bagimliliklar: [
+    { kaynak: a, rol: 'uc1', sira: 0 },
+    { kaynak: b, rol: 'uc2', sira: 1 },
+  ],
+})
+
 /** Merkeze gore tam karsi nokta (180 derece otesi). */
 export const karsi = (ad, merkez, kaynak, sira, o = {}) => ({
   ...temel(ad, 'nokta_uzerinde', sira, {
@@ -177,6 +292,20 @@ export const paralelDik = (ad, tip, dogru, noktaAd, sira, o = {}) => ({
   ],
 })
 
+/** Iki noktanin orta noktasi. */
+export const ortaNokta = (ad, a, b, sira, o = {}) => ({
+  ...temel(ad, 'orta_nokta', sira, {
+    rol: o.rol ?? 'lavanta',
+    etiket: o.etiket ?? ad,
+    katman: 2,
+    gorunur: o.gorunur ?? true,
+  }),
+  bagimliliklar: [
+    { kaynak: a, rol: 'uc1', sira: 0 },
+    { kaynak: b, rol: 'uc2', sira: 1 },
+  ],
+})
+
 export const kesisim = (ad, a, b, sira, o = {}) => ({
   ...temel(ad, 'kesisim', sira, { rol: o.rol ?? 'seftali', etiket: o.etiket ?? ad, katman: 2 }),
   parametreler: [{ anahtar: 'kesisim_sirasi', deger: o.sirasi ?? 0, tur: 'sayi' }],
@@ -248,6 +377,44 @@ export const olcumKaynakli = (ad, tip, kaynak, sira, o = {}) => ({
   ...temel(ad, tip, sira, { rol: o.rol ?? 'tereyagi', etiket: o.etiket ?? null, katman: 3 }),
   bagimliliklar: [{ kaynak, rol: 'kaynak', sira: 0 }],
 })
+
+/**
+ * Bir cokgenin donusmus kopyasi.
+ *
+ * Sekli bir butun olarak donusturmek yerine koseleri tek tek donusturup
+ * uzerine cokgen kuruyoruz: ogrenci hangi kosenin nereye gittigini
+ * goruyor ve A -> A' eslesmesini kendi kurabiliyor. Uretilen koseler
+ * `${ad}_${eskiKoseAdi}` diye adlandirilir; olcum baglamak icin lazim.
+ */
+const kopyaCokgen = (uretici) => (ad, koseler, sira, o = {}) => {
+  const yeniAdlar = koseler.map((k) => `${ad}_${k}`)
+  return [
+    ...koseler.map((k, i) =>
+      uretici(yeniAdlar[i], k, sira + i, {
+        rol: o.rol ?? 'gul',
+        etiket: o.koseEtiketleri?.[i] ?? null,
+        gorunur: o.koseGorunur ?? false,
+      }),
+    ),
+    cokgen(ad, yeniAdlar, sira + koseler.length, {
+      rol: o.rol ?? 'gul',
+      opaklik: o.opaklik ?? 0.4,
+      etiket: o.etiket ?? null,
+    }),
+  ]
+}
+
+/** Cokgenin (dx, dy) kadar otelenmis kopyasi. */
+export const otelenmisCokgen = (ad, koseler, dx, dy, sira, o = {}) =>
+  kopyaCokgen((yeni, k, s, ayar) => oteleme(yeni, k, dx, dy, s, ayar))(ad, koseler, sira, o)
+
+/** Cokgenin merkez etrafinda aci kadar dondurulmus kopyasi. */
+export const donmusCokgen = (ad, koseler, merkez, aciDerece, sira, o = {}) =>
+  kopyaCokgen((yeni, k, s, ayar) => donme(yeni, k, merkez, aciDerece, s, ayar))(ad, koseler, sira, o)
+
+/** Cokgenin merkeze gore oran katinda buyutulmus kopyasi. */
+export const homotetikCokgen = (ad, koseler, merkez, oran, sira, o = {}) =>
+  kopyaCokgen((yeni, k, s, ayar) => homoteti(yeni, k, merkez, oran, s, ayar))(ad, koseler, sira, o)
 
 export const adim = (sira, baslik, anlatim, vurgu = []) => ({
   sira,

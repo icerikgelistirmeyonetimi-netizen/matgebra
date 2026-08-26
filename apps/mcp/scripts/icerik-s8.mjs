@@ -15,7 +15,7 @@ import {
   kesisim,
   nokta,
   olcumKaynakli,
-  oteleme,
+  otelenmisCokgen,
   paralelDik,
   surgu,
   uret,
@@ -23,25 +23,6 @@ import {
 } from './icerik-ortak.mjs'
 
 const { istemci, cagir } = await baglan('icerik-s8')
-
-/** Bir cokgeni sabit vektorle oteler: her kosesi ayri ayri tasinir. */
-const otelenmisCokgen = (ad, koseler, dx, dy, sira, o = {}) => {
-  const yeniAdlar = koseler.map((k) => `${ad}_${k}`)
-  return [
-    ...koseler.map((k, i) =>
-      oteleme(yeniAdlar[i], k, dx, dy, sira + i, {
-        rol: o.rol ?? 'gul',
-        etiket: o.koseEtiketleri?.[i] ?? null,
-        gorunur: o.koseGorunur ?? false,
-      }),
-    ),
-    cokgen(ad, yeniAdlar, sira + koseler.length, {
-      rol: o.rol ?? 'gul',
-      opaklik: o.opaklik ?? 0.4,
-      etiket: o.etiket ?? null,
-    }),
-  ]
-}
 
 /* --------------------------------------------------------------- sahneler */
 

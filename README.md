@@ -141,6 +141,17 @@ onları kullanıyor.
   (`apsis_eksen` / `ordinat_eksen`) ve sabit kaydırma alabilir (`dx` / `dy`).
   Aynı ölçüyü bir görünümde yatay, diğerinde dikey kullanmak gerektiğinde şart —
   prizmanın önden ve üstten görünümlerinde "boy" böyle paylaşılıyor.
+- **Kaymalı ama kaçmayan nokta.** Merdiven ayağı zeminden, silindirin alt tabanı
+  ekseninden çıkmamalı. `nokta_uzerinde`ye `uzerinde` rolüyle bir eğri verilirse
+  nokta o eğri üzerinde kayan bir sürgü olur (`surgu()` yardımcısı). Serbest
+  nokta kullanılırsa sahne ilk sürüklemede yalan söylemeye başlar.
+- **Yarım çemberde sürgü.** Çapı gören açının hep 90 kalması için sürgü tam
+  çembere değil `yay`a bağlanmalı; tam çemberde nokta alt yarıya geçince açı
+  dönük okunur.
+- **Dönüşümler köşe köşe kurulur.** `otelenmisCokgen` / `donmusCokgen` /
+  `homotetikCokgen` şekli bir bütün olarak değil, her köşeyi ayrı dönüştürüp
+  üzerine çokgen kurarak üretir. Öğrenci A → A′ eşleşmesini görebilsin diye;
+  üretilen köşeler `${ad}_${eskiAd}` diye adlandırılır, ölçüm bağlamak için lazım.
 
 ## Statik yayın
 

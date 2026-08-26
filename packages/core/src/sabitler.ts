@@ -43,6 +43,12 @@ export const NESNE_TIPLERI = [
   'nokta_bilesen',
   // Kaynagi sabit bir vektorle tasir: paralelkenarin dorduncu kosesi gibi.
   'nokta_oteleme',
+  // Kaynagi bir merkez etrafinda verilen aci kadar dondurur.
+  'nokta_donme',
+  // Kaynagi bir merkeze gore verilen oranda buyutur/kucultur (homoteti).
+  'nokta_homoteti',
+  // Bir noktanin bir dogru uzerindeki dik izdusumu - yuksekligin ayagi.
+  'dik_izdusum',
   'orta_nokta',
   'kesisim',
   'dogru_parcasi',
@@ -64,6 +70,12 @@ export const NESNE_TIPLERI = [
   'orta_dikme',
   'aci_ortay',
   'teget',
+  // Ucgenin uc noktasindan turetilen merkezler ve cemberler.
+  'agirlik_merkezi',
+  'ic_merkez',
+  'cevrel_merkez',
+  'ic_teget_cember',
+  'cevrel_cember',
   // olcum
   'aci',
   'olcum_uzunluk',
