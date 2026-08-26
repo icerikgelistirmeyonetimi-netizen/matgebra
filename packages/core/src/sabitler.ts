@@ -41,6 +41,8 @@ export const NESNE_TIPLERI = [
   // Iki kaynaktan bilesen alir: (A.x, B.y). Dikdortgen ve eksene paralel
   // yapilar bununla kurulur; tek surukleneblir kose yeter.
   'nokta_bilesen',
+  // Kaynagi sabit bir vektorle tasir: paralelkenarin dorduncu kosesi gibi.
+  'nokta_oteleme',
   'orta_nokta',
   'kesisim',
   'dogru_parcasi',

@@ -8,7 +8,8 @@
     "start": "tsx src/main.ts",
     "duman": "node scripts/duman-testi.mjs",
     "ornek": "node scripts/ornek-uretim.mjs",
-    "icerik-s5": "node scripts/icerik-s5.mjs"
+    "icerik-s5": "node scripts/icerik-s5.mjs",
+    "icerik-s6": "node scripts/icerik-s6.mjs"
   },
   "dependencies": {
     "@matgebra/core": "*",

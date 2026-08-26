@@ -187,6 +187,33 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'nokta_oteleme': {
+          // Kaynagi (dx, dy) kadar tasir. Paralelkenarda karsi kose boyle
+          // turetilir: tabani sabit tutup tepe noktasini serbest birakmak.
+          const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '') as JXG.Point | undefined
+          if (!kaynak) break
+          const dx = sayi(n, 'dx', 0)
+          const dy = sayi(n, 'dy', 0)
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('point', [() => kaynak.X() + dx, () => kaynak.Y() + dy], {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: 2,
+                fixed: true,
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 9,
+              }),
+            ),
+          )
+          break
+        }
+
         case 'cember': {
           const merkez = bul(baglilar(n, 'merkez')[0] ?? '')
           if (!merkez) break
@@ -344,14 +371,137 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'orta_nokta': {
+          const [a, b] = baglilar(n, 'uc1', 'uc2').map(bul)
+          if (!a || !b) break
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('midpoint', [a as never, b as never], {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: 2,
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 9,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'paralel':
+        case 'dikme': {
+          // Kaynak bir dogru, uzerinde ise gececegi nokta.
+          const dogru = bul(baglilar(n, 'kaynak', 'eksen')[0] ?? '')
+          const nokta = bul(baglilar(n, 'uzerinde', 'uc1')[0] ?? '')
+          if (!dogru || !nokta) break
+          const tur = n.tip === 'paralel' ? 'parallel' : 'perpendicular'
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create(tur, [dogru as never, nokta as never], {
+                strokeColor: g.strokeColor,
+                strokeWidth: g.strokeWidth,
+                dash: g.dash,
+                visible: n.gorunur,
+                fixed: true,
+                highlight: false,
+                layer: 5,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'kesisim': {
+          const [a, b] = baglilar(n, 'kesisen_a', 'kesisen_b').map(bul)
+          if (!a || !b) break
+          // Ucuncu parametre kacinci kesisim noktasi oldugunu soyler; iki
+          // cemberin kesisiminde iki nokta vardir.
+          const sira = Math.round(sayi(n, 'kesisim_sirasi', 0))
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('intersection', [a as never, b as never, sira], {
+                name: n.etiket ?? n.ad,
+                withLabel: Boolean(n.etiket),
+                size: n.stil.noktaBoyutu,
+                fillColor: g.renk.dolgu,
+                strokeColor: g.renk.kenar,
+                strokeWidth: 2,
+                visible: n.gorunur,
+                label: etiketAyari,
+                layer: 9,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'aci_ortay': {
+          const uc = baglilar(n, 'uc1', 'uc2').map(bul)
+          const merkez = bul(baglilar(n, 'merkez')[0] ?? '')
+          const [a, b] = uc
+          if (!a || !b || !merkez) break
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create('bisector', [a as never, merkez as never, b as never], {
+                strokeColor: g.strokeColor,
+                strokeWidth: g.strokeWidth,
+                dash: g.dash,
+                visible: n.gorunur,
+                fixed: true,
+                highlight: false,
+                layer: 5,
+              }),
+            ),
+          )
+          break
+        }
+
+        case 'yay':
+        case 'daire_dilimi': {
+          const merkez = bul(baglilar(n, 'merkez')[0] ?? '')
+          const [a, b] = baglilar(n, 'uc1', 'uc2').map(bul)
+          if (!merkez || !a || !b) break
+          const tur = n.tip === 'yay' ? 'arc' : 'sector'
+          el.set(
+            n.ad,
+            tekOge(
+              tahta.create(tur, [merkez as never, a as never, b as never], {
+                strokeColor: g.renk.kenar,
+                fillColor: g.renk.dolgu,
+                fillOpacity: n.tip === 'daire_dilimi' ? g.fillOpacity : 0,
+                strokeWidth: g.strokeWidth,
+                visible: n.gorunur,
+                fixed: true,
+                highlight: false,
+                layer: 4,
+              }),
+            ),
+          )
+          break
+        }
+
         case 'olcum_alan':
         case 'olcum_cevre': {
           // Kaynak bir cokgen; olcum onun uzerinde metin olarak durur.
           const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '') as
-            | (JXG.GeometryElement & { Area?(): number; Perimeter?(): number; vertices?: JXG.Point[] })
+            | (JXG.GeometryElement & {
+                Area?(): number
+                Perimeter?(): number
+                vertices?: JXG.Point[]
+                center?: JXG.Point
+              })
             | undefined
           if (!kaynak) break
-          const koseler = kaynak.vertices ?? []
+          // Cokgende agirlik merkezi, daire diliminde merkez kullanilir.
+          const koseler = kaynak.vertices ?? (kaynak.center ? [kaynak.center] : [])
           const merkezX = () =>
             koseler.length ? koseler.slice(0, -1).reduce((t, v) => t + v.X(), 0) / (koseler.length - 1) : 0
           const merkezY = () =>

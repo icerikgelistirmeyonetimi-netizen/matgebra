@@ -121,8 +121,9 @@ gösteriyor: doğrula → sahne yaz → gerçek hayat anlatısı → sorular →
 raporu. Yazma araçları **tekrar çalıştırılabilir** — aynı slug ya da aynı soru
 gövdesiyle çağrılırsa var olan kayıt değişir, yenisi eklenmez.
 
-5. sınıf geometrisi bu yolla tamamlandı: 8 konunun 8'inin de sahnesi,
-gerçek hayat örneği ve soruları var.
+5. ve 6. sınıf geometrisi bu yolla tamamlandı: 17 konunun 17'sinin de sahnesi
+var. Ortak sahne kalıpları `icerik-ortak.mjs` içinde toplandı; her sınıf dilimi
+onları kullanıyor.
 
 ### Sahne yazarken bilinmesi gerekenler
 
@@ -209,7 +210,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
-| 09 | İçerik üretimi | 5. sınıf geometri tamam (8/8 konu); 89 konu bekliyor |
+| 09 | İçerik üretimi | 5. ve 6. sınıf geometri tamam (17 sahne); 80 konu bekliyor |
 | 10 | Cila ve dışa aktarım | bekliyor |
 | 11 | Yönetim paneli | şema hazır |
 
