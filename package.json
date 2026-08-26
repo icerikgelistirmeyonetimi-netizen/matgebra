@@ -19,6 +19,7 @@
     "db:tohum": "npm run tohum -w @matgebra/db",
     "db:kur": "npm run kur -w @matgebra/db",
     "statik": "npm run statik -w @matgebra/api && cross-env VITE_STATIK=1 npm run build -w @matgebra/web",
+    "mcp": "npm run start -w @matgebra/mcp",
     "tip": "tsc --build --pretty"
   },
   "devDependencies": {

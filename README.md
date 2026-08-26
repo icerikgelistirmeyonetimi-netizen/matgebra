@@ -27,6 +27,35 @@ npm run dev
 API `http://127.0.0.1:5174`, arayüz `http://localhost:5173` adresinde açılır.
 Tek tek çalıştırmak için `npm run api` ve `npm run web`.
 
+## İçerik üretimi (MCP)
+
+Eğitim içeriği dosyaya değil veritabanına yazılır. `apps/mcp` bunun arayüzüdür:
+11 araçlı bir MCP sunucusu. `.mcp.json` deponun kökünde olduğu için Claude Code
+projeyi açtığında sunucuyu kendiliğinden görür.
+
+| Araç | İş |
+| --- | --- |
+| `sema_getir` | Tablolar, kolonlar, nesne tipleri, palet rolleri |
+| `kazanim_ara` | MEB kazanımlarında Türkçe normalize arama |
+| `konu_listele` | Taksonomi + sahne/örnek/soru sayıları |
+| `sahne_getir` | Sahneyi yazım biçiminde döndürür (doğrudan `sahne_yaz`'a verilebilir) |
+| `kapsama_raporu` | Hangi konunun sahnesi yok |
+| `sql_sorgu` | Salt okunur SQL; yazma ifadeleri reddedilir |
+| `konu_yaz` | Konu + kazanım köprüsü + ön koşullar |
+| `sahne_dogrula` | Şema, bağımlılık döngüsü, ekran dışı nokta, hayalet vurgu |
+| `sahne_yaz` | Sahneyi tek işlemde yazar |
+| `gercek_hayat_yaz` | Sahneye bağlı gerçek hayat anlatısı |
+| `soru_yaz` | Konuya ya da sahneye bağlı soru |
+
+Yazma mantığı tohumlamayla ortaktır (`@matgebra/db` → `sahneYaz`), doğrulama
+`@matgebra/core` içindeki şema ile yapılır; elle tohumlama ile araç üzerinden
+üretim ayrışamaz.
+
+```bash
+npm run duman -w @matgebra/mcp   # protokol üzerinden duman testi
+npm run ornek -w @matgebra/mcp   # uçtan uca içerik üretimi örneği
+```
+
 ## Statik yayın
 
 ```bash
@@ -95,7 +124,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 02 | Veri katmanı ve MEB içe aktarımı | tamam |
 | 03 | Sahne motoru — okuma yönü | tamam |
 | 04 | Çizim atölyesi | nokta ve doğru parçası çalışıyor, kalan araçlar bekliyor |
-| 05 | MCP içerik hattı | bekliyor |
+| 05 | MCP içerik hattı | tamam |
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | bekliyor |
 | 08 | Öğrenme akışı | bekliyor |

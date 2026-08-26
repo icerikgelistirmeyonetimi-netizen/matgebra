@@ -305,6 +305,39 @@ export function sahneyiKur(tahta: JXG.Board, sahne: SahneVerisi): Kurulum {
           break
         }
 
+        case 'olcum_alan':
+        case 'olcum_cevre': {
+          // Kaynak bir cokgen; olcum onun uzerinde metin olarak durur.
+          const kaynak = bul(baglilar(n, 'kaynak', 'uc1')[0] ?? '') as
+            | (JXG.GeometryElement & { Area?(): number; Perimeter?(): number; vertices?: JXG.Point[] })
+            | undefined
+          if (!kaynak) break
+          const koseler = kaynak.vertices ?? []
+          const merkezX = () =>
+            koseler.length ? koseler.slice(0, -1).reduce((t, v) => t + v.X(), 0) / (koseler.length - 1) : 0
+          const merkezY = () =>
+            koseler.length ? koseler.slice(0, -1).reduce((t, v) => t + v.Y(), 0) / (koseler.length - 1) : 0
+          const deger = () =>
+            n.tip === 'olcum_alan' ? (kaynak.Area?.() ?? 0) : (kaynak.Perimeter?.() ?? 0)
+          const yazi = tahta.create(
+            'text',
+            [merkezX, merkezY, () => `${n.etiket ? `${n.etiket} = ` : ''}${deger().toFixed(2)}`],
+            {
+              fontSize: 14,
+              strokeColor: g.renk.kenar,
+              anchorX: 'middle',
+              anchorY: 'middle',
+              cssStyle: `font-family: inherit; font-weight: 700; background: ${p.yuzey}; padding: 2px 7px; border-radius: 6px`,
+              visible: n.gorunur,
+              fixed: true,
+              highlight: false,
+              layer: 10,
+            },
+          )
+          el.set(n.ad, tekOge(yazi))
+          break
+        }
+
         case 'metin': {
           const yazi = tahta.create(
             'text',

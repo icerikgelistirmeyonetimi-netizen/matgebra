@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "matgebra": {
+      "command": "npx",
+      "args": ["tsx", "apps/mcp/src/main.ts"]
+    }
+  }
+}
