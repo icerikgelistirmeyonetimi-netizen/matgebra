@@ -1,4 +1,4 @@
-import { and, asc, eq, inArray, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, sql } from 'drizzle-orm'
 import { sema, veritabaniAc } from '@matgebra/db'
 import { normalize } from '@matgebra/db'
 
@@ -494,4 +494,65 @@ export function sahne(slug: string) {
         }
       : null,
   }
+}
+
+/* ------------------------------------------------------------------ cizim
+ * Ogrenci cizimleri tarif olarak saklanir: hangi arac hangi girdilerle
+ * calisti. Tahtanin ham hali degil, onu ureten adimlar. Kayit kucuk kalir
+ * ve motor degisse de anlamli olur.
+ */
+
+/** Kimlik dogrulama yok; tek yerel kullanici kaydi kullanilir. */
+function yerelKullanici(): number {
+  const mevcut = db.select({ id: s.kullanici.id }).from(s.kullanici).limit(1).get()
+  if (mevcut) return mevcut.id
+  const [yeni] = db
+    .insert(s.kullanici)
+    .values({ ad: 'Yerel kullanıcı', rol: 'ogretmen' })
+    .returning({ id: s.kullanici.id })
+    .all()
+  return yeni!.id
+}
+
+export function cizimKaydet(g: { ad: string; sahneSlug?: string; veri: unknown }) {
+  const sahne = g.sahneSlug
+    ? db.select({ id: s.sahne.id }).from(s.sahne).where(eq(s.sahne.slug, g.sahneSlug)).get()
+    : undefined
+  const [satir] = db
+    .insert(s.cizim)
+    .values({
+      kullaniciId: yerelKullanici(),
+      sahneId: sahne?.id ?? null,
+      ad: g.ad,
+      veriJson: JSON.stringify(g.veri),
+    })
+    .returning({ id: s.cizim.id })
+    .all()
+  return { id: satir!.id }
+}
+
+export function cizimListele(limit = 30) {
+  return db
+    .select({
+      id: s.cizim.id,
+      ad: s.cizim.ad,
+      olusturma: s.cizim.olusturma,
+      sahneSlug: s.sahne.slug,
+    })
+    .from(s.cizim)
+    .leftJoin(s.sahne, eq(s.sahne.id, s.cizim.sahneId))
+    .orderBy(desc(s.cizim.id))
+    .limit(limit)
+    .all()
+}
+
+export function cizimGetir(id: number) {
+  const satir = db.select().from(s.cizim).where(eq(s.cizim.id, id)).get()
+  if (!satir) return null
+  return { id: satir.id, ad: satir.ad, veri: JSON.parse(satir.veriJson) as unknown }
+}
+
+export function cizimSil(id: number) {
+  db.delete(s.cizim).where(eq(s.cizim.id, id)).run()
+  return { silindi: id }
 }

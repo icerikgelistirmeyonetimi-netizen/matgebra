@@ -27,6 +27,24 @@ npm run dev
 API `http://127.0.0.1:5174`, arayüz `http://localhost:5173` adresinde açılır.
 Tek tek çalıştırmak için `npm run api` ve `npm run web`.
 
+## Çizim atölyesi
+
+Serbest tuvalde GeoGebra tarzı araç davranışı: her araç sırayla nesne toplar,
+gereken sayıya ulaşınca sonucu inşa eder. Boş yere tıklamak yeni nokta yaratır,
+var olan bir noktaya tıklamak onu yeniden kullanır, bir çember ya da doğru
+üzerine tıklamak o nesne üzerinde **kayan nokta** (glider) yaratır — pergel
+davranışı buradan gelir.
+
+31 araç çalışıyor: temel çizim, şekil, inşa (dikme, paralel, orta dikme,
+açıortay, kesişim, teğet), ölçüm (uzunluk, açı, alan, çevre, eğim) ve dönüşüm
+(öteleme, yansıma, döndürme, benzerlik). Henüz bekleyen 7 araç: fonksiyon
+grafiği, kaydırıcı, eğri yeri, iz bırakma, metin, etiket, serbest kalem.
+
+**Kaydetme tarif olarak yapılır.** Tahtanın ham hâli değil, onu üreten adımlar
+saklanır: hangi araç hangi girdilerle çalıştı. Kayıt küçük kalır, geri yükleme
+aynı adımları yeniden oynatır ve motordan bağımsızdır. Geri/ileri alma da aynı
+mekanizmayı kullanır.
+
 ## İçerik üretimi (MCP)
 
 Eğitim içeriği dosyaya değil veritabanına yazılır. `apps/mcp` bunun arayüzüdür:
@@ -123,7 +141,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 01 | İskelet ve kabuk | tamam |
 | 02 | Veri katmanı ve MEB içe aktarımı | tamam |
 | 03 | Sahne motoru — okuma yönü | tamam |
-| 04 | Çizim atölyesi | nokta ve doğru parçası çalışıyor, kalan araçlar bekliyor |
+| 04 | Çizim atölyesi | 31 araç, geri/ileri alma, kaydetme çalışıyor; 7 araç bekliyor |
 | 05 | MCP içerik hattı | tamam |
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | bekliyor |

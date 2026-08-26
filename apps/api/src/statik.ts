@@ -43,6 +43,8 @@ function main(): void {
   yaz('palet.json', depo.stiller())
   yaz('moduller.json', depo.moduller())
   yaz('kapsama.json', depo.kapsamaRaporu())
+  // Statik surumde kaydetme yok; liste bos gecer ki arayuz hata vermesin.
+  yaz('cizimler.json', [])
 
   const siniflar = db
     .select({ seviye: s.sinif.seviye })

@@ -16,6 +16,17 @@ import { normalize } from '@matgebra/core'
 const STATIK = import.meta.env.VITE_STATIK === '1'
 const TEMEL = STATIK ? `${import.meta.env.BASE_URL}api` : '/api'
 
+async function gonder<T>(yol: string, govde: unknown, yontem = 'POST'): Promise<T> {
+  if (STATIK) throw new Error('Statik sürümde kaydetme yok; uygulamayı sunucuyla çalıştırın.')
+  const yanit = await fetch(`${TEMEL}${yol}`, {
+    method: yontem,
+    headers: { 'content-type': 'application/json' },
+    body: govde === undefined ? undefined : JSON.stringify(govde),
+  })
+  if (!yanit.ok) throw new Error(`${yanit.status} ${yol}: ${(await yanit.text()).slice(0, 200)}`)
+  return (await yanit.json()) as T
+}
+
 async function getir<T>(yol: string): Promise<T> {
   const yanit = await fetch(`${TEMEL}${yol}`)
   if (!yanit.ok) {
@@ -101,6 +112,13 @@ export interface KonuAyrinti extends Omit<KonuOzeti, 'sira' | 'sahneSayisi' | 'o
   sonrakiKonular: KonuBagi[]
   sahneler: SahneOzeti[]
   ornekler: Array<{ id: number; baslik: string; hikaye: string; soru: string }>
+}
+
+export interface CizimOzeti {
+  id: number
+  ad: string
+  olusturma: string
+  sahneSlug: string | null
 }
 
 export interface Arac {
@@ -204,6 +222,13 @@ export const api = {
       yol('palet', '/palet'),
     ),
   ara: (q: string) => (STATIK ? statikAra(q) : getir<AramaSonucu>(`/ara?q=${encodeURIComponent(q)}`)),
+  cizimler: () => getir<CizimOzeti[]>(yol('cizimler', '/cizimler')),
+  cizim: (id: number) => getir<{ id: number; ad: string; veri: unknown }>(`/cizimler/${id}`),
+  cizimKaydet: (govde: { ad: string; sahneSlug?: string; veri: unknown }) =>
+    gonder<{ id: number }>('/cizimler', govde),
+  cizimSil: (id: number) => gonder<{ silindi: number }>(`/cizimler/${id}`, undefined, 'DELETE'),
+  /** Statik sürümde kaydetme kapalı; arayüz düğmeyi ona göre gizler. */
+  kaydedebilir: !STATIK,
   kapsama: () =>
     getir<{
       siniflar: Array<{ seviye: number; alan: string; konu: number; sahne: number; ornek: number }>

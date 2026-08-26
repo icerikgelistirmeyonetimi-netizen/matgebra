@@ -58,6 +58,31 @@ app.get<{ Querystring: { q?: string } }>('/ara', async (istek) => depo.ara(istek
 
 app.get('/kapsama', async () => depo.kapsamaRaporu())
 
+/* --- cizimler: tek yerel kullanici, kimlik dogrulama yok --------------- */
+
+app.get('/cizimler', async () => depo.cizimListele())
+
+app.get<{ Params: { id: string } }>('/cizimler/:id', async (istek, yanit) => {
+  const sonuc = depo.cizimGetir(Number(istek.params.id))
+  if (!sonuc) return yanit.code(404).send({ hata: 'Çizim bulunamadı' })
+  return sonuc
+})
+
+app.post<{ Body: { ad?: string; sahneSlug?: string; veri?: unknown } }>(
+  '/cizimler',
+  async (istek, yanit) => {
+    const { ad, sahneSlug, veri } = istek.body ?? {}
+    if (!ad || veri === undefined) {
+      return yanit.code(400).send({ hata: 'ad ve veri zorunlu' })
+    }
+    return depo.cizimKaydet({ ad, sahneSlug, veri })
+  },
+)
+
+app.delete<{ Params: { id: string } }>('/cizimler/:id', async (istek) =>
+  depo.cizimSil(Number(istek.params.id)),
+)
+
 app.addHook('onClose', async () => depo.kapat())
 
 try {
