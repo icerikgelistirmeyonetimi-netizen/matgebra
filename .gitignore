@@ -17,3 +17,6 @@ veri/aciklama/
 # Derleme ciktilari - CI her yayinda yeniden uretir.
 apps/web/public/api/
 apps/web/dist/
+
+# gecici sorgu betikleri
+apps/mcp/scripts/tmp/
