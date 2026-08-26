@@ -397,11 +397,77 @@ const ODA = {
   ],
 }
 
+const ZEMIN = {
+  slug: 'zemin-karolamasi',
+  konuSlug: 's5-dikdortgenin-alani',
+  tur: 'gercek_hayat',
+  baslik: 'Zemin karolaması: alan kaç karo eder?',
+  ozet:
+    'Odaya birim karolar döşenecek. Karoları tek tek saymak yerine en ile boyu çarpmak neden aynı sonucu veriyor?',
+  zorluk: 3,
+  sira: 1,
+  durum: 'yayin',
+  ayar: ayar('izgara', [-1, 10, 15, -1], 'metre'),
+  nesneler: [
+    nokta('A', 1, 1, 0, { surukleme: 'yok', rol: 'notr' }),
+    nokta('C', 9, 6, 1, { rol: 'seftali', etiket: 'oda köşesi' }),
+    bilesen('B', 'C', 'A', 2),
+    bilesen('D', 'A', 'C', 3),
+    cokgen('zemin', ['A', 'B', 'C', 'D'], 4, 'nane', 0.4, 'zemin'),
+    olcum('en', 'olcum_uzunluk', uc('A', 'B'), 5, 'gok', 'en (sütun sayısı)'),
+    olcum('boy', 'olcum_uzunluk', uc('B', 'C'), 6, 'gul', 'boy (satır sayısı)'),
+    olcum('alan', 'olcum_alan', [{ kaynak: 'zemin', rol: 'kaynak', sira: 0 }], 7, 'tereyagi'),
+    nokta('K1', 11, 1, 8, { surukleme: 'yok', rol: 'notr', etiket: null }),
+    nokta('K2', 12, 1, 9, { surukleme: 'yok', rol: 'notr', etiket: null }),
+    nokta('K3', 12, 2, 10, { surukleme: 'yok', rol: 'notr', etiket: null }),
+    nokta('K4', 11, 2, 11, { surukleme: 'yok', rol: 'notr', etiket: null }),
+    cokgen('karo', ['K1', 'K2', 'K3', 'K4'], 12, 'seftali', 0.7, '1 karo'),
+    olcum('karoAlan', 'olcum_alan', [{ kaynak: 'karo', rol: 'kaynak', sira: 0 }], 13, 'seftali'),
+  ],
+  adimlar: [
+    adim(
+      1,
+      'Bir karo, bir birim kare',
+      'Sağdaki turuncu kare bir karoyu gösteriyor: bir metre eninde, bir metre boyunda. Alanı 1 metrekare.',
+      ['karo', 'karoAlan'],
+    ),
+    adim(
+      2,
+      'Karoları sayın',
+      'Zemine kaç karo sığdığını sayın: her satırda "en" kadar karo var, "boy" kadar satır var.',
+      ['zemin', 'en', 'boy'],
+    ),
+    adim(
+      3,
+      'Saymak yerine çarpmak',
+      'Sütun sayısı ile satır sayısını çarpın. Sarı ölçümdeki alanla aynı çıkıyor: alan = en × boy.',
+      ['alan', 'en', 'boy'],
+    ),
+    adim(
+      4,
+      'Köşeyi sürükleyin',
+      'Odayı büyütüp küçültün. Eni iki katına çıkarınca alan da iki katına çıkıyor; hem eni hem boyu iki katına çıkarınca dört katına.',
+      ['C', 'alan'],
+    ),
+  ],
+}
+
 /* ------------------------------------------------------------------ akis */
 
-const SAHNELER = [MAKAS, FISKIYE, BAHCE_CITI, ODA]
+const SAHNELER = [MAKAS, FISKIYE, BAHCE_CITI, ODA, ZEMIN]
 
 const ORNEKLER = [
+  {
+    konuSlug: 's5-dikdortgenin-alani',
+    sahneSlug: 'zemin-karolamasi',
+    baslik: 'Fayans hesabı',
+    hikaye:
+      'Ustaya "odam 4 metreye 5 metre" demek yeterlidir; kaç fayans gerektiğini oradan hesaplar. 20 metrekarelik zemin için 20 tane 1x1 fayans ya da 80 tane 50x50 fayans gerekir. Kesim firesi icin genelde yuzde on fazlasi alinir.',
+    soru: 'Eni 4, boyu 5 metre olan odaya kaç tane 1 metrekarelik karo döşenir?',
+    olcekAciklama: 'Izgaradaki 1 kutucuk 1 metredir.',
+    kaynak: 'MEB kazanımı MAT.5.4 — dikdörtgenin alanı',
+    yasAraligi: '10-12',
+  },
   {
     konuSlug: 's5-dogrularin-durumlari-ve-acilar',
     sahneSlug: 'makas-ters-acilar',
@@ -449,6 +515,17 @@ const ORNEKLER = [
 ]
 
 const SORULAR = [
+  {
+    konuSlug: 's5-dikdortgenin-alani',
+    sahneSlug: 'zemin-karolamasi',
+    tip: 'sayisal',
+    govde: 'Eni 4, boyu 5 metre olan odaya kaç tane 1 metrekarelik karo döşenir?',
+    cevap: { tip: 'sayisal', deger: 20, tolerans: 0, birim: 'karo' },
+    ipucu: 'Her satırda 4 karo var, 5 satır var.',
+    cozum: '4 x 5 = 20 karo. Alan = en x boy.',
+    zorluk: 2,
+    puan: 2,
+  },
   {
     konuSlug: 's5-dogrularin-durumlari-ve-acilar',
     sahneSlug: 'makas-ters-acilar',

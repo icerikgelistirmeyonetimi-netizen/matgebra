@@ -88,7 +88,7 @@ olasılık teması yoktur.
 ## İçerik üretimi (MCP)
 
 Eğitim içeriği dosyaya değil veritabanına yazılır. `apps/mcp` bunun arayüzüdür:
-11 araçlı bir MCP sunucusu. `.mcp.json` deponun kökünde olduğu için Claude Code
+15 araçlı bir MCP sunucusu. `.mcp.json` deponun kökünde olduğu için Claude Code
 projeyi açtığında sunucuyu kendiliğinden görür.
 
 | Araç | İş |
@@ -104,6 +104,8 @@ projeyi açtığında sunucuyu kendiliğinden görür.
 | `sahne_yaz` | Sahneyi tek işlemde yazar |
 | `gercek_hayat_yaz` | Sahneye bağlı gerçek hayat anlatısı |
 | `soru_yaz` | Konuya ya da sahneye bağlı soru |
+| `deney_yaz` / `deney_listele` | Olasılık deneyi ve olayları |
+| `kavram_yaz` / `formul_yaz` | Kavram sözlüğü ve formül kartları |
 
 Yazma mantığı tohumlamayla ortaktır (`@matgebra/db` → `sahneYaz`), doğrulama
 `@matgebra/core` içindeki şema ile yapılır; elle tohumlama ile araç üzerinden
@@ -116,14 +118,34 @@ npm run ornek -w @matgebra/mcp   # uçtan uca içerik üretimi örneği
 
 ## İçerik üretimi nasıl yürüyor
 
-`apps/mcp/scripts/icerik-s5.mjs` bir sınıf diliminin nasıl doldurulduğunu
+`apps/mcp/scripts/icerik-*.mjs` her sınıf diliminin nasıl doldurulduğunu
 gösteriyor: doğrula → sahne yaz → gerçek hayat anlatısı → sorular → kapsama
 raporu. Yazma araçları **tekrar çalıştırılabilir** — aynı slug ya da aynı soru
 gövdesiyle çağrılırsa var olan kayıt değişir, yenisi eklenmez.
 
-5, 6 ve 7. sınıf geometrisi bu yolla tamamlandı: 28 konunun 28'inin de sahnesi
-var. Ortak sahne kalıpları `icerik-ortak.mjs` içinde toplandı; her sınıf dilimi
-onları kullanıyor.
+```bash
+npm run icerik      # bütün sınıf dilimlerini sırayla üretir
+```
+
+Bu tek komut, boş bir veritabanını (`npm run db:kur` sonrası) baştan sona
+doldurur. İçerik dosyalarda değil veritabanında yaşar ama **üretilebilirliği**
+depoda durur: `db:kur && icerik` her zaman aynı sonucu verir.
+
+**Bütün müfredat kapsandı.** 97 konunun 97'sinin sahnesi var:
+
+| Sınıf | Konu | Sahne | Sınıf | Konu | Sahne |
+| --- | --- | --- | --- | --- | --- |
+| Hazırlık | 2 | 2 | 7 | 14 | 14 |
+| 1 | 2 | 2 | 8 | 13 | 13 |
+| 2 | 5 | 5 | 9 | 7 | 8 |
+| 3 | 6 | 6 | 10 | 8 | 11 |
+| 4 | 10 | 10 | 11 | 4 | 5 |
+| 5 | 10 | 10 | 12 | 6 | 7 |
+| 6 | 10 | 10 | **Toplam** | **97** | **103** |
+
+Toplamda 103 sahne, 1553 sahne nesnesi, 381 anlatım adımı, 45 gerçek hayat
+örneği, 145 soru, 9 olasılık deneyi. Ortak sahne kalıpları `icerik-ortak.mjs`
+içinde toplandı; her sınıf dilimi onları kullanıyor.
 
 ### Sahne yazarken bilinmesi gerekenler
 
@@ -148,6 +170,10 @@ onları kullanıyor.
 - **Yarım çemberde sürgü.** Çapı gören açının hep 90 kalması için sürgü tam
   çembere değil `yay`a bağlanmalı; tam çemberde nokta alt yarıya geçince açı
   dönük okunur.
+- **Sürgünün ucu tehlikelidir.** Bir sürgü taşıyıcısının ucuna oturabilir; orada
+  üçgen çöker ve açı tanımsızlaşır (ekranda 150 gibi anlamsız bir sayı belirir).
+  Taşıyıcıyı kısaltın: doğru parçasının ucunu içeri çekin ya da yayın uçlarını
+  `donme` ile birkaç derece kısın.
 - **Dönüşümler köşe köşe kurulur.** `otelenmisCokgen` / `donmusCokgen` /
   `homotetikCokgen` şekli bir bütün olarak değil, her köşeyi ayrı dönüştürüp
   üzerine çokgen kurarak üretir. Öğrenci A → A′ eşleşmesini görebilsin diye;
@@ -225,7 +251,7 @@ koordinat düzlemi. Müfredatta koordinat sistemi 8. sınıfta geçer.
 | 06 | Gerçek hayat modülü | ilk iki sahne yayında, arka plan görseli ve ölçek bekliyor |
 | 07 | Olasılık laboratuvarı | 9 deney, tohumlu benzetim, teorik/deneysel karşılaştırma |
 | 08 | Öğrenme akışı | 6 soru tipi, ipucu/çözüm, ilerleme, kavram ve formül |
-| 09 | İçerik üretimi | 5-6-7. sınıf geometri tamam (28 sahne); 69 konu bekliyor |
+| 09 | İçerik üretimi | **tamam** — 97 konunun 97'si kapsandı, 103 sahne |
 | 10 | Cila ve dışa aktarım | bekliyor |
 | 11 | Yönetim paneli | şema hazır |
 

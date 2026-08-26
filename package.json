@@ -20,7 +20,8 @@
     "db:kur": "npm run kur -w @matgebra/db",
     "statik": "npm run statik -w @matgebra/api && cross-env VITE_STATIK=1 npm run build -w @matgebra/web",
     "mcp": "npm run start -w @matgebra/mcp",
-    "tip": "tsc --build --pretty"
+    "tip": "tsc --build --pretty",
+    "icerik": "npm run icerik -w @matgebra/mcp"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
