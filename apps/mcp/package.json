@@ -13,7 +13,9 @@
     "icerik-s7": "node scripts/icerik-s7.mjs",
     "icerik-s8": "node scripts/icerik-s8.mjs",
     "icerik-s9": "node scripts/icerik-s9.mjs",
-    "icerik-s10": "node scripts/icerik-s10.mjs"
+    "icerik-s10": "node scripts/icerik-s10.mjs",
+    "icerik-s11": "node scripts/icerik-s11.mjs",
+    "icerik-s12": "node scripts/icerik-s12.mjs"
   },
   "dependencies": {
     "@matgebra/core": "*",

@@ -444,6 +444,29 @@ export const donmusCokgen = (ad, koseler, merkez, aciDerece, sira, o = {}) =>
 export const homotetikCokgen = (ad, koseler, merkez, oran, sira, o = {}) =>
   kopyaCokgen((yeni, k, s, ayar) => homoteti(yeni, k, merkez, oran, s, ayar))(ad, koseler, sira, o)
 
+/**
+ * Duzgun cokgenin koseleri: merkez etrafinda 360/n'lik donmelerle zincir
+ * halinde uretilir. `duzgun_cokgen` tipi cokgeni tek nesnede veriyor ama
+ * koselerini disari acmiyor; ic aciyi olcmek icin koselerin adi lazim.
+ * Donen nesne { adlar, nesneler } - adlar dogrudan cokgen()'e verilir.
+ */
+export const duzgunKoseler = (onEk, merkez, ilkKose, n, sira, o = {}) => {
+  const adlar = [ilkKose]
+  const nesneler = []
+  for (let i = 1; i < n; i++) {
+    const ad = `${onEk}${i}`
+    nesneler.push(
+      donme(ad, adlar[i - 1], merkez, 360 / n, sira + i - 1, {
+        rol: o.rol ?? 'lavanta',
+        etiket: o.etiketli === false ? null : ad,
+        gorunur: o.gorunur ?? true,
+      }),
+    )
+    adlar.push(ad)
+  }
+  return { adlar, nesneler }
+}
+
 export const adim = (sira, baslik, anlatim, vurgu = []) => ({
   sira,
   baslik,
